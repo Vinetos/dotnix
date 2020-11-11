@@ -26,7 +26,6 @@
   };
 
   networking.hostName = "nixos"; # Define your hostname.
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Start networkmanager
 
   # Set your time zone.
@@ -51,14 +50,21 @@
   };
 
   # Enable the Plasma 5 Desktop Environment.
-  services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  
+  services.xserver = {
+    enable = true;
+    
+    layout = "fr";
+    xkbOptions = "eurosign:e";
 
-  # Configure keymap in X11
-  services.xserver.layout = "fr";
-  services.xserver.xkbOptions = "eurosign:e";
+    libinput.enable = true;
+    
+    displayManager.lightdm.enable = true;
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;
+    };
+   }; 
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -67,13 +73,11 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vinetos = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    createHome = true;
+    extraGroups = [ "wheel" ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -85,8 +89,11 @@
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  programs.steam.enable = true;
-  programs.mtr.enable = true;
+  programs = {
+    fish.enable = true;
+    steam.enable = true;
+  };
+  
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -97,12 +104,6 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -112,6 +113,10 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
   nixpkgs.config.allowUnfree = true;
+  
+  # Enable auto upgrade
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = false;
 
 }
 
