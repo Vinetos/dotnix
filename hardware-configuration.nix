@@ -13,6 +13,15 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  hardware = {
+    nvidia.prime = {
+      sync.enable = true;
+      
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0";
+    }
+  };
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/d5a3dea6-0d2f-43f3-a9e9-8e67da449a71";
       fsType = "ext4";
