@@ -49,7 +49,7 @@
     keyMap = "fr";
   };
 
-  # Enable the Plasma 5 Desktop Environment.
+  # Enable the i3 Environment.
   services.xserver = {
     enable = true;
     
@@ -86,7 +86,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget vim
+    wget nano
     firefox
   ];
 
