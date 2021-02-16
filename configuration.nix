@@ -80,7 +80,7 @@
   users.users.vinetos = {
     isNormalUser = true;
     createHome = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "video" ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -95,6 +95,7 @@
   programs = {
     fish.enable = true;
     steam.enable = true;
+    light.enable = true;
   };
   
   programs.gnupg.agent = {
