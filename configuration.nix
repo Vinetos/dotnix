@@ -94,7 +94,6 @@
   # started in user sessions.
   programs = {
     fish.enable = true;
-    steam.enable = true;
     light.enable = true;
   };
   
@@ -120,6 +119,6 @@
   
   # Enable auto upgrade
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = false;
+  system.autoUpgrade.allowReboot = true;
 }
 
