@@ -81,7 +81,7 @@
   users.users.vinetos = {
     isNormalUser = true;
     createHome = true;
-    extraGroups = [ "wheel" "video" ];
+    extraGroups = [ "wheel" "video" "networkmanager" ];
   };
 
   # List packages installed in system profile. To search, run:
