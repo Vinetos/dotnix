@@ -57,7 +57,14 @@
     layout = "fr";
     xkbOptions = "eurosign:e";
 
-    libinput.enable = true;
+    libinput = {
+      enable = true;
+      naturalScrolling = false;
+      accelProfile = "flat";
+      # touchpad = {
+      #  naturalScrolling = true;
+      #};
+    };
     
     displayManager.lightdm.enable = true;
     windowManager.i3 = {
