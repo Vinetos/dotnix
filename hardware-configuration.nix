@@ -2,17 +2,16 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
-let
-  unstable = import <nixos-unstable> {config = { allowUnfree = true; };};
-in {
+
+{
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.kernelPackages = unstable.linuxPackages_latest;
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ unstable.linuxPackages_latest.v4l2loopback ];
+  boot.extraModulePackages = [ ];
 
   hardware = {
     nvidia.prime = {
@@ -24,18 +23,16 @@ in {
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/d5a3dea6-0d2f-43f3-a9e9-8e67da449a71";
+    { device = "/dev/disk/by-uuid/e4b99b89-b9e8-4eb8-ad5b-5ef483cb01dd";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/74E1-E51D";
+    { device = "/dev/disk/by-uuid/7E89-5C1D";
       fsType = "vfat";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/4e85e28d-c2a5-41d7-ac3f-cc84bcc1c013"; }
-    ];
+  swapDevices = [ ];
 
-    powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

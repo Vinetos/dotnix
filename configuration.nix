@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./battery.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -71,11 +70,10 @@
       enable = true;
       package = pkgs.i3-gaps;
     };
-    
-    videoDrivers = [ "nvidia" ];
-     
-   }; 
 
+    videoDrivers = [ "nvidia" ];
+
+   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -88,14 +86,13 @@
   users.users.vinetos = {
     isNormalUser = true;
     createHome = true;
-    extraGroups = [ "wheel" "video" "networkmanager" ];
+    extraGroups = [ "wheel" "video" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget nano
-    firefox
+    wget vim
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -103,17 +100,22 @@
   programs = {
     fish.enable = true;
     light.enable = true;
-  };
-  
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
