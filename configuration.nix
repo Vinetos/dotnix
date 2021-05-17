@@ -23,6 +23,7 @@
       useOSProber = true;
       version = 2;
     };
+    systemd-boot.configurationLimit = 10;
   };
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -137,5 +138,7 @@
   # Enable auto upgrade
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
+
+  nix.gc.automatic = true;
 }
 
