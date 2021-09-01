@@ -22,6 +22,7 @@
       enable = true;
       useOSProber = true;
       version = 2;
+      default = "saved";
     };
     systemd-boot.configurationLimit = 10;
   };
@@ -47,23 +48,21 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
-    keyMap = "fr";
+    useXkbConfig = true;
   };
 
   # Enable the i3 Environment.
   services.xserver = {
     enable = true;
+    exportConfiguration = true;
     
-    layout = "fr";
-    xkbOptions = "eurosign:e";
+    layout = "us,fr";
+    xkbOptions = "eurosign:e, compose:menu, grp:alt_space_toggle";
 
     libinput = {
       enable = true;
-      naturalScrolling = false;
+      touchpad.naturalScrolling = false;
       # accelProfile = "flat";
-      # touchpad = {
-      #  naturalScrolling = true;
-      #};
     };
     
     displayManager.lightdm.enable = true;
