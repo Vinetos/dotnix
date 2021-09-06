@@ -17,12 +17,12 @@
       efiSysMountPoint = "/boot";
     };
     grub = {
-      device = "nodev";
-      efiSupport = true;
       enable = true;
-      useOSProber = true;
-      version = 2;
+      device = "nodev";
       default = "saved";
+      useOSProber = true;
+      efiSupport = true;
+      version = 2;
     };
     systemd-boot.configurationLimit = 10;
   };
@@ -56,8 +56,8 @@
     enable = true;
     exportConfiguration = true;
     
-    layout = "us,fr";
-    xkbOptions = "eurosign:e, compose:menu, grp:alt_space_toggle";
+    layout = "fr,us";
+    xkbOptions = "eurosign:e, compose:menu, grp:alt_shift_toggle";
 
     libinput = {
       enable = true;
@@ -112,8 +112,6 @@
       enableSSHSupport = true;
     };
   };
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
