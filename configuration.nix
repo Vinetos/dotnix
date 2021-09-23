@@ -78,9 +78,48 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound.
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+
+  # Configure the sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  # Enable pipewire
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    #jack.enable = true;
+
+    # Bluetooth config
+    media-session.config.bluez-monitor.rules = [
+    {
+      # Matches all cards
+      matches = [ { "device.name" = "~bluez_card.*"; } ];
+      actions = {
+        "update-props" = {
+          "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
+          # mSBC is not expected to work on all headset + adapter combinations.
+          "bluez5.msbc-support" = true;
+          # SBC-XQ is not expected to work on all headset + adapter combinations.
+          "bluez5.sbc-xq-support" = true;
+        };
+      };
+    }
+    {
+      matches = [
+        # Matches all sources
+        { "node.name" = "~bluez_input.*"; }
+        # Matches all outputs
+        { "node.name" = "~bluez_output.*"; }
+      ];
+      actions = {
+        "node.pause-on-idle" = false;
+      };
+    }
+  ];
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vinetos = {
@@ -128,7 +167,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "21.05"; # Did you read the comment?
 
   nixpkgs.config.allowUnfree = true;
   
