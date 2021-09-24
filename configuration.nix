@@ -144,6 +144,10 @@
       promptInit = ''
         any-nix-shell fish --info-right | source
       '';
+      shellAliases = {
+        ll = "ls -lh";
+	la = "ls -a";
+      };
     };
     light.enable = true;
     gnupg.agent = {
