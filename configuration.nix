@@ -146,7 +146,7 @@
       '';
       shellAliases = {
         ll = "ls -lh";
-	la = "ls -a";
+        la = "ls -a";
       };
     };
     light.enable = true;
