@@ -34,5 +34,7 @@
 
   swapDevices = [ ];
 
+  virtualisation.docker.enable = true;
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
