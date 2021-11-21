@@ -4,6 +4,11 @@
 
 { config, pkgs, ... }:
 
+let
+  vinetos-grub2-theme = builtins.fetchTarball {
+    url = "https://github.com/Vinetos/vinetos-grub2-theme/releases/download/v0.0.1/vinetos-grub2-theme.tar.gz";
+  };
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -20,6 +25,8 @@
       enable = true;
       device = "nodev";
       default = "saved";
+      theme = vinetos-grub2-theme;
+      gfxmodeEfi = "1920x1080";
       useOSProber = true;
       efiSupport = true;
       version = 2;
@@ -163,7 +170,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 30d";
+    options = "--delete-older-than 14d";
   };
   nix.autoOptimiseStore = true;
   
