@@ -71,8 +71,15 @@ in
       touchpad.naturalScrolling = false;
       # accelProfile = "flat";
     };
-    
-    displayManager.lightdm.enable = true;
+
+    displayManager = {
+	defaultSession = "none+i3";
+        autoLogin = {
+          enable = true;
+          user = "vinetos";
+        };
+    };
+
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
