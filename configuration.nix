@@ -8,6 +8,13 @@ let
   vinetos-grub2-theme = builtins.fetchTarball {
     url = "https://github.com/Vinetos/vinetos-grub2-theme/releases/download/v0.0.1/vinetos-grub2-theme.tar.gz";
   };
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec -a "$0" "$@"
+    '';
 in
 {
   imports =
@@ -145,6 +152,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    nvidia-offload
     firefox
     wget vim
   ];

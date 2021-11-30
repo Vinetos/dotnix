@@ -2,7 +2,6 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
-
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
@@ -15,7 +14,7 @@
 
   hardware = {
     nvidia.prime = {
-      sync.enable = true;
+      offload.enable = true;
       
       nvidiaBusId = "PCI:1:0:0";
       intelBusId = "PCI:0:2:0";
