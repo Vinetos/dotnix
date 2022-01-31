@@ -71,6 +71,7 @@ in
     exportConfiguration = true;
     
     layout = "fr,us";
+    xkbVariant = " ,intl";
     xkbOptions = "eurosign:e, compose:menu, grp:alt_shift_toggle";
 
     libinput = {
@@ -187,7 +188,7 @@ in
     dates = "weekly";
     options = "--delete-older-than 14d";
   };
-  nix.autoOptimiseStore = true;
+  nix.settings.auto-optimise-store = true;
   
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
