@@ -20,6 +20,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <home-manager/nixos>
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -156,6 +157,7 @@ in
     nvidia-offload
     firefox
     wget vim
+    home-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -183,12 +185,18 @@ in
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 14d";
+  nix = {
+    package = pkgs.nixUnstable; # or versioned attributes like nix_2_4
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+     settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
   };
-  nix.settings.auto-optimise-store = true;
   
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
