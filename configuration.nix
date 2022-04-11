@@ -2,11 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, home-manager, ... }:
 
 let
   vinetos-grub2-theme = builtins.fetchTarball {
     url = "https://github.com/Vinetos/vinetos-grub2-theme/releases/download/v0.0.1/vinetos-grub2-theme.tar.gz";
+    sha256 = "0dfg2gazgscr3zam83ajqfkwavdwiadjzzn27cyvvh7q3rdfb7jw";
   };
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -20,7 +21,6 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -43,7 +43,7 @@ in
   };
 
   networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true; # Start networkmanager
+  networking.networkmanager.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -63,10 +63,10 @@ in
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
-    useXkbConfig = true;
+    useXkbConfig = true;  
   };
 
-  # Enable the i3 Environment.
+  # Enable X11 + i3 Environment.
   services.xserver = {
     enable = true;
     exportConfiguration = true;
@@ -101,54 +101,54 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable bluetooth
-  hardware.bluetooth.enable = true;
-
-  # Configure the sound.
-  sound.enable = true;
-  # Enable pipewire
+  # Disable sound when using PipeWire, it seems to cause conflicts
+  sound.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
-    # Bluetooth config
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+
+    # Bluetooth Config for Pipewire
     media-session.config.bluez-monitor.rules = [
-    {
-      # Matches all cards
-      matches = [ { "device.name" = "~bluez_card.*"; } ];
-      actions = {
-        "update-props" = {
-          "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
-          # mSBC is not expected to work on all headset + adapter combinations.
-          "bluez5.msbc-support" = true;
-          # SBC-XQ is not expected to work on all headset + adapter combinations.
-          "bluez5.sbc-xq-support" = true;
+      {
+        # Matches all cards
+        matches = [ { "device.name" = "~bluez_card.*"; } ];
+        actions = {
+          "update-props" = {
+            "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
+            # mSBC is not expected to work on all headset + adapter combinations.
+            "bluez5.msbc-support" = true;
+            # SBC-XQ is not expected to work on all headset + adapter combinations.
+            "bluez5.sbc-xq-support" = true;
+          };
         };
-      };
-    }
-    {
-      matches = [
-        # Matches all sources
-        { "node.name" = "~bluez_input.*"; }
-        # Matches all outputs
-        { "node.name" = "~bluez_output.*"; }
-      ];
-      actions = {
-        "node.pause-on-idle" = false;
-      };
-    }
-  ];
+      }
+      {
+        matches = [
+          # Matches all sources
+          { "node.name" = "~bluez_input.*"; }
+          # Matches all outputs
+          { "node.name" = "~bluez_output.*"; }
+        ];
+        actions = {
+          "node.pause-on-idle" = false;
+        };
+      }
+    ];
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vinetos = {
     isNormalUser = true;
-    createHome = true;
-    extraGroups = [ "wheel" "video" "networkmanager" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "networkmanager" "docker" ]; # Groups for user
   };
 
   # List packages installed in system profile. To search, run:
@@ -156,12 +156,13 @@ in
   environment.systemPackages = with pkgs; [
     nvidia-offload
     firefox
-    wget vim
-    home-manager
+    wget 
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
+  # programs.mtr.enable = true;
   programs = {
     light.enable = true;
     gnupg.agent = {
@@ -169,6 +170,8 @@ in
       enableSSHSupport = true;
     };
   };
+
+  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -179,31 +182,35 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # Allow unfree package  
   nixpkgs.config.allowUnfree = true;
-  
-  # Enable auto upgrade
+
+  # Enable auto-upgrade
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
 
+  # Configure Nix
   nix = {
-    package = pkgs.nixUnstable; # or versioned attributes like nix_2_4
+    package = pkgs.nixUnstable; # Get latest version to enable flakes
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-     settings.auto-optimise-store = true;
+    # Automatic GC and optimize store
+#    settings.auto-optimise-store = true;
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 14d";
     };
   };
-  
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.05"; # Did you read the comment?
+  system.stateVersion = "21.11"; # Did you read the comment?
+
 }
 

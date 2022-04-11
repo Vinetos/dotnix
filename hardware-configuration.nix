@@ -2,6 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
+
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
@@ -11,18 +12,10 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-
-  hardware = {
-    nvidia.prime = {
-      offload.enable = true;
-      
-      nvidiaBusId = "PCI:1:0:0";
-      intelBusId = "PCI:0:2:0";
-    };
-  };
+  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/27a8118b-4e3e-4557-be50-ac2c4a591420";
+    { device = "/dev/disk/by-uuid/4bece4ed-5ad6-4367-8859-dfdddc25b9f4";
       fsType = "ext4";
     };
 
@@ -31,9 +24,25 @@
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  fileSystems."/shared" =
+    { device = "/dev/disk/by-uuid/765421971B7E0D62";
+      fsType = "ntfs";
+    };
 
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/b1165bde-703e-400d-937d-637a168c92fd"; }
+    ];
+
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.nvidia.prime = {
+    offload.enable = true;
+    nvidiaBusId = "PCI:1:0:0";
+    intelBusId = "PCI:0:2:0";
+  };
+
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+ 
   virtualisation.docker.enable = true;
-
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
