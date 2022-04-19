@@ -5,10 +5,6 @@
 { config, pkgs, home-manager, ... }:
 
 let
-  vinetos-grub2-theme = builtins.fetchTarball {
-    url = "https://github.com/Vinetos/vinetos-grub2-theme/releases/download/v0.0.1/vinetos-grub2-theme.tar.gz";
-    sha256 = "0dfg2gazgscr3zam83ajqfkwavdwiadjzzn27cyvvh7q3rdfb7jw";
-  };
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
@@ -29,17 +25,15 @@ in
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
     };
+    timeout = 0; # Set timeout to 0 because we use refind
     grub = {
       enable = true;
       device = "nodev";
       default = "saved";
-      theme = vinetos-grub2-theme;
-      gfxmodeEfi = "1920x1080";
-      useOSProber = true;
       efiSupport = true;
       version = 2;
     };
-    systemd-boot.configurationLimit = 10;
+    systemd-boot.configurationLimit = 5;
   };
 
   networking.hostName = "nixos"; # Define your hostname.

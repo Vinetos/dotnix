@@ -25,7 +25,7 @@
     };
 
   fileSystems."/shared" =
-    { device = "/dev/disk/by-uuid/765421971B7E0D62";
+    { device = "/dev/disk/by-uuid/5ADEB2E56874CEB0";
       fsType = "ntfs";
     };
 
