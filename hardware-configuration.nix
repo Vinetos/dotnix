@@ -27,6 +27,7 @@
   fileSystems."/shared" =
     { device = "/dev/disk/by-uuid/5ADEB2E56874CEB0";
       fsType = "ntfs";
+      options = [ "rw" "uid=1000 gid=100" ];
     };
 
   swapDevices =
