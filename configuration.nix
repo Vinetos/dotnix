@@ -170,6 +170,9 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  # Hibernate when closing lid
+  services.logind.extraConfig = "HandleLidSwitch=hibernate";
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
