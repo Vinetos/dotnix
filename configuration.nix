@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -17,56 +16,61 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # Home-Manager as system module
+      <home-manager/nixos>
     ];
 
-  # Use the systemd-boot EFI boot loader.
+  # Bootloader configuration.
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
+      efiSysMountPoint = "/boot/efi";
     };
-    timeout = 0; # Set timeout to 0 because we use refind
-    grub = {
-      enable = true;
-      device = "nodev";
-      default = "saved";
-      efiSupport = true;
-      version = 2;
-    };
+    timeout = 5;
+    systemd-boot.enable = true; 
     systemd-boot.configurationLimit = 5;
   };
 
+  # Setup keyfile
+  boot.initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
+
   networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Set your time zone.
-  time.timeZone = "Europe/Paris";
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.enp2s0.useDHCP = true;
-  networking.interfaces.wlo1.useDHCP = true;
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # Set your time zone.
+  time.timeZone = "Europe/Paris";
+
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    useXkbConfig = true;  
+  i18n.defaultLocale = "en_US.utf8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "fr_FR.utf8";
+    LC_IDENTIFICATION = "fr_FR.utf8";
+    LC_MEASUREMENT = "fr_FR.utf8";
+    LC_MONETARY = "fr_FR.utf8";
+    LC_NAME = "fr_FR.utf8";
+    LC_NUMERIC = "fr_FR.utf8";
+    LC_PAPER = "fr_FR.utf8";
+    LC_TELEPHONE = "fr_FR.utf8";
+    LC_TIME = "fr_FR.utf8";
   };
 
-  # Enable X11 + i3 Environment.
+  # Configure X11 + i3 Environment.
   services.xserver = {
     enable = true;
     exportConfiguration = true;
     
-    layout = "fr,us";
-    xkbVariant = " ,intl";
+    layout = "fr";
+    xkbVariant = " ";
     xkbOptions = "eurosign:e, compose:menu, grp:alt_shift_toggle";
 
     libinput = {
@@ -88,15 +92,16 @@ in
       package = pkgs.i3-gaps;
     };
 
-    videoDrivers = [ "nvidia" ];
-
    };
+  # Configure console keymap
+  console.keyMap = "fr";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Disable sound when using PipeWire, it seems to cause conflicts
-  sound.enable = false;
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -109,69 +114,50 @@ in
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
-
-    # Bluetooth Config for Pipewire
-    media-session.config.bluez-monitor.rules = [
-      {
-        # Matches all cards
-        matches = [ { "device.name" = "~bluez_card.*"; } ];
-        actions = {
-          "update-props" = {
-            "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
-            # mSBC is not expected to work on all headset + adapter combinations.
-            "bluez5.msbc-support" = true;
-            # SBC-XQ is not expected to work on all headset + adapter combinations.
-            "bluez5.sbc-xq-support" = true;
-          };
-        };
-      }
-      {
-        matches = [
-          # Matches all sources
-          { "node.name" = "~bluez_input.*"; }
-          # Matches all outputs
-          { "node.name" = "~bluez_output.*"; }
-        ];
-        actions = {
-          "node.pause-on-idle" = false;
-        };
-      }
-    ];
   };
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vinetos = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "networkmanager" "docker" ]; # Groups for user
+    description = "Vinetos";
+    extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
+    packages = with pkgs; [
+      firefox
+    ];
   };
+  
+  # Configure home-manager for user vinetos
+  home-manager.users.vinetos = import /home/vinetos/.config/nixpkgs/home.nix;
+  home-manager.useGlobalPkgs = true; # By default, Home Manager uses a private pkgs instance that is configured via the home-manager.users.<name>.nixpkgs options. Here, we use the global nixpkgs.
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    nvidia-offload
-    firefox
-    wget 
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      nvidia-offload
+      vim  # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
   programs = {
     light.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
     };
-  };
-
+  }; 
+ 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Hibernate when closing lid
-  services.logind.extraConfig = "HandleLidSwitch=hibernate";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -179,12 +165,8 @@ in
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Allow unfree package  
-  nixpkgs.config.allowUnfree = true;
-
   # Enable auto-upgrade
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
 
   # Configure Nix
   nix = {
@@ -193,7 +175,7 @@ in
       experimental-features = nix-command flakes
     '';
     # Automatic GC and optimize store
-#    settings.auto-optimise-store = true;
+    settings.auto-optimise-store = true;
     gc = {
       automatic = true;
       dates = "weekly";
@@ -207,7 +189,6 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
+  system.stateVersion = "22.05"; # Did you read the comment?
 
 }
-

@@ -11,31 +11,33 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.kernelParams = [ "button.lid_init_state=open" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4bece4ed-5ad6-4367-8859-dfdddc25b9f4";
+    { device = "/dev/disk/by-uuid/546fb84e-c3d1-45af-b78b-664b99f0ea0f";
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/9AF3-D3E7";
+  boot.initrd.luks.devices."luks-97f86f8e-0203-454a-b66b-a663e8179c19".device = "/dev/disk/by-uuid/97f86f8e-0203-454a-b66b-a663e8179c19";
+
+  fileSystems."/boot/efi" =
+    { device = "/dev/disk/by-uuid/C4B7-45DE";
       fsType = "vfat";
     };
 
-  fileSystems."/shared" =
-    { device = "/dev/disk/by-uuid/5ADEB2E56874CEB0";
-      fsType = "ntfs";
-      options = [ "rw" "uid=1000 gid=100" ];
-    };
+  swapDevices = [ ];
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/b1165bde-703e-400d-937d-637a168c92fd"; }
-    ];
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # still possible to use this option, but it's recommended to use it in conjunction
+  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
   hardware.nvidia.prime = {
     offload.enable = true;
     nvidiaBusId = "PCI:1:0:0";
@@ -46,5 +48,5 @@
   hardware.bluetooth.enable = true;
  
   virtualisation.docker.enable = true;
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
 }
