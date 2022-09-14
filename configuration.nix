@@ -36,6 +36,7 @@ in
     "/crypto_keyfile.bin" = null;
   };
 
+  # Always use the latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
