@@ -83,11 +83,11 @@ in
     };
 
     displayManager = {
-	defaultSession = "none+i3";
-        autoLogin = {
-          enable = true;
-          user = "vinetos";
-        };
+    	defaultSession = "none+i3";
+      autoLogin = {
+        enable = true;
+        user = "vinetos";
+      };
     };
 
     windowManager.i3 = {
@@ -159,8 +159,13 @@ in
  
   # List services that you want to enable:
 
+  services.logind.extraConfig = "HandleLidSwitch=hibernate";
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Enable PCSCD for smart card
+  services.pcscd.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
