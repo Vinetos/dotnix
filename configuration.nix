@@ -9,8 +9,8 @@ let
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
     export __GLX_VENDOR_LIBRARY_NAME=nvidia
     export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec -a "$0" "$@"
-    '';
+    exec "$@"
+  '';
 in
 {
   imports =
@@ -94,6 +94,15 @@ in
       enable = true;
       package = pkgs.i3-gaps;
     };
+
+    videoDrivers = [ "nvidia" ];
+
+    screenSection = ''
+      Option         "metamodes" "nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+      Option         "AllowIndirectGLXProtocol" "off"
+      Option         "TripleBuffer" "on"
+    '';
+
 
    };
   # Configure console keymap
