@@ -55,6 +55,7 @@
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
  
   virtualisation.docker.enable = true;
 

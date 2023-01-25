@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, options, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -24,7 +24,6 @@ in
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
     };
     timeout = 5;
     systemd-boot.enable = true; 
@@ -111,10 +110,8 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+  # Sound has to be disabled with pipewire.
+  sound.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -127,6 +124,18 @@ in
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  # Bluetooth config
+  environment.etc = {
+	"wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+		bluez_monitor.properties = {
+			["bluez5.enable-sbc-xq"] = true,
+			["bluez5.enable-msbc"] = true,
+			["bluez5.enable-hw-volume"] = true,
+			["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+		}
+	'';
+  };
+
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -144,6 +153,7 @@ in
   # Configure home-manager for user vinetos
   home-manager.users.vinetos = import /home/vinetos/.config/nixpkgs/home.nix;
   home-manager.useGlobalPkgs = true; # By default, Home Manager uses a private pkgs instance that is configured via the home-manager.users.<name>.nixpkgs options. Here, we use the global nixpkgs.
+  home-manager.useUserPackages = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -191,6 +201,7 @@ in
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+    #nixPath = options.nix.nixPath.default ++ [ "nixpkgs-overlays=/etc/nixos/overlays" ];
     # Automatic GC and optimize store
     settings.auto-optimise-store = true;
     gc = {
