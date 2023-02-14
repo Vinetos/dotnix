@@ -72,7 +72,6 @@ in
     exportConfiguration = true;
     
     layout = "fr";
-    xkbVariant = " ";
     xkbOptions = "eurosign:e, compose:menu, grp:alt_shift_toggle";
 
     libinput = {
@@ -178,13 +177,52 @@ in
  
   # List services that you want to enable:
 
-  services.logind.extraConfig = "HandleLidSwitch=hibernate";
+  services.logind.extraConfig = 
+  ''
+    HandleLidSwitch=hibernate
+    HandlePowerKey=ignore
+  '';
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
   # Enable PCSCD for smart card
   services.pcscd.enable = true;
+
+  # Hadoop
+  services.hadoop = {
+     hbase.master.initHDFS = true;
+     hdfs.namenode = {
+       enable = true;
+       formatOnInit = true;
+       restartIfChanged = true;
+     };
+     hdfs.datanode = {
+       enable = true;
+       restartIfChanged = true;
+     };
+     yarn.resourcemanager.enable = true;
+     
+     coreSite = {
+         "fs.defaultFS" = "hdfs://nixos:9000";
+         "hadoop.proxyuser.dataflair.groups" = "*";
+         "hadoop.proxyuser.dataflair.hosts" = "*";
+         "hadoop.proxyuser.server.hosts" = "*";
+         "hadoop.proxyuser.server.groups" = "*";
+     };
+     hdfsSite = {
+       "dfs.replication" = "1";
+       "dfs.permissions.superusergroup" = "wheel";
+     };
+
+     mapredSite = {
+         "mapreduce.framework.name" = "yarn";
+     };
+     yarnSite = {
+         "yarn.nodemanager.aux-services" = "mapreduce_shuffle";
+         "yarn.nodemanager.env-whitelist" = "JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME";
+     };
+    };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
