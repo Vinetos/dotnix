@@ -25,8 +25,8 @@
       nixosConfigurations = { # NixOS configurations
         framework = lib.nixosSystem {
          inherit system;
-          modules = [ 
-            ./framework/configuration.nix 
+          modules = [
+            ./framework/configuration.nix
 
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
@@ -36,7 +36,20 @@
               };
             }
           ];
+        };
+        ryzen = lib.nixosSystem {
+         inherit system;
+          modules = [
+            ./ryzen/configuration.nix
 
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.vinetos = {
+                imports = [ ./home-manager/home.nix ];
+              };
+            }
+          ];
         };
       };
     };
