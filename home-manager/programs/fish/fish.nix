@@ -9,10 +9,10 @@
   
   shellAbbrs = {
       # Nix
-      ns = "nix-shell";
+      ns = "nix shell";
+      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos/#framework";
   };
 
   shellAliases = {
-      rebuild = "sudo -E && echo $NIX_PATH && nixos-rebuild switch --upgrade-all";
   };
 }

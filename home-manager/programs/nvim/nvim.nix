@@ -81,6 +81,5 @@
     coc-yaml
     DoxygenToolkit-vim
     rainbow
-    vim-wakatime
   ];
 }

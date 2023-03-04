@@ -22,15 +22,14 @@
       "/crypto_keyfile.bin" = null;
     };
 
-  # Enable swap on luks
-  luks.devices."luks-68d59294-0483-4853-a0b7-5d71c1e3e8ab".device = "/dev/disk/by-uuid/68d59294-0483-4853-a0b7-5d71c1e3e8ab";
-  luks.devices."luks-68d59294-0483-4853-a0b7-5d71c1e3e8ab".keyFile = "/crypto_keyfile.bin";
-
+    # Enable swap on luks
+    luks.devices."luks-68d59294-0483-4853-a0b7-5d71c1e3e8ab".device = "/dev/disk/by-uuid/68d59294-0483-4853-a0b7-5d71c1e3e8ab";
+    luks.devices."luks-68d59294-0483-4853-a0b7-5d71c1e3e8ab".keyFile = "/crypto_keyfile.bin";
   };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "VFramework"; # Define your hostname.
+  networking.hostName = "framework"; # Define your hostname.
   
   # Enable networking
   networking.networkmanager.enable = true;
@@ -51,19 +50,6 @@
     LC_PAPER = "fr_FR.UTF-8";
     LC_TELEPHONE = "fr_FR.UTF-8";
     LC_TIME = "fr_FR.UTF-8";
-  };
-
-  # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    exportConfiguration = true;
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-    };
-    libinput.enable = true;
-    layout = "us";
-    xkbVariant = "intl";
   };
 
   # Configure console keymap
@@ -99,7 +85,10 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vinetos = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
+    extraGroups = [ 
+      "networkmanager" "wheel" "video" "docker" 
+      "dialout" # Arduino
+    ];
   };
   
   # Enable automatic login for the user.
@@ -107,6 +96,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  #nixpkgs.overlays = import ./overlays;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -115,6 +105,18 @@
     firefox
   ];
 
+  # Configure keymap in X11
+  services.xserver = {
+    enable = true;
+    exportConfiguration = true;
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;
+    };
+    libinput.enable = true;
+    layout = "us";
+    xkbVariant = "intl";
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs = {
@@ -131,6 +133,9 @@
 
   # Enable PCSCD for smart card
   services.pcscd.enable = true;
+
+  # Digital
+  services.fprintd.enable = true;
 
   # Configure Nix
   nix = {

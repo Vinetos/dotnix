@@ -22,7 +22,6 @@ in
     gnupg
     netcat
     tree
-    yubikey-manager-qt
     any-nix-shell
     nixos-shell
     pandoc
@@ -42,8 +41,9 @@ in
     wireshark
     wireguard-tools
     jetbrains.pycharm-professional
+    jetbrains.gateway
+    jetbrains.datagrip
     poetry
-
 
      # Tools
     pavucontrol
@@ -54,6 +54,7 @@ in
     vscodium
     gnome-console
     gnome.gnome-terminal
+    dbeaver
 
     # Java
     maven
@@ -77,6 +78,7 @@ in
 
     # Fun
     spotify
+    arduino
 
     # Game
     minecraft

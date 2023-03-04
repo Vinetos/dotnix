@@ -1,5 +1,5 @@
 {
-  description = "My NixOS Flake Configuration";
+  description = "Vinetos NixOS Flake configurations";
 
   inputs = # All flake references used to build my NixOS setup. These are dependencies.
     {
@@ -23,10 +23,10 @@
     in
     {
       nixosConfigurations = { # NixOS configurations
-        vinetos = lib.nixosSystem {
+        framework = lib.nixosSystem {
          inherit system;
           modules = [ 
-            ./configuration.nix 
+            ./framework/configuration.nix 
 
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;

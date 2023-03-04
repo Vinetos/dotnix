@@ -13,6 +13,9 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.blacklistedKernelModules = ["hid-sensor-hub"];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [
+    "i915.enable_psr=0"
+  ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/e63b4e7c-523b-4a93-a102-3d71fa901bc7";
