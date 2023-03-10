@@ -24,7 +24,7 @@
   boot.initrd.luks.devices."luks-4850aef2-6ab8-407b-ad6d-139b3aedac8f".device = "/dev/disk/by-uuid/4850aef2-6ab8-407b-ad6d-139b3aedac8f";
   boot.initrd.luks.devices."luks-4850aef2-6ab8-407b-ad6d-139b3aedac8f".keyFile = "/crypto_keyfile.bin";
   
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "ryzen"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

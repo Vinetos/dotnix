@@ -96,7 +96,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  #nixpkgs.overlays = import ./overlays;
+  nixpkgs.overlays = import ../overlays;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

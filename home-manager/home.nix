@@ -98,7 +98,7 @@ in
   };
 
   services = {
-    #picom = import ./programs/picom/picom.nix;
+    picom = import ./programs/picom/picom.nix;
     polybar = import ./programs/polybar/polybar.nix { inherit pkgs colors; };
     gpg-agent = import ./programs/gpg-agent/gpg-agent.nix;
     betterlockscreen = import ./programs/betterlockscreen/betterlockscreen.nix;

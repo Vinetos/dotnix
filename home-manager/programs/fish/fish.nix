@@ -10,9 +10,11 @@
   shellAbbrs = {
       # Nix
       ns = "nix shell";
-      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos/#framework";
+      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos/#(hostname)";
+      update = "nix flake update";
   };
 
   shellAliases = {
+      mkdir = "mkdir -p";
   };
 }
