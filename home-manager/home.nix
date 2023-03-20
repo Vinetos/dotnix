@@ -18,49 +18,38 @@ in
     # CLI-Tools
     htop
     neofetch
-    feh
     gnupg
     netcat
     tree
-    any-nix-shell
-    nixos-shell
-    pandoc
     libnotify
     pywal
     gitAndTools.gitflow
     git-lfs
     curl
-    p7zip
     docker-compose
-    postgresql
     nodejs
-    texlive.combined.scheme-full
     jq
     kaf
     glab
-    wireshark
     wireguard-tools
-    jetbrains.pycharm-professional
-    jetbrains.gateway
-    jetbrains.datagrip
-    poetry
+    bat # cat(1) on pills
+    tldr # Better than man
+    postgresql
 
      # Tools
     pavucontrol
     arandr
     networkmanagerapplet
-    remmina
-    postman
-    vscodium
-    gnome-console
-    gnome.gnome-terminal
-    dbeaver
 
-    # Java
+    # Dev
     maven
     jdk
     jd-gui
     jetbrains.idea-ultimate
+    jetbrains.pycharm-professional
+    jetbrains.gateway
+    jetbrains.datagrip
+    poetry
 
     # Fonts
     (pkgs.nerdfonts.override {
@@ -68,20 +57,16 @@ in
     })
 
     # Productivity
-    obsidian
     flameshot
-    teams
     xfce.thunar
+    xfce.thunar-archive-plugin
+    xfce.thunar-volman
     firefox-devedition-bin
     discord
-    openvpn
+    termius
 
     # Fun
     spotify
-    arduino
-
-    # Game
-    minecraft
   ];
 
   fonts.fontconfig.enable = true;

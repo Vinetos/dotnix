@@ -9,12 +9,16 @@
   
   shellAbbrs = {
       # Nix
-      ns = "nix shell";
-      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos/#(hostname)";
-      update = "nix flake update";
+      ns = "nix shell nixpkgs#";
+      nr = "sudo nixos-rebuild switch --flake /etc/nixos/#(hostname)";
+      nu = "nix flake update";
+      ngc = "sudo nix-collect-garbage -d";
+      # Other
+      cat = "bat -p";
+      man = "tldr";
   };
 
   shellAliases = {
-      mkdir = "mkdir -p";
+    mkdir = "mkdir -p";
   };
 }

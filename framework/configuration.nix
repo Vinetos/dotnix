@@ -30,6 +30,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "framework"; # Define your hostname.
+  networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
   
   # Enable networking
   networking.networkmanager.enable = true;
@@ -136,6 +137,12 @@
 
   # Digital
   services.fprintd.enable = true;
+
+  services.logind.extraConfig = ''
+    # don’t shutdown when power button is short-pressed
+    HandlePowerKey=ignore
+  '';
+
 
   # Configure Nix
   nix = {
