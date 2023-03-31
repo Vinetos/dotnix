@@ -35,11 +35,17 @@ in
     bat # cat(1) on pills
     tldr # Better than man
     postgresql
+    poetry
+    termius
 
      # Tools
     pavucontrol
     arandr
     networkmanagerapplet
+    remmina
+    postman
+    vscode
+    thunderbird
 
     # Dev
     maven

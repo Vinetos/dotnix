@@ -141,6 +141,8 @@
   # started in user sessions.
   # programs.mtr.enable = true;
   programs.ssh.startAgent = true;
+  programs.git.enable = true;
+  programs.git.lfs.enable = true;
 
   # List services that you want to enable:
 
@@ -163,7 +165,7 @@
   };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 8888 8889 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
