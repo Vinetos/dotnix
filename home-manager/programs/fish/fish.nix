@@ -15,7 +15,6 @@
       ngc = "sudo nix-collect-garbage -d";
       # Other
       cat = "bat -p";
-      man = "tldr";
   };
 
   shellAliases = {
