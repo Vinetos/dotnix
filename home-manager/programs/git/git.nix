@@ -3,6 +3,8 @@
 {
   enable = true;
 
+  lfs.enable = true;
+
   # User config
   userName = "Valentin Chassignol";
   userEmail = "Vinetosdev"+"@"+"gmail"+"."+"com";
