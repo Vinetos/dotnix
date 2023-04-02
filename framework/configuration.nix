@@ -16,19 +16,6 @@
     efi.canTouchEfiVariables = true;
   };
 
-  # Setup keyfile
-  boot.initrd = { 
-    secrets = {
-      "/crypto_keyfile.bin" = null;
-    };
-
-    # Enable swap on luks
-    luks.devices."luks-68d59294-0483-4853-a0b7-5d71c1e3e8ab".device = "/dev/disk/by-uuid/68d59294-0483-4853-a0b7-5d71c1e3e8ab";
-    luks.devices."luks-68d59294-0483-4853-a0b7-5d71c1e3e8ab".keyFile = "/crypto_keyfile.bin";
-  };
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   networking.hostName = "framework"; # Define your hostname.
   networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
   
@@ -97,7 +84,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = import ../overlays;
+  #nixpkgs.overlays = import ../overlays;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -138,6 +125,10 @@
   # Digital
   services.fprintd.enable = true;
 
+  # Hardware deamon 
+  services.fwupd.enable = true;
+
+  # Disable Power Button
   services.logind.extraConfig = ''
     # don’t shutdown when power button is short-pressed
     HandlePowerKey=ignore

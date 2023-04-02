@@ -10,6 +10,7 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "kvm-intel" ];
   boot.blacklistedKernelModules = ["hid-sensor-hub"];
   boot.extraModulePackages = [ ];
@@ -17,18 +18,27 @@
     "i915.enable_psr=0"
   ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e63b4e7c-523b-4a93-a102-3d71fa901bc7";
-      fsType = "ext4";
-    };
-
-  boot.initrd.luks.devices."luks-9eeb24d8-4901-49a2-8d83-39154372aa37".device = "/dev/disk/by-uuid/9eeb24d8-4901-49a2-8d83-39154372aa37";
+  # Setup keyfile
+  boot.initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/C455-020A";
       fsType = "vfat";
     };
 
+  boot.initrd.luks.devices."luks-9eeb24d8-4901-49a2-8d83-39154372aa37".device = "/dev/disk/by-uuid/9eeb24d8-4901-49a2-8d83-39154372aa37";
+
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/e63b4e7c-523b-4a93-a102-3d71fa901bc7";
+      fsType = "ext4";
+    };
+
+  # Enable swap on luks
+  boot.initrd.luks.devices."luks-68d59294-0483-4853-a0b7-5d71c1e3e8ab".device = "/dev/disk/by-uuid/68d59294-0483-4853-a0b7-5d71c1e3e8ab";
+  boot.initrd.luks.devices."luks-68d59294-0483-4853-a0b7-5d71c1e3e8ab".keyFile = "/crypto_keyfile.bin";
+  
   swapDevices =
     [ { device = "/dev/disk/by-uuid/fee77592-7902-4b96-8ea6-2b882477b70e"; }
     ];
