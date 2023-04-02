@@ -2,8 +2,8 @@
 
 let
   wallpaper = builtins.fetchurl {
-      url = "https://i.redd.it/9vgblz6jndea1.jpg";
-      sha256 = "77abccd8b34f0d051b8eea000cc5ea5aa9d09cce462982ea3de3aa513842d477";
+      url = "https://github.com/Schneegans/ai-wallpapers/blob/main/burn-my-windows-effects/fire.jpg?raw=true";
+      sha256 = "ae319e5d01d7c707ab4fcc264610b90113442bb6b77f863bdb21029f0ae59b51";
   };
 
    ws1 = "1: ";
