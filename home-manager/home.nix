@@ -53,9 +53,9 @@ in
     jd-gui
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional
-    jetbrains.gateway
-    jetbrains.datagrip
+    jetbrains.rider
     poetry
+    dotnet-sdk_7
 
     # Fonts
     (pkgs.nerdfonts.override {
