@@ -3,6 +3,7 @@
 let
   username = "vinetos"; # My username
   colors = import ./colorschemes.nix; # Custom colorscheme
+  github-copilot-intellij-agent = pkgs.callPackage programs/github-copilot-intellij-agent/default.nix {};
 in
 {
   imports = [
@@ -28,6 +29,7 @@ in
     glab
     bat # cat(1) on pills
     tldr # Better than man
+    github-copilot-intellij-agent
 
      # Tools
     pavucontrol
