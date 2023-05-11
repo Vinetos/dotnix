@@ -9,9 +9,9 @@ let
    ws1 = "1: ";
    ws2 = "2: ";
    ws3 = "3: ";
-   ws4 = "4: ﭮ";
+   ws4 = "4: 󰙯";
    ws5 = "5: ";
-   ws6 = "6: ﮷";
+   ws6 = "6: ";
    ws7 = "7: ";
    ws8 = "8: ";
    ws9 = "9: ";
@@ -81,7 +81,7 @@ in
 
     startup = [
       {
-        command = "${pkgs.pywal}/bin/wal -i ${wallpaper}";
+        command = "${pkgs.findutils}/bin/find /home/vinetos/Downloads/ -type f -mtime +30";
         always = true;
         notification = false;
       }

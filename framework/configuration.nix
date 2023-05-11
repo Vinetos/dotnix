@@ -16,11 +16,17 @@
     efi.canTouchEfiVariables = true;
   };
 
-  networking.hostName = "framework"; # Define your hostname.
-  networking.nameservers = [ "1.1.1.1" "1.0.0.1" ];
-  
+
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "framework"; # Define your hostname.
+    networkmanager.enable = true;
+    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    extraHosts = ''
+      127.0.0.1 dps.epita.local
+    '';
+    firewall.checkReversePath = false;
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -91,6 +97,7 @@
   environment.systemPackages = with pkgs; [
     vim
     firefox
+    wireguard-tools
   ];
 
   # Configure keymap in X11

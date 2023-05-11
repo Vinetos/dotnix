@@ -19,32 +19,20 @@ in
     htop
     neofetch
     gnupg
-    netcat
-    tree
     libnotify
     pywal
     gitAndTools.gitflow
     git-lfs
-    curl
     docker-compose
     nodejs
-    jq
-    kaf
     glab
-    wireguard-tools
     bat # cat(1) on pills
     tldr # Better than man
-    postgresql
-    poetry
-    termius
 
      # Tools
     pavucontrol
     arandr
     networkmanagerapplet
-    remmina
-    postman
-    vscode
     thunderbird
 
     # Dev
@@ -52,7 +40,6 @@ in
     jdk
     jd-gui
     jetbrains.idea-ultimate
-    jetbrains.pycharm-professional
     jetbrains.rider
     poetry
     dotnet-sdk_7
@@ -67,7 +54,6 @@ in
     xfce.thunar
     xfce.thunar-archive-plugin
     xfce.thunar-volman
-    firefox-devedition-bin
     discord
     termius
 
