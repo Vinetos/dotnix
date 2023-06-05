@@ -23,16 +23,17 @@
   # Enable swap on luks
   boot.initrd.luks.devices."luks-4850aef2-6ab8-407b-ad6d-139b3aedac8f".device = "/dev/disk/by-uuid/4850aef2-6ab8-407b-ad6d-139b3aedac8f";
   boot.initrd.luks.devices."luks-4850aef2-6ab8-407b-ad6d-139b3aedac8f".keyFile = "/crypto_keyfile.bin";
-  
-  networking.hostName = "ryzen"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+   # Enable networking
+  networking = {
+    hostName = "ryzen"; # Define your hostname.
+    networkmanager.enable = true;
+    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    extraHosts = ''
+      127.0.0.1 dps.epita.local
+    '';
+    firewall.checkReversePath = false;
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -83,6 +84,9 @@
     extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
     packages = with pkgs; [];
   };
+  
+  # Hardware deamon 
+  services.fwupd.enable = true;
  
   # Disable sound when using PipeWire, it seems to cause conflicts
   sound.enable = false;
@@ -98,34 +102,6 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
-
-    # Bluetooth Config for Pipewire
-    media-session.config.bluez-monitor.rules = [
-      {
-        # Matches all cards
-        matches = [ { "device.name" = "~bluez_card.*"; } ];
-        actions = {
-          "update-props" = {
-            "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
-            # mSBC is not expected to work on all headset + adapter combinations.
-            "bluez5.msbc-support" = true;
-            # SBC-XQ is not expected to work on all headset + adapter combinations.
-            "bluez5.sbc-xq-support" = true;
-          };
-        };
-      }
-      {
-        matches = [
-          # Matches all sources
-          { "node.name" = "~bluez_input.*"; }
-          # Matches all outputs
-          { "node.name" = "~bluez_output.*"; }
-        ];
-        actions = {
-          "node.pause-on-idle" = false;
-        };
-      }
-    ];
   };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -135,6 +111,7 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    firefox
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
