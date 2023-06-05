@@ -2,8 +2,8 @@
 
 let
   wallpaper = builtins.fetchurl {
-      url = "https://github.com/Schneegans/ai-wallpapers/blob/main/burn-my-windows-effects/fire.jpg?raw=true";
-      sha256 = "ae319e5d01d7c707ab4fcc264610b90113442bb6b77f863bdb21029f0ae59b51";
+      url = "https://raw.githubusercontent.com/Vinetos/nixos/main/home-manager/wallpaper.png";
+      sha256 = "0py89ssx3z5sc7dnm2x7i6kp462p11f8aa5msr7hrwpvkldi2wxx";
   };
 
    ws1 = "1: ";
@@ -81,7 +81,7 @@ in
 
     startup = [
       {
-        command = "${pkgs.findutils}/bin/find /home/vinetos/Downloads/ -type f -mtime +30";
+        command = "${pkgs.findutils}/bin/find /home/vinetos/downloads/ -type f -mtime +30";
         always = true;
         notification = false;
       }
@@ -98,6 +98,9 @@ in
       
       {
         command = "${pkgs.betterlockscreen}/bin/betterlockscreen -u ${wallpaper}";
+      }
+      {
+        command = "${pkgs.feh}/bin/feh --bg-scale ${wallpaper}";
       }
 
     ];
