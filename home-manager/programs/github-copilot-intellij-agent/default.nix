@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   pname = "github-copilot-intellij-agent";
-  version = "1.2.5.2507";
+  version = "1.2.8.2631";
 
   src = let updateId = 313933;
   in fetchurl {

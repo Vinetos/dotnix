@@ -3,7 +3,7 @@
 let
   username = "vinetos"; # My username
   colors = import ./colorschemes.nix; # Custom colorscheme
-  github-copilot-intellij-agent = pkgs.callPackage programs/github-copilot-intellij-agent/default.nix {};
+  github-copilot-intellij-agent = pkgs.callPackage ./programs/github-copilot-intellij-agent/default.nix {};
 in
 {
   imports = [
@@ -44,7 +44,7 @@ in
     jetbrains.idea-ultimate
     jetbrains.rider
     poetry
-    dotnet-sdk_7
+    dotnet-sdk_6
 
     # Fonts
     (pkgs.nerdfonts.override {
@@ -54,8 +54,6 @@ in
     # Productivity
     flameshot
     xfce.thunar
-    xfce.thunar-archive-plugin
-    xfce.thunar-volman
     discord
     termius
 
@@ -95,5 +93,5 @@ in
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "22.05";
+  home.stateVersion = "23.05";
 }
