@@ -15,6 +15,7 @@
       ngc = "sudo nix-collect-garbage -d";
       # Other
       cat = "bat -p";
+      wip = "git add -A && git commit -m wip";
   };
 
   shellAliases = {

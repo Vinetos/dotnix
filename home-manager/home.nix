@@ -56,6 +56,7 @@ in
     xfce.thunar
     discord
     termius
+    postman
 
     # Fun
     spotify

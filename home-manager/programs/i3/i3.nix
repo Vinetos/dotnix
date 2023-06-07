@@ -101,6 +101,7 @@ in
       }
       {
         command = "${pkgs.feh}/bin/feh --bg-scale ${wallpaper}";
+        always = true;
       }
 
     ];
