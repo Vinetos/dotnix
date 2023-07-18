@@ -9,10 +9,14 @@
         url = "github:nix-community/home-manager";
         inputs.nixpkgs.follows = "nixpkgs";
       };
+
+      hyprland = {
+        url = "github:hyprwm/Hyprland";
+      };
     };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }:   # Function that tells my flake which to use and what do what to do with the dependencies.
-    let                         # Variables that can be used in the config files.
+  outputs = inputs @ { self, nixpkgs, home-manager, hyprland,... }:   # Function that tells my flake which to use and what do what to do with the dependencies.
+    let
       user = "vinetos";
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -26,14 +30,19 @@
         framework = lib.nixosSystem {
          inherit system;
           modules = [
+            hyprland.nixosModules.default
             ./framework/configuration.nix
 
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.vinetos = {
-                imports = [ ./home-manager/home.nix ];
+                imports = [
+                  hyprland.homeManagerModules.default
+                  ./home-manager/home.nix
+                ];
               };
+              home-manager.extraSpecialArgs = { inherit inputs system; };
             }
           ];
         };

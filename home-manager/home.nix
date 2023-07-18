@@ -1,4 +1,4 @@
-{config, pkgs, lib, ...}:
+{ inputs, system, config, pkgs, lib, ...}:
 
 let
   username = "vinetos"; # My username
@@ -73,6 +73,7 @@ in
     fish = import ./programs/fish/fish.nix { inherit pkgs; };
     starship = import ./programs/starship/starship.nix;
     git = import ./programs/git/git.nix { inherit pkgs; };
+    waybar = import ./programs/waybar { inherit inputs system pkgs; };
   };
 
   services = {
@@ -80,9 +81,11 @@ in
     polybar = import ./programs/polybar/polybar.nix { inherit pkgs colors; };
     gpg-agent = import ./programs/gpg-agent/gpg-agent.nix;
     betterlockscreen = import ./programs/betterlockscreen/betterlockscreen.nix;
+    mako.enable = true;
   };
 
   xsession.windowManager.i3 = import ./programs/i3/i3.nix {inherit pkgs lib; };
+  wayland.windowManager.hyprland = import ./programs/hyprland { inherit pkgs; };
 
   nixpkgs.config.allowUnfree = true;
 

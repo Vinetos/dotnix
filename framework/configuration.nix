@@ -21,7 +21,8 @@
   networking = {
     hostName = "framework"; # Define your hostname.
     networkmanager.enable = true;
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    nameservers = [ "100.100.100.100" "1.1.1.1" "1.0.0.1" ];
+    search = [ "tail9f2c8.ts.net" ];
     extraHosts = ''
       127.0.0.1 dps.epita.local
     '';
@@ -75,11 +76,11 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.vinetos = {
     isNormalUser = true;
-    extraGroups = [ 
-      "networkmanager" "wheel" "video" "docker" 
+    extraGroups = [
+      "networkmanager" "wheel" "video" "docker"
     ];
   };
-  
+
   # Enable automatic login for the user.
   services.getty.autologinUser = "vinetos";
 
@@ -93,12 +94,16 @@
     vim
     firefox
     wireguard-tools
+
+    kitty # for Hyprland
   ];
 
-  # Configure keymap in X11
+ # Configure X11 and Wayland
+  programs.hyprland.enable = true;
   services.xserver = {
     enable = true;
     exportConfiguration = true;
+    displayManager.gdm.enable = true; # This DM support wayland
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
@@ -107,6 +112,7 @@
     layout = "us";
     xkbVariant = "intl";
   };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs = {
@@ -115,8 +121,7 @@
       enable = true;
       enableSSHSupport = true;
     };
-  }; 
-  # List services that you want to enable:
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -136,6 +141,9 @@
     # don’t shutdown when power button is short-pressed
     HandlePowerKey=ignore
   '';
+
+  # Tailscale
+  services.tailscale.enable = true;
 
 
   # Configure Nix
