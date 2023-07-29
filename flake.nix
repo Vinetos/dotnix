@@ -5,6 +5,8 @@
     {
       nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages
 
+      nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
       home-manager = { # User Package Management
         url = "github:nix-community/home-manager";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -15,7 +17,7 @@
       };
     };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, hyprland,... }:   # Function that tells my flake which to use and what do what to do with the dependencies.
+  outputs = inputs @ { self, nixpkgs, nixos-hardware, home-manager, hyprland,... }:   # Function that tells my flake which to use and what do what to do with the dependencies.
     let
       user = "vinetos";
       system = "x86_64-linux";
@@ -31,7 +33,9 @@
          inherit system;
           modules = [
             hyprland.nixosModules.default
+            nixos-hardware.nixosModules.framework-12th-gen-intel
             ./framework/configuration.nix
+
 
             home-manager.nixosModules.home-manager {
               home-manager.useGlobalPkgs = true;

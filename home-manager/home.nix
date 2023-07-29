@@ -3,7 +3,6 @@
 let
   username = "vinetos"; # My username
   colors = import ./colorschemes.nix; # Custom colorscheme
-  github-copilot-intellij-agent = pkgs.callPackage ./programs/github-copilot-intellij-agent/default.nix {};
 in
 {
   imports = [
@@ -33,18 +32,16 @@ in
 
      # Tools
     pavucontrol
-    arandr
     networkmanagerapplet
     thunderbird
+    blueberry
 
     # Dev
     maven
     jdk
     jd-gui
     jetbrains.idea-ultimate
-    jetbrains.rider
     poetry
-    dotnet-sdk_6
 
     # Fonts
     (pkgs.nerdfonts.override {
@@ -85,7 +82,7 @@ in
   };
 
   xsession.windowManager.i3 = import ./programs/i3/i3.nix {inherit pkgs lib; };
-  wayland.windowManager.hyprland = import ./programs/hyprland { inherit pkgs; };
+  wayland.windowManager.hyprland = import ./programs/hyprland { inherit pkgs lib; };
 
   nixpkgs.config.allowUnfree = true;
 
