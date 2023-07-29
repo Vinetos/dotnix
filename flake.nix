@@ -6,6 +6,7 @@
       nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages
 
       nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+      nixos-wsl.url = "github:nix-community/NixOS-WSL";
 
       home-manager = { # User Package Management
         url = "github:nix-community/home-manager";
@@ -17,7 +18,7 @@
       };
     };
 
-  outputs = inputs @ { self, nixpkgs, nixos-hardware, home-manager, hyprland,... }:   # Function that tells my flake which to use and what do what to do with the dependencies.
+  outputs = inputs @ { self, nixpkgs, nixos-hardware, nixos-wsl, home-manager, hyprland,... }:   # Function that tells my flake which to use and what do what to do with the dependencies.
     let
       user = "vinetos";
       system = "x86_64-linux";
@@ -29,6 +30,8 @@
     in
     {
       nixosConfigurations = { # NixOS configurations
+
+        # TODO: Compact this ?
         framework = lib.nixosSystem {
          inherit system;
           modules = [
@@ -61,6 +64,22 @@
               home-manager.users.vinetos = {
                 imports = [ ./home-manager/home.nix ];
               };
+            }
+          ];
+        };
+        wsl = lib.nixosSystem {
+         inherit system;
+          modules = [
+            nixos-wsl.nixosModules.wsl
+            ./wsl/configuration.nix
+            
+           home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.vinetos = {
+                imports = [ ./home-manager/home.nix ];
+              };
+              home-manager.extraSpecialArgs = { inherit inputs system; };
             }
           ];
         };

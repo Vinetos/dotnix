@@ -1,0 +1,3 @@
+[submodule "wsl/nixos-wsl"]
+	path = wsl/nixos-wsl
+	url = https://github.com/nix-community/NixOS-WSL.git
