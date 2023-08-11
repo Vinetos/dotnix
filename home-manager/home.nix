@@ -54,6 +54,7 @@ in
     discord
     termius
     postman
+    parsec-bin
 
     # Fun
     spotify
