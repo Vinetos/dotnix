@@ -23,9 +23,6 @@
     networkmanager.enable = true;
     nameservers = [ "100.100.100.100" "1.1.1.1" "1.0.0.1" ];
     search = [ "tail9f2c8.ts.net" ];
-    extraHosts = ''
-      127.0.0.1 dps.epita.local
-    '';
     firewall.checkReversePath = false;
   };
 
@@ -94,6 +91,7 @@
     vim
     firefox
     wireguard-tools
+    tailscale
 
     kitty # for Hyprland
   ];
