@@ -19,6 +19,7 @@
           ../modules/xserver.nix
           ../modules/hyprland.nix
           ../modules/security.nix
+          ../modules/desktop.nix
 
           { home-manager.users.vinetos.imports = homeImports."vinetos@framework"; }
         ]

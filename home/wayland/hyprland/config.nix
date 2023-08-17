@@ -81,9 +81,6 @@ let
   '';
 
   general =
-    let
-      waybar = "${pkgs.waybar}/bin/waybar";
-    in
     ''
       monitor=eDP-1, preferred, auto, 1
       monitor=, preferred, auto, 1

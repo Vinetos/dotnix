@@ -13,6 +13,7 @@ let
 
   desktopModules = with inputs; [
     hyprland.homeManagerModules.default
+    ../wayland
   ];
 
   homeImports = {

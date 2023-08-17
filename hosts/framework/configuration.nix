@@ -35,7 +35,6 @@
   ];
 
   # Configure X11 and Wayland
-  programs.hyprland.enable = true;
   services.xserver = {
     layout = "us";
     xkbVariant = "intl";
