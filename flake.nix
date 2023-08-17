@@ -5,85 +5,42 @@
     {
       nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages
 
+      flake-parts = {
+        url = "github:hercules-ci/flake-parts";
+        inputs.nixpkgs-lib.follows = "nixpkgs";
+      };
+
       nixos-hardware.url = "github:NixOS/nixos-hardware/master";
       nixos-wsl.url = "github:nix-community/NixOS-WSL";
 
-      home-manager = { # User Package Management
+      home-manager = {
         url = "github:nix-community/home-manager";
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
       hyprland = {
         url = "github:hyprwm/Hyprland";
+        inputs.nixpkgs.follows = "nixpkgs";
       };
+
+      hyprland-contrib = {
+        url = "github:hyprwm/contrib";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+
     };
 
-  outputs = inputs @ { self, nixpkgs, nixos-hardware, nixos-wsl, home-manager, hyprland,... }:   # Function that tells my flake which to use and what do what to do with the dependencies.
-    let
-      user = "vinetos";
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      lib = nixpkgs.lib;
-    in
-    {
-      nixosConfigurations = { # NixOS configurations
+  outputs = inputs@{ self, nixpkgs, ... }:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
 
-        # TODO: Compact this ?
-        framework = lib.nixosSystem {
-         inherit system;
-          modules = [
-            hyprland.nixosModules.default
-            nixos-hardware.nixosModules.framework-12th-gen-intel
-            ./framework/configuration.nix
-
-
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.vinetos = {
-                imports = [
-                  hyprland.homeManagerModules.default
-                  ./home-manager/home.nix
-                ];
-              };
-              home-manager.extraSpecialArgs = { inherit inputs system; };
-            }
-          ];
-        };
-        ryzen = lib.nixosSystem {
-         inherit system;
-          modules = [
-            ./ryzen/configuration.nix
-
-            home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.vinetos = {
-                imports = [ ./home-manager/home.nix ];
-              };
-            }
-          ];
-        };
-        wsl = lib.nixosSystem {
-         inherit system;
-          modules = [
-            nixos-wsl.nixosModules.wsl
-            ./wsl/configuration.nix
-            
-           home-manager.nixosModules.home-manager {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.vinetos = {
-                imports = [ ./home-manager/home.nix ];
-              };
-              home-manager.extraSpecialArgs = { inherit inputs system; };
-            }
-          ];
-        };
-      };
+      imports = [
+        ./home/profiles
+        ./hosts
+        ./lib
+        ./modules
+        { config._module.args._inputs = inputs // { inherit (inputs) self; }; }
+      ];
     };
+
 }
-

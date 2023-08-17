@@ -12,13 +12,10 @@ sudo nix flake update
 ```
 
 # What's inside
-TODO
-```
-.
-├── flake.lock
-├── flake.nix
-├── framework/
-├── home-manager/
-└── overlays/
-```
 
+## 🗃️ Contents
+
+- [modules] (modules): NixOS common configs
+- [hosts](hosts): host-specific configuration
+- [home](home): my [Home Manager](https://github.com/nix-community/home-manager) config
+- [lib](lib): helper functions
