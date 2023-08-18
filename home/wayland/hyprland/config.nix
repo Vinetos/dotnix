@@ -81,14 +81,6 @@ let
   '';
 
   general =
-  let
-    wallpaper = builtins.fetchurl rec {
-      name = "wallpaper.jpg";
-      url = "https://github.com/Vinetos/dotnix/blob/main/home/wallpaper.jpg?raw=true";
-      sha256 = "0ybw1lppilx2ds5b941y4y54iawl1lkipwqrswwp088yh2ascmzs";
-    };
-    hyperctl = "${pkgs.hyprland}/bin/hyprctl";
-  in
     ''
       monitor=eDP-1, preferred, auto, 1
       monitor=, preferred, auto, 1
@@ -97,9 +89,6 @@ let
         kb_layout = us
         kb_variant = intl
       }
-
-      exec-once = ${hyperctl} hyprpaper preload "${wallpaper}"
-      exec-once = ${hyperctl} hyprpaper wallpaper "eDP-1,${wallpaper}"
     '';
 in
 {
