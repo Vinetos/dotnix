@@ -4,10 +4,7 @@
 , pkgs
 , ...
 }: {
-  imports = [ ./config.nix ];
-
-  home.packages = with pkgs; [
-  ];
+  imports = [ ./hyprpaper.nix ./config.nix ];
 
   home.sessionVariables = {
     # upscale steam
