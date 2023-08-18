@@ -7,7 +7,7 @@
 # Wayland config
 {
   imports = [
-    ./waybar.nix
+    ./waybar
     ./hyprland
   ];
 

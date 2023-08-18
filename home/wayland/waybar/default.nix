@@ -4,9 +4,13 @@
 , pkgs
 , ...
 }: {
+  imports = [ ./config.nix ];
+
   programs.waybar = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
+    package = pkgs.waybar-hyprland;
     systemd.enable = true;
+    style = ./style.css;
   };
 }
+
