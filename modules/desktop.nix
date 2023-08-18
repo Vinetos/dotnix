@@ -4,7 +4,7 @@
 , ...
 }: {
   fonts = {
-    fonts = with pkgs; [ meslo-lgs-nf nerdfonts ];
+    packages = with pkgs; [ meslo-lgs-nf nerdfonts ];
     fontDir.enable = true;
   };
 
