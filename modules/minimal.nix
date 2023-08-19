@@ -48,6 +48,7 @@
       "networkmanager"
       "docker"
     ];
+    shell = pkgs.fish;
   };
 
   programs = {
@@ -55,6 +56,7 @@
       enable = true;
       enableSSHSupport = true;
     };
+    fish.enable = true;
   };
 
   # Enable the OpenSSH daemon.
