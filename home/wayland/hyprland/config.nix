@@ -36,47 +36,67 @@ let
     '';
 
   workspaceControl = ''
-    bind = $mainMod, 1, workspace, 1
-    bind = $mainMod, 2, workspace, 2
-    bind = $mainMod, 3, workspace, 3
-    bind = $mainMod, 4, workspace, 4
-    bind = $mainMod, 5, workspace, 5
-    bind = $mainMod, 6, workspace, 6
-    bind = $mainMod, 7, workspace, 7
-    bind = $mainMod, 8, workspace, 8
-    bind = $mainMod, 9, workspace, 9
-    bind = $mainMod, 0, workspace, 10
-
-    bind = $mainMod SHIFT, 1, movetoworkspace, 1
-    bind = $mainMod SHIFT, 2, movetoworkspace, 2
-    bind = $mainMod SHIFT, 3, movetoworkspace, 3
-    bind = $mainMod SHIFT, 4, movetoworkspace, 4
-    bind = $mainMod SHIFT, 5, movetoworkspace, 5
-    bind = $mainMod SHIFT, 6, movetoworkspace, 6
-    bind = $mainMod SHIFT, 7, movetoworkspace, 7
-    bind = $mainMod SHIFT, 8, movetoworkspace, 8
-    bind = $mainMod SHIFT, 9, movetoworkspace, 9
-    bind = $mainMod SHIFT, 0, movetoworkspace, 10
+    # workspaces
+    # binds mainMod + [shift +] {1..10} to [move to] ws {1..10}
+    ${builtins.concatStringsSep "\n" (builtins.genList (
+      x: let
+        ws = let
+          c = (x + 1) / 10;
+        in
+          builtins.toString (x + 1 - (c * 10));
+      in ''
+        bind = $mainMod, ${ws}, workspace, ${toString (x + 1)}
+        bind = $mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}
+      ''
+      )
+    10)}
 
     bind = $mainMod, mouse_down, workspace, e+1
     bind = $mainMod, mouse_up, workspace, e-1
   '';
 
-  windowControl = ''
+  compositorControls = ''
     bind = $mainMod SHIFT, Q, killactive
+    bind = $mainMod SHIFT, E, exec, pkill Hyprland
+
     bind = $mainMod, F, fullscreen
     bind = $mainMod, Space, togglefloating
 
     bindm = $mainMod, mouse:272, movewindow
     bindm = $mainMod, mouse:273, resizewindow
+
+    # move focus
+    bind = $mainMod, left, movefocus, l
+    bind = $mainMod, right, movefocus, r
+    bind = $mainMod, up, movefocus, u
+    bind = $mainMod, down, movefocus, d
+
+    # move focus
+    bind = $mainMod SHIFT, left, movewindow, l
+    bind = $mainMod SHIFT, right, movewindow, r
+    bind = $mainMod SHIFT, up, movewindow, u
+    bind = $mainMod SHIFT, down, movewindow, d
+
+    # window resize
+    bind = $mainMod, R, submap, resize
+
+    submap = resize
+    binde = , right, resizeactive, 10 0
+    binde = , left, resizeactive, -10 0
+    binde = , up, resizeactive, 0 -10
+    binde = , down, resizeactive, 0 10
+    bind = , escape, submap, resetp
+    submap = reset
   '';
 
   gaps = ''
     general {
         gaps_in = 2
-        gaps_out = 0
-        border_size = 0
+        gaps_out = 5
         layout = dwindle
+        border_size = 3
+        col.active_border = rgb(8be9fd) rgb(ff79c6) 45deg
+        col.inactive_border = rgb(6272a4)
     }
   '';
 
@@ -88,16 +108,66 @@ let
       input {
         kb_layout = us
         kb_variant = intl
+        follow_mouse = 1 # Cursor movement will always change focus to the window under the cursor.
       }
+
+      # make Firefox PiP window floating and sticky
+      windowrulev2 = float,title:(Picture-in-Picture)
+      windowrulev2 = pin,title:(Picture-in-Picture)
+      windowrulev2 = nomaximizerequest,title:(Picture-in-Picture)
+      windowrulev2 = size 5% 5%,title:(Picture-in-Picture)
+      windowrulev2 = noborder,title:(Picture-in-Picture)
+
+
+      # idle inhibit while watching videos
+      windowrulev2 = idleinhibit focus, class:^(mpv|.+exe)$
+      windowrulev2 = idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$
+      windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
     '';
+  decoration = ''
+    decoration {
+      rounding = 5
+
+      drop_shadow = yes
+      shadow_range = 4
+      shadow_render_power = 3
+      col.shadow = rgba(1a1a1aee)
+
+      active_opacity = 1.0
+      inactive_opacity = 0.9
+
+      blur {
+        enabled = true
+        size = 5
+        passes = 1
+        ignore_opacity = false
+      }
+    }
+  '';
+  animations = ''
+      animations {
+        enabled = yes
+
+        bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+
+        animation = windows, 1, 7, myBezier
+        animation = windowsOut, 1, 7, default, popin 80%
+        animation = border, 1, 10, default
+        animation = borderangle, 1, 8, default
+        animation = fade, 1, 7, default
+        animation = workspaces, 1, 6, default
+    }
+  '';
 in
 {
   wayland.windowManager.hyprland.extraConfig = ''
     ${mainMod}
     ${workspaceControl}
-    ${windowControl}
+    ${compositorControls}
     ${applicationsShortcuts}
     ${gaps}
+    ${decoration}
     ${general}
+    ${animations}
   '';
 }
