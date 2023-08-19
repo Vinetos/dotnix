@@ -22,17 +22,17 @@ let
       bind = $mainMod, L, exec, ${betterlockscreen}
       bind = , PRINT, exec, ${flameshot}
 
-      bind = , XF86MonBrightnessDown, exec, ${light} -U 5
-      bind = , XF86MonBrightnessUp, exec, ${light} -A 5
+      binde = , XF86MonBrightnessDown, exec, ${light} -U 5
+      binde = , XF86MonBrightnessUp, exec, ${light} -A 5
 
-      bind = , XF86AudioRaiseVolume, exec, ${alsa} 1%+
-      bind = , XF86AudioLowerVolume, exec, ${alsa} 1%-
-      bind = , XF86AudioMute, exec, ${alsa} toggle
+      binde = , XF86AudioRaiseVolume, exec, ${alsa} 1%+
+      binde = , XF86AudioLowerVolume, exec, ${alsa} 1%-
+      bindl = , XF86AudioMute, exec, ${alsa} toggle
 
-      bind = , XF86AudioPlay, exec, ${playerctl} play-pause
-      bind = , XF86AudioPause, exec, ${playerctl} play-pause
-      bind = , XF86AudioNext, exec, ${playerctl} next
-      bind = , XF86AudioPrev, exec, ${playerctl} previous
+      bindl = , XF86AudioPlay, exec, ${playerctl} play-pause
+      bindl = , XF86AudioPause, exec, ${playerctl} play-pause
+      bindl = , XF86AudioNext, exec, ${playerctl} next
+      bindl = , XF86AudioPrev, exec, ${playerctl} previous
 
     '';
 
@@ -72,11 +72,17 @@ let
     bind = $mainMod, up, movefocus, u
     bind = $mainMod, down, movefocus, d
 
-    # move focus
-    bind = $mainMod SHIFT, left, movewindow, l
-    bind = $mainMod SHIFT, right, movewindow, r
-    bind = $mainMod SHIFT, up, movewindow, u
-    bind = $mainMod SHIFT, down, movewindow, d
+    # move window
+    binde = $mainMod SHIFT, left, movewindow, l
+    binde = $mainMod SHIFT, right, movewindow, r
+    binde = $mainMod SHIFT, up, movewindow, u
+    binde = $mainMod SHIFT, down, movewindow, d
+
+    # move window
+    binde = CTRL_SHIFT, left, moveactive, -30 0
+    binde = CTRL_SHIFT, right, moveactive, 30 0
+    binde = CTRL_SHIFT, up, moveactive, 0 -30
+    binde = CTRL_SHIFT, down, moveactive, 0 30
 
     # window resize
     bind = $mainMod, R, submap, resize
@@ -86,7 +92,7 @@ let
     binde = , left, resizeactive, -10 0
     binde = , up, resizeactive, 0 -10
     binde = , down, resizeactive, 0 10
-    bind = , escape, submap, resetp
+    bind = , escape, submap, reset
     submap = reset
   '';
 
