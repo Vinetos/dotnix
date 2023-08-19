@@ -77,12 +77,11 @@ let
     binde = $mainMod SHIFT, right, movewindow, r
     binde = $mainMod SHIFT, up, movewindow, u
     binde = $mainMod SHIFT, down, movewindow, d
-
-    # move window
-    binde = CTRL_SHIFT, left, moveactive, -30 0
-    binde = CTRL_SHIFT, right, moveactive, 30 0
-    binde = CTRL_SHIFT, up, moveactive, 0 -30
-    binde = CTRL_SHIFT, down, moveactive, 0 30
+    # When floating
+    binde = $mainMod SHIFT, left, moveactive, -30 0
+    binde = $mainMod SHIFT, right, moveactive, 30 0
+    binde = $mainMod SHIFT, up, moveactive, 0 -30
+    binde = $mainMod SHIFT, down, moveactive, 0 30
 
     # window resize
     bind = $mainMod, R, submap, resize
