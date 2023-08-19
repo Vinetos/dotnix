@@ -1,4 +1,5 @@
-{ config
+{ lib
+, config
 , pkgs
 , default
 , ...
@@ -7,7 +8,7 @@ let
   mainMod = ''$mainMod = SUPER'';
   applicationsShortcuts =
     let
-      term = "${pkgs.alacritty}/bin/alacritty";
+      term = "${pkgs.kitty}/bin/kitty";
       dmenu = "${pkgs.rofi}/bin/rofi -modi drun -show drun -show-icons";
       betterlockscreen = "${pkgs.betterlockscreen}/bin/betterlockscreen --lock";
       flameshot = "${pkgs.flameshot}/bin/flameshot gui";
