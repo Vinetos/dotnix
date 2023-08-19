@@ -58,7 +58,7 @@ let
 
   compositorControls = ''
     bind = $mainMod SHIFT, Q, killactive
-    bind = $mainMod SHIFT, E, exec, pkill Hyprland
+    bind = $mainMod SHIFT, E, exec, poweroff
 
     bind = $mainMod, F, fullscreen
     bind = $mainMod, Space, togglefloating
@@ -120,8 +120,7 @@ let
       # make Firefox PiP window floating and sticky
       windowrulev2 = float,title:(Picture-in-Picture)
       windowrulev2 = pin,title:(Picture-in-Picture)
-      windowrulev2 = nomaximizerequest,title:(Picture-in-Picture)
-      windowrulev2 = size 5% 5%,title:(Picture-in-Picture)
+      windowrulev2 = size 20% 20%,title:(Picture-in-Picture)
       windowrulev2 = noborder,title:(Picture-in-Picture)
 
 
