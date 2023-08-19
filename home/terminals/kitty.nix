@@ -17,7 +17,8 @@ in
 
       url_color = xcolors.cyan;
 
-      inherit (xcolors) foreground background color0 color1 color2 color3 color4 color5 color6 color7 color8 color9 color10 color11 color12 color13 color14 color15;
-    };
+      inherit (xcolors) foreground background;
+    } // lib.filterAttrs (k: v: (builtins.match "color([0-9]|1[0-5])" k) != null) xcolors
+    ;
   };
 }
