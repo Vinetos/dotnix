@@ -1,11 +1,9 @@
-{ pkgs, ... }:
-
+{ pkgs, lib, ... }:
 {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-      set NIX_PATH "$NIX_PATH:nixpkgs-overlays=/etc/nixos/overlays"
-      ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
+      ${lib.getExe pkgs.any-nix-shell} fish --info-right | source
     '';
 
     shellAbbrs = {
