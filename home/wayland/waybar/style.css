@@ -112,6 +112,7 @@ button:hover {
 #scratchpad,
 #mpd,
 #window,
+#submap,
 #workspaces {
     margin: 0 2px;
     padding: 0 10px;
@@ -133,6 +134,10 @@ button:hover {
     color: #8be9fd;
 }
 
+#submap {
+    background-color: #44475a;
+    color: #f1fa8c;
+}
 
 #clock {
     background-color: #50fa7b;
@@ -153,7 +158,17 @@ button:hover {
 
 #battery.charging, #battery.plugged {
     color: #f1fa8c;
-    background-color: #ff5555;
+    background-color: #6272a4;
+    animation: 1s infinite alternate ease-out breath;
+}
+
+@keyframes breath {
+    from {
+        background-color: #6272a4;
+    }
+    to {
+        background-color: #586693;
+    }
 }
 
 @keyframes blink {

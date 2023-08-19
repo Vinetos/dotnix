@@ -11,7 +11,7 @@
 
       # "fixed-center": false
 
-      modules-left = [ "wlr/workspaces" "hyprland/window" ];
+      modules-left = [ "wlr/workspaces" "hyprland/window" "hyprland/submap" ];
       modules-center = [ "custom/weather" ];
       modules-right = [ "cpu" "memory" "temperature" "network" "wireplumber" "backlight" "battery" "clock" ];
 
@@ -30,6 +30,12 @@
 
       "hyprland/window" = {
         max-length = 30;
+      };
+
+      "hyprland/submap" = {
+        format = "✌️ {}";
+        max-length = 8;
+        tooltip = false;
       };
 
       "cpu" = {
@@ -54,20 +60,16 @@
         format-icons = [ "" ];
       };
 
-
       "battery" = {
         format = "{capacity}% {icon}";
         format-icons = [ "" "" "" "" "" ];
         states = { critical = 20; };
       };
 
-
       "clock" = {
         format = "{:%H:%M}  ";
         format-alt = "{:%A, %d %B %Y}  ";
       };
-
-
 
       "wireplumber" = {
         format = "{volume}% {icon}";
@@ -87,15 +89,6 @@
         tooltip-format-disconnected = "Disconnected";
         max-length = 50;
       };
-
-      #      "custom/hello-from-waybar" = {
-      #        format = "hello {}";
-      #        max-length = 40;
-      #        interval = "once";
-      #        exec = pkgs.writeShellScript "hello-from-waybar" ''
-      #            echo "from within waybar"
-      #          '';
-      #      };
     };
   };
 }
