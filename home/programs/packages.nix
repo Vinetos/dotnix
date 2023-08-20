@@ -21,7 +21,10 @@
     # Productivity
     flameshot
     xfce.thunar
-    discord
+    (pkgs.discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
     termius
     postman
     parsec-bin
