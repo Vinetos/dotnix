@@ -11,7 +11,7 @@ let
       term = "${pkgs.kitty}/bin/kitty";
       dmenu = "${pkgs.rofi}/bin/rofi -modi drun -show drun -show-icons";
       betterlockscreen = "${pkgs.betterlockscreen}/bin/betterlockscreen --lock";
-      flameshot = "${pkgs.flameshot}/bin/flameshot gui";
+      screenshot = "${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
       light = "${pkgs.light}/bin/light";
       alsa = "${pkgs.alsa-utils}/bin/amixer -q sset Master";
       playerctl = "${pkgs.playerctl}/bin/playerctl";
@@ -20,7 +20,7 @@ let
       bind = $mainMod, Return, exec, ${term}
       bind = $mainMod, D, exec, ${dmenu}
       bind = $mainMod, L, exec, ${betterlockscreen}
-      bind = , PRINT, exec, ${flameshot}
+      bind = , PRINT, exec, ${screenshot}
 
       binde = , XF86MonBrightnessDown, exec, ${light} -U 5
       binde = , XF86MonBrightnessUp, exec, ${light} -A 5
