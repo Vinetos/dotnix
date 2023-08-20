@@ -4,6 +4,9 @@
 , ...
 }:
 {
+  # Add hyprctl to waybar env : https://github.com/hyprwm/Hyprland/issues/1835
+  systemd.user.services.waybar.Service.Environment = "PATH=/run/wrappers/bin:${pkgs.hyprland}/bin";
+
   programs.waybar.settings = {
     mainBar = {
       layer = "top";
@@ -20,6 +23,7 @@
         format = "{icon}";
         on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e+1";
         on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e-1";
+        on-click = "activate";
       };
 
       "custom/weather" = {
