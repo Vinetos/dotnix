@@ -25,6 +25,7 @@ in
           module_args
           ./nix.nix
           ./security.nix
+          ./tailscale.nix
         ];
 
         desktopModules = with inputs; [
