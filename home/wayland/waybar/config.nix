@@ -14,13 +14,13 @@
 
       # "fixed-center": false
 
-      modules-left = [ "wlr/workspaces" "hyprland/window" "hyprland/submap" ];
+      modules-left = [ "hyprland/workspaces" "hyprland/window" "hyprland/submap" ];
       modules-center = [ "custom/weather" ];
       modules-right = [ "cpu" "memory" "temperature" "network" "wireplumber" "backlight" "battery" "clock" ];
 
-      "wlr/workspaces" = {
+      "hyprland/workspaces" = {
         # Enable scroll in workspaces modules
-        format = "{icon}";
+        format = "{name}";
         on-scroll-up = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e+1";
         on-scroll-down = "${pkgs.hyprland}/bin/hyprctl dispatch workspace e-1";
         on-click = "activate";
