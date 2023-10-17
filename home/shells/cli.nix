@@ -10,7 +10,6 @@
     du-dust
     duf
     fd
-    ripgrep
 
     # kubernetes
     kubectl

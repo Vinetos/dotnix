@@ -11,7 +11,10 @@
     jdk
     jd-gui
     jetbrains.idea-ultimate
+    jetbrains.clion
     poetry
+    bun
+    ungoogled-chromium
 
     # Fonts
     (pkgs.nerdfonts.override {
@@ -22,7 +25,7 @@
     flameshot
     xfce.thunar
     (pkgs.discord.override {
-      withOpenASAR = true;
+      #withOpenASAR = true;
       withVencord = true;
     })
     termius

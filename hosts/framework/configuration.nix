@@ -22,8 +22,6 @@
   # Configure console keymap
   console.keyMap = "us";
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
   #nixpkgs.overlays = import ../overlays;
 
   # List packages installed in system profile. To search, run:
