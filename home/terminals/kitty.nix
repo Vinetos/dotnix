@@ -5,6 +5,7 @@ in
 {
   programs.kitty = {
     enable = true;
+    shellIntegration.mode = "no-sudo";
     shellIntegration.enableFishIntegration = true;
     settings = {
       shell = ''
