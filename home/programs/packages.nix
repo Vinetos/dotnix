@@ -8,7 +8,7 @@
 
     # Dev
     maven
-    jdk
+    jdk21
     jd-gui
     jetbrains.idea-ultimate
     jetbrains.clion
