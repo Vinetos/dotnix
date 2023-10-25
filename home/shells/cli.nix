@@ -24,6 +24,7 @@
 
     tldr # Better than man
     github-copilot-intellij-agent
+    thefuck
   ];
 
   programs = {
