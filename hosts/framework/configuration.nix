@@ -17,7 +17,14 @@
     efi.canTouchEfiVariables = true;
   };
 
-  networking.hostName = "framework"; # Define your hostname.
+  networking = {
+    hostName = "framework"; # Define your hostname.
+    networkmanager.enable = true;
+    extraHosts = ''
+      127.0.0.1 vinetos.local
+      127.0.0.1 gitlab.vinetos.local
+    '';
+  };
 
   # Configure console keymap
   console.keyMap = "us";
