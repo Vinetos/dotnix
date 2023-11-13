@@ -10,7 +10,7 @@ let
     let
       term = "${pkgs.kitty}/bin/kitty";
       dmenu = "${pkgs.rofi}/bin/rofi -modi drun -show drun -show-icons";
-      betterlockscreen = "${pkgs.betterlockscreen}/bin/betterlockscreen --lock";
+      swaylock = "${lib.getExe pkgs.swaylock-effects} -S";
       screenshot = "${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
       light = "${pkgs.light}/bin/light";
       alsa = "${pkgs.alsa-utils}/bin/amixer -q sset Master";
@@ -19,7 +19,7 @@ let
     ''
       bind = $mainMod, Return, exec, ${term}
       bind = $mainMod, D, exec, ${dmenu}
-      bind = $mainMod, L, exec, ${betterlockscreen}
+      bind = $mainMod, L, exec, ${swaylock}
       bind = , PRINT, exec, ${screenshot}
 
       binde = , XF86MonBrightnessDown, exec, ${light} -U 5
