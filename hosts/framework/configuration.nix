@@ -24,6 +24,7 @@
       127.0.0.1 vinetos.local
       127.0.0.1 gitlab.vinetos.local
     '';
+    firewall.checkReversePath = false;
   };
 
   # Configure console keymap
