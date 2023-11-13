@@ -143,6 +143,8 @@
 
       vim-polyglot
 
+      vim-wakatime
+
       # Utility
       vim-polyglot
       rainbow
