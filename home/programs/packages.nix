@@ -5,6 +5,7 @@
     networkmanagerapplet
     thunderbird
     blueberry
+    yubikey-personalization
 
     # Dev
     maven
@@ -15,6 +16,7 @@
     poetry
     bun
     ungoogled-chromium
+    terraform
 
     # Fonts
     (pkgs.nerdfonts.override {
