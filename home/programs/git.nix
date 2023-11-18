@@ -15,7 +15,7 @@
 
     # User config
     userName = "Vinetos";
-    userEmail = "contact" + "@" + "vinetos" + "." + "fr";
+    userEmail = "valentin" + "@" + "vinetos" + "." + "fr";
 
     # Extra Config
     extraConfig = {
