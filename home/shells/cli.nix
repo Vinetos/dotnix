@@ -18,7 +18,7 @@
     htop
     neofetch
     gnupg
-
+    ansible
     docker-compose
     nodejs
 
