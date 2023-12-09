@@ -11,8 +11,10 @@
     duf
     fd
 
-    # kubernetes
+    # Kubernetes
     kubectl
+    kubernetes-helm
+    kubeseal
 
     # CLI-Tools
     htop

@@ -18,6 +18,7 @@
 
       # Other
       cat = "bat -p";
+      k = "kubectl";
       wip = "git add -A && git commit -m wip";
     };
 
