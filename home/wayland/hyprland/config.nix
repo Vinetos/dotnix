@@ -163,6 +163,17 @@ let
         animation = workspaces, 1, 6, default
     }
   '';
+  # https://github.com/hyprwm/Hyprland/issues/1947
+  idea-fix = ''
+    windowrulev2=windowdance,class:^(jetbrains-.*)$
+    # search dialog
+    windowrulev2=dimaround,class:^(jetbrains-.*)$,floating:1,title:^(?!win)
+    windowrulev2=center,class:^(jetbrains-.*)$,floating:1,title:^(?!win)
+    # autocomplete & menus
+    windowrulev2=noanim,class:^(jetbrains-.*)$,title:^(win.*)$
+    windowrulev2=noinitialfocus,class:^(jetbrains-.*)$,title:^(win.*)$
+    windowrulev2=rounding 0,class:^(jetbrains-.*)$,title:^(win.*)$
+  '';
 in
 {
   wayland.windowManager.hyprland.extraConfig = ''
@@ -174,5 +185,6 @@ in
     ${decoration}
     ${general}
     ${animations}
+    ${idea-fix}
   '';
 }
