@@ -15,6 +15,7 @@ in
 
       selection_foreground = xcolors.selection-foreground;
       selection_background = xcolors.selection-background;
+      confirm_on_windows_close = 0;
 
       url_color = xcolors.cyan;
 
