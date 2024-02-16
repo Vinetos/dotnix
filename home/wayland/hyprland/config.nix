@@ -63,20 +63,24 @@ let
     bind = $mainMod, F, fullscreen
     bind = $mainMod, Space, togglefloating
 
-    bindm = $mainMod, mouse:272, movewindow
+    bindm = $mainMod, mouse:272, hy3:movewindow
     bindm = $mainMod, mouse:273, resizewindow
 
+    # hy3 groups
+    bind = $mainMod, H, hy3:makegroup, h
+    bind = $mainMod, V, hy3:makegroup, v
+
     # move focus
-    bind = $mainMod, left, movefocus, l
-    bind = $mainMod, right, movefocus, r
-    bind = $mainMod, up, movefocus, u
-    bind = $mainMod, down, movefocus, d
+    bind = $mainMod, left, hy3:movefocus, l
+    bind = $mainMod, right, hy3:movefocus, r
+    bind = $mainMod, up, hy3:movefocus, u
+    bind = $mainMod, down, hy3:movefocus, d
 
     # move window
-    binde = $mainMod SHIFT, left, movewindow, l
-    binde = $mainMod SHIFT, right, movewindow, r
-    binde = $mainMod SHIFT, up, movewindow, u
-    binde = $mainMod SHIFT, down, movewindow, d
+    binde = $mainMod SHIFT, left, hy3:movewindow, l
+    binde = $mainMod SHIFT, right, hy3:movewindow, r
+    binde = $mainMod SHIFT, up, hy3:movewindow, u
+    binde = $mainMod SHIFT, down, hy3:movewindow, d
     # When floating
     binde = $mainMod SHIFT, left, moveactive, -30 0
     binde = $mainMod SHIFT, right, moveactive, 30 0
@@ -99,7 +103,7 @@ let
     general {
         gaps_in = 2
         gaps_out = 5
-        layout = dwindle
+        layout = hy3
         border_size = 3
         col.active_border = rgb(8be9fd) rgb(ff79c6) 45deg
         col.inactive_border = rgb(6272a4)

@@ -20,7 +20,7 @@
   networking = {
     hostName = "xps"; # Define your hostname.
     networkmanager.enable = true;
-    networkmanager.plugins = [ pkgs.networkmanager-openvpn ]; 
+    networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
   };
 
   # Configure console keymap
@@ -36,8 +36,8 @@
 
   # Configure X11 and Wayland
   services.xserver = {
-    layout = "ch";
-    xkbVariant = "fr_nodeadkeys";
+    xkb.layout = "ch";
+    xkb.variant = "fr_nodeadkeys";
   };
 
   # Enable PCSCD for smart card

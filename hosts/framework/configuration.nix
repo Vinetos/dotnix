@@ -41,8 +41,8 @@
 
   # Configure X11 and Wayland
   services.xserver = {
-    layout = "us";
-    xkbVariant = "intl";
+    xkb.layout = "us";
+    xkb.variant = "intl";
   };
 
   # Enable PCSCD for smart card

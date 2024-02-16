@@ -57,8 +57,8 @@
   # Configure X11
   services.xserver = {
     enable = true;
-    layout = "fr";
-    xkbVariant = "azerty";
+    xkb.layout = "fr";
+    xkb.variant = "azerty";
 
     # Autologin
     displayManager = {

@@ -28,6 +28,11 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
+      hy3 = {
+        url = "github:outfoxxed/hy3";
+        inputs.hyprland.follows = "hyprland";
+      };
+
     };
 
   outputs = inputs@{ self, nixpkgs, ... }:
