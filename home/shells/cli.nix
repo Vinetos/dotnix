@@ -16,6 +16,10 @@
     kubernetes-helm
     kubeseal
 
+    # Openstack
+    #openstackclient
+    #heatclient
+
     # CLI-Tools
     htop
     neofetch

@@ -1,5 +1,5 @@
 {
-  description = "Vinetos NixOS Flake configurations";
+  description = "Vinetos NixOS Flakes configurations";
 
   inputs = # All flake references used to build my NixOS setup. These are dependencies.
     {

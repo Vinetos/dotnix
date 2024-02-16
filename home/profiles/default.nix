@@ -21,6 +21,11 @@ let
       sharedModules
       ++ desktopModules
       ++ [ ./framework ];
+
+    "vinetos@xps" =
+      sharedModules
+      ++ desktopModules
+      ++ [ ./xps ];
   };
 
   inherit (inputs.home-manager.lib) homeManagerConfiguration;
@@ -34,6 +39,10 @@ in
     homeConfigurations = withSystem "x86_64-linux" ({ pkgs, ... }: {
       "vinetos@framework" = homeManagerConfiguration {
         modules = homeImports."vinetos@framework" ++ module_args;
+        inherit pkgs;
+      };
+      "vinetos@xps" = homeManagerConfiguration {
+        modules = homeImports."vinetos@xps" ++ module_args;
         inherit pkgs;
       };
     });

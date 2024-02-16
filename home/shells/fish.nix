@@ -19,6 +19,7 @@
       # Other
       cat = "bat -p";
       k = "kubectl";
+      o = "openstack";
       wip = "git add -A && git commit -m wip";
     };
 

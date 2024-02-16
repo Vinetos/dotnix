@@ -117,6 +117,16 @@ let
         follow_mouse = 1 # Cursor movement will always change focus to the window under the cursor.
       }
 
+      device:mx-keys-keyboard {
+        kb_layout = ch
+        kb_variant = fr_nodeadkeys
+      }
+
+      device:at-translated-set-2-keyboard {
+        kb_layout = ch
+        kb_variant = fr_nodeadkeys
+      }
+
       # make Firefox PiP window floating and sticky
       windowrulev2 = float,title:(Picture-in-Picture)
       windowrulev2 = pin,title:(Picture-in-Picture)

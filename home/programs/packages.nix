@@ -31,8 +31,7 @@
       withVencord = true;
     })
     termius
-    postman
-    parsec-bin
+    rustdesk
 
     # Fun
     spotify
