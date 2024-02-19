@@ -67,8 +67,8 @@ let
     bindm = $mainMod, mouse:273, resizewindow
 
     # hy3 groups
-    bind = $mainMod, H, hy3:makegroup, h
-    bind = $mainMod, V, hy3:makegroup, v
+    bind = $mainMod, H, hy3:makegroup, v
+    bind = $mainMod, V, hy3:makegroup, h
 
     # move focus
     bind = $mainMod, left, hy3:movefocus, l
