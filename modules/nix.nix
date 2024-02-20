@@ -49,6 +49,8 @@
       keep-derivations = true;
       keep-outputs = true;
 
+      sandbox = true; # Enable sandboxing for testing packages
+
       substituters = [
         "https://nix-community.cachix.org"
       ];
