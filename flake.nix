@@ -10,7 +10,7 @@
         inputs.nixpkgs-lib.follows = "nixpkgs";
       };
 
-      nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+      nixos-hardware.url = "github:Vinetos/nixos-hardware/master";
       nixos-wsl.url = "github:nix-community/NixOS-WSL";
 
       home-manager = {
