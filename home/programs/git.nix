@@ -1,21 +1,21 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   home.packages = with pkgs; [ gh glab git-lfs gitAndTools.gitflow ];
 
   programs.git = {
     enable = true;
     lfs.enable = true;
 
-    ignores = [ "*~" "*.swp" "*result*" ".direnv" "node_modules" ];
+    ignores = [ "*~" "*.swp" "*result*" ".direnv" "node_modules" ".idea" ];
 
     # Signing Module
     signing = {
-      key = "7F6B8E5090D9C31D";
-      signByDefault = true;
+      key = lib.mkDefault "7F6B8E5090D9C31D";
+      signByDefault = lib.mkDefault true;
     };
 
     # User config
-    userName = "Vinetos";
-    userEmail = "valentin" + "@" + "vinetos" + "." + "fr";
+    userName = lib.mkDefault "Vinetos";
+    userEmail = lib.mkDefault ("valentin" + "@" + "vinetos" + "." + "fr");
 
     # Extra Config
     extraConfig = {

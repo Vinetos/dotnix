@@ -1,7 +1,10 @@
+{ pkgs, ...}:
 {
+  home.packages = with pkgs; [ pinentry ];
+
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    pinentryFlavor = "tty";
+    pinentryFlavor = "gnome3";
   };
 }
