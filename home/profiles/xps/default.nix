@@ -1,3 +1,4 @@
+{ pkgs, lib, ... }:
 {
   imports = [
     ../../programs
