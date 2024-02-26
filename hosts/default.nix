@@ -20,6 +20,7 @@
           ../modules/hyprland.nix
           ../modules/security.nix
           ../modules/desktop.nix
+          ../modules/tailscale.nix
 
           { home-manager.users.vinetos.imports = homeImports."vinetos@framework"; }
         ]

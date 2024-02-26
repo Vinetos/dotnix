@@ -21,6 +21,7 @@
     hostName = "xps"; # Define your hostname.
     networkmanager.enable = true;
     networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
+    search = [ "infomaniak.ch" ];
   };
 
   # Configure console keymap
