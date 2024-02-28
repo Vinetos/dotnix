@@ -44,9 +44,6 @@
   # Enable PCSCD for smart card
   services.pcscd.enable = true;
 
-  # Digital
-  #services.fprintd.enable = true;
-
   # Disable Power Button
   services.logind.extraConfig = ''
     # don’t shutdown when power button is short-pressed
