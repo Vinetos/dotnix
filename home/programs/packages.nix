@@ -31,7 +31,6 @@
       withVencord = true;
     })
     termius
-    rustdesk
 
     # Fun
     spotify

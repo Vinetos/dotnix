@@ -11,13 +11,19 @@
       device {
         name = mx-keys-keyboard
         kb_layout = ch
-        kb_variant = fr_nodeadkeys
+        kb_variant = fr
+      }
+      
+      device {
+        name = mx-keys-keyboard-2
+        kb_layout = ch
+        kb_variant = fr
       }
 
       device {
         name = at-translated-set-2-keyboard
         kb_layout = ch
-        kb_variant = fr_nodeadkeys
+        kb_variant = fr
       }
     '';
 
