@@ -63,6 +63,7 @@
     remmina
     virt-manager
     kchat
+    pdk
   ];
 
 }
