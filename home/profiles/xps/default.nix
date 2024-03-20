@@ -25,6 +25,12 @@
       kb_layout = ch
       kb_variant = fr
     }
+
+    device {
+      name = g915-keyboard-keyboard
+      kb_layout = fr
+      kb_variant = 
+    }
   '';
 
   # Custom git configuration
@@ -64,6 +70,8 @@
     virt-manager
     kchat
     pdk
+    ruby
+    quasselClient
   ];
 
 }
