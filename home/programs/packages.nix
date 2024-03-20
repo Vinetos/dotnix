@@ -17,6 +17,8 @@
     bun
     ungoogled-chromium
     terraform
+    typst
+    typst-live
 
     # Fonts
     (pkgs.nerdfonts.override {
