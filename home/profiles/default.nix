@@ -32,6 +32,10 @@ let
       ++ desktopModules
       ++ [ ./xps ]
       ++ [ ../themes/catpuccin ];
+
+    "vinetos@wsl" =
+      sharedModules
+      ++ [ ./wsl ];
   };
 
   inherit (inputs.home-manager.lib) homeManagerConfiguration;
@@ -49,6 +53,10 @@ in
       };
       "vinetos@xps" = homeManagerConfiguration {
         modules = homeImports."vinetos@xps" ++ module_args;
+        inherit pkgs;
+      };
+      "vinetos@wsl" = homeManagerConfiguration {
+        modules = homeImports."vinetos@wsl" ++ module_args;
         inherit pkgs;
       };
     });

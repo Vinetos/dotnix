@@ -49,5 +49,20 @@
         ++ sharedModules
         ++ desktopModules;
     };
+    wsl = inputs.nixpkgs.lib.nixosSystem {
+      inherit system;
+
+      modules =
+        [
+          inputs.nixos-wsl.nixosModules.wsl
+          ./wsl
+          ../modules/doas.nix
+          ../modules/security.nix
+          ../modules/tailscale.nix
+
+          { home-manager.users.vinetos.imports = homeImports."vinetos@wsl"; }
+        ]
+        ++ sharedModules;
+    };
   });
 }
