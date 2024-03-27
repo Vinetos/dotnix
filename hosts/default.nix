@@ -42,6 +42,7 @@
           ../modules/desktop.nix
           ../modules/clamav.nix
           ../modules/tailscale.nix
+          ../modules/vpn.nix
 
           { home-manager.users.vinetos.imports = homeImports."vinetos@xps"; }
         ]

@@ -5,16 +5,37 @@
 , ...
 }:
 let
-  mainMod = ''$mainMod = SUPER'';
+  # TODO: Rewrite this file to use nix language now that hyprland HM module update is merged.
+  mainMod = "SUPER";
+
+  # Packages
+  amixer = "${pkgs.alsa-utils}/bin/amixer"; #alsa-utils expose multiple binaries
+  cliphist = "${lib.getExe pkgs.cliphist}";
+  grim = "${lib.getExe pkgs.grim}";
+  kitty = "${lib.getExe pkgs.kitty}";
+  light = "${lib.getExe pkgs.light}";
+  notify-send = "${lib.getExe pkgs.libnotify}";
+  playerctl = "${lib.getExe pkgs.playerctl}";
+  rofi = "${lib.getExe pkgs.rofi}";
+  slurp = "${lib.getExe pkgs.slurp}";
+  swaylock-effects = "${lib.getExe pkgs.swaylock-effects}";
+  wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy"; # wl-clipboard expose multiple binaries
+  wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
+  wtype = "${lib.getExe pkgs.wtype}"; # Allow pasting to gui application by simulating keyboard inputs
+
+  # Shortcuts
+  clipboard = {
+    paste = "${cliphist} list | ${rofi} -dmenu -theme ~/.config/rofi/clipboard/config.rasi | ${cliphist} decode | ${wl-copy} && ${wtype} -M ctrl v -m ctrl";
+    wipe = "${cliphist} wipe && ${notify-send} \"Cleared clipboard\"";
+  };
+
   applicationsShortcuts =
     let
-      term = "${pkgs.kitty}/bin/kitty";
-      dmenu = "${pkgs.rofi}/bin/rofi -modi drun -show drun -show-icons";
-      swaylock = "${lib.getExe pkgs.swaylock-effects} -S";
-      screenshot = "${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
-      light = "${pkgs.light}/bin/light";
-      alsa = "${pkgs.alsa-utils}/bin/amixer -q sset Master";
-      playerctl = "${pkgs.playerctl}/bin/playerctl";
+      term = "${kitty}";
+      dmenu = "${rofi} -modi drun -show drun -show-icons";
+      swaylock = "${swaylock-effects} -S";
+      screenshot = "${grim} -g \"$(${slurp})\" - | ${wl-copy}";
+      alsa = "${amixer} -q sset Master";
     in
     ''
       bind = $mainMod, Return, exec, ${term}
@@ -181,7 +202,6 @@ let
 in
 {
   wayland.windowManager.hyprland.extraConfig = ''
-    ${mainMod}
     ${workspaceControl}
     ${compositorControls}
     ${applicationsShortcuts}
@@ -193,6 +213,16 @@ in
   '';
 
   wayland.windowManager.hyprland.settings = {
+    "$mainMod" = mainMod;
+    # Exec configuration
+    exec-once = [
+      "${wl-paste} --type text --watch ${cliphist} store" # cliphist retains only text inputs
+    ];
+    bind = [
+      # Clipboard
+      "CTRL SHIFT, V, exec, ${clipboard.paste}"
+      "$mainMod SHIFT, V, exec, ${clipboard.wipe}"
+    ];
     device = [
       {
         name = "g915-keyboard-keyboard";

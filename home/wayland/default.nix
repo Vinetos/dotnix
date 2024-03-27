@@ -20,6 +20,9 @@
     # idle/lock
     swaybg
 
+    # Clipboard manager
+    cliphist
+
     # utils
     # ocrScript
     wf-recorder
