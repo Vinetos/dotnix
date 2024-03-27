@@ -191,4 +191,14 @@ in
     ${animations}
     ${idea-fix}
   '';
+
+  wayland.windowManager.hyprland.settings = {
+    device = [
+      {
+        name = "g915-keyboard-keyboard";
+        kb_layout = "fr";
+        kb_variant = "";
+      }
+    ];
+  };
 }

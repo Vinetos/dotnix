@@ -6,32 +6,25 @@
     ../../terminals/kitty.nix
   ];
 
-  # TODO: Replace with nix language when merged : https://github.com/nix-community/home-manager/pull/5038
-  wayland.windowManager.hyprland.extraConfig = ''
-    device {
-      name = mx-keys-keyboard
-      kb_layout = ch
-      kb_variant = fr
-    }
-
-    device {
-      name = mx-keys-keyboard-2
-      kb_layout = ch
-      kb_variant = fr
-    }
-
-    device {
-      name = at-translated-set-2-keyboard
-      kb_layout = ch
-      kb_variant = fr
-    }
-
-    device {
-      name = g915-keyboard-keyboard
-      kb_layout = fr
-      kb_variant =
-    }
-  '';
+  wayland.windowManager.hyprland.settings = {
+    device = [
+      {
+        name = "mx-keys-keyboard";
+        kb_layout = "ch";
+        kb_variant = "fr";
+      }
+      {
+        name = "mx-keys-keyboard-2";
+        kb_layout = "ch";
+        kb_variant = "fr";
+      }
+      {
+        name = "at-translated-set-2-keyboard";
+        kb_layout = "ch";
+        kb_variant = "fr";
+      }
+    ];
+  };
 
   # Custom git configuration
   programs = {
