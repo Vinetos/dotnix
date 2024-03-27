@@ -29,7 +29,7 @@
     device {
       name = g915-keyboard-keyboard
       kb_layout = fr
-      kb_variant = 
+      kb_variant =
     }
   '';
 
@@ -65,7 +65,6 @@
     traceroute
     dig
     wget
-    openvpn
     remmina
     virt-manager
     kchat
