@@ -5,5 +5,6 @@
     ./packages.nix
     ./rofi.nix
     ./swaylock.nix
+    ./waybar.nix
   ];
 }

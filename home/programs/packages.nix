@@ -6,6 +6,8 @@
     thunderbird
     blueberry
     yubikey-personalization
+    etcher
+
 
     # Dev
     maven
@@ -19,11 +21,6 @@
     terraform
     typst
     typst-live
-
-    # Fonts
-    (pkgs.nerdfonts.override {
-      fonts = [ "FiraCode" "DroidSansMono" "Iosevka" ];
-    })
 
     # Productivity
     flameshot
