@@ -4,5 +4,6 @@
     ./nvim.nix
     ./packages.nix
     ./rofi.nix
+    ./swaylock.nix
   ];
 }

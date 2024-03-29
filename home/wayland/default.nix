@@ -9,7 +9,6 @@
   imports = [
     ./waybar
     ./hyprland
-    ./swaylock.nix
   ];
 
   home.packages = with pkgs; [

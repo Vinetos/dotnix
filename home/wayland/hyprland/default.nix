@@ -4,7 +4,7 @@
 , pkgs
 , ...
 }: {
-  imports = [ ./hyprpaper.nix ./config.nix ];
+  imports = [ ./hyprpaper.nix ./hyprland.nix ];
 
   home.sessionVariables = {
     # upscale steam
