@@ -23,7 +23,9 @@ let
     "vinetos@framework" =
       sharedModules
       ++ desktopModules
-      ++ [ ./framework ];
+      ++ [ ./framework ]
+      ++ [ ../themes/catpuccin ];
+    #      ++ [ ../themes/darcula ];
 
     "vinetos@xps" =
       sharedModules

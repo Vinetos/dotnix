@@ -16,8 +16,10 @@ Some of the noticeable things I use :
 ## 🗃️ Contents
 - [home](home): my [Home Manager](https://github.com/nix-community/home-manager) config
 - [home/profiles](home/profiles): per-user-per-computer configuration
+- [home/themes](home/themes): Theming-only configuration
 - [hosts](hosts): computer-specific configurations
 - [lib](lib): helper functions
+- [lib/theme](lib/theme): colors definition for theming
 - [modules](modules): common NixOS system configs
 
 # Apply config
