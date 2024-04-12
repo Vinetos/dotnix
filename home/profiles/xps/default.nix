@@ -66,6 +66,7 @@
     ruby
     quasselClient
     android-studio
+    solaar
   ];
 
 }
