@@ -6,7 +6,6 @@
     thunderbird
     blueberry
     yubikey-personalization
-    etcher
 
 
     # Dev
