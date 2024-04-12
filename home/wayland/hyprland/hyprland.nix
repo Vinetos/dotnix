@@ -16,7 +16,7 @@ let
   light = "${lib.getExe pkgs.light}";
   notify-send = "${lib.getExe pkgs.libnotify}";
   playerctl = "${lib.getExe pkgs.playerctl}";
-  rofi = "${lib.getExe pkgs.rofi}";
+  rofi = "${lib.getExe pkgs.rofi-wayland}";
   slurp = "${lib.getExe pkgs.slurp}";
   swaylock-effects = "${lib.getExe pkgs.swaylock-effects}";
   wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy"; # wl-clipboard expose multiple binaries
