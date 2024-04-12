@@ -22,10 +22,6 @@
         "tray"
         "hyprland/submap"
         "custom/cava-internal"
-        "mpd#2"
-        "mpd#3"
-        "mpd#4"
-        "mpd"
       ];
       modules-center = [ "clock" ];
       modules-right = [
