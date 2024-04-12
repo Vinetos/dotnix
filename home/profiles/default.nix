@@ -30,7 +30,8 @@ let
     "vinetos@xps" =
       sharedModules
       ++ desktopModules
-      ++ [ ./xps ];
+      ++ [ ./xps ]
+      ++ [ ../themes/catpuccin ];
   };
 
   inherit (inputs.home-manager.lib) homeManagerConfiguration;

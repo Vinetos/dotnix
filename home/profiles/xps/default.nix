@@ -61,9 +61,11 @@
     remmina
     virt-manager
     kchat
+    kmeet
     pdk
     ruby
     quasselClient
+    android-studio
   ];
 
 }
