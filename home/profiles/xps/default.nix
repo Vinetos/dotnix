@@ -67,6 +67,7 @@
     quasselClient
     android-studio
     solaar
+    onlyoffice-bin_latest
   ];
 
 }
