@@ -11,13 +11,10 @@
     # Dev
     maven
     jdk21
-    jd-gui
     jetbrains.idea-ultimate
-    jetbrains.clion
     poetry
-    bun
-    ungoogled-chromium
     terraform
+    opentofu
     typst
     typst-live
 
