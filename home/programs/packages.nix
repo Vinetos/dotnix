@@ -12,8 +12,7 @@
     maven
     jdk21
     jetbrains.idea-ultimate
-    poetry
-    terraform
+    jetbrains.pycharm-professional
     opentofu
     typst
     typst-live

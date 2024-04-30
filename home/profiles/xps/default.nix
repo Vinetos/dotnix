@@ -68,6 +68,8 @@
     android-studio
     solaar
     onlyoffice-bin_latest
+    parsec-bin
+    #(element-desktop.override {electron = pkgs.electron_28;})
   ];
 
 }
