@@ -17,6 +17,7 @@
     opentofu
     typst
     typst-live
+    onlyoffice-bin
 
     # Productivity
     flameshot
