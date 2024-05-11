@@ -9,10 +9,11 @@
 
 
     # Dev
-    maven
+    git-review
     jdk21
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional
+    maven
     opentofu
     typst
     typst-live

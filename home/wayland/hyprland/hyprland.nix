@@ -42,6 +42,7 @@ let
       bind = $mainMod, D, exec, ${dmenu}
       bind = $mainMod, L, exec, ${swaylock}
       bind = , PRINT, exec, ${screenshot}
+      bind = $mainMod SHIFT, S, exec, ${screenshot}
 
       binde = , XF86MonBrightnessDown, exec, ${light} -U 5
       binde = , XF86MonBrightnessUp, exec, ${light} -A 5
