@@ -31,8 +31,6 @@
       gaps_out = "$hypr_gaps_out";
       "col.active_border" = "$active_border_col_1 $active_border_col_2 $gradient_angle";
       "col.inactive_border" = "$inactive_border_col_1 $inactive_border_col_2 $gradient_angle";
-      cursor_inactive_timeout = 30;
-      no_cursor_warps = false;
       apply_sens_to_raw = false;
     };
 

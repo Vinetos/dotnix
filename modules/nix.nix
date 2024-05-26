@@ -18,7 +18,7 @@
 
   # Configure Nix
   nix = {
-    package = pkgs.nixUnstable; # Get latest version to enable flakes
+    package = pkgs.nixVersions.latest; # Get latest version to enable flakes
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
