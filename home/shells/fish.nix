@@ -15,7 +15,7 @@
       nri = "sudo nixos-rebuild switch --flake /etc/nixos/#(hostname) --impure";
       nrb = "sudo nixos-rebuild boot --flake /etc/nixos/#(hostname)";
       nu = "nix flake update";
-      ngc = "sudo nix-collect-garbage -d";
+      ngc = "sudo nix-collect-garbage -d && nix-collect-garbage";
 
       # Other
       cat = "bat -p";
