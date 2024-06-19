@@ -17,7 +17,9 @@
     opentofu
     typst
     typst-live
-    onlyoffice-bin
+    onlyoffice-bin_latest
+    packer
+    poetry
 
     # Productivity
     flameshot
