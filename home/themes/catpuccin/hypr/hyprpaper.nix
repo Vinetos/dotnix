@@ -1,8 +1,8 @@
 { ... }:
 let
   wallpaper = builtins.fetchurl {
-    url = "https://github.com/Vinetos/dotnix/blob/main/home/themes/catpuccin/backgrounds/deer.jpg?raw=true";
-    sha256 = "1494bkhakk72xk8hcy1mw7b1m6rr4bda3aspblz6ml6325fx796x";
+    url = "https://i.redd.it/52bb00rh254d1.jpeg";
+    sha256 = "00bvb43sindbcvbbznv9y2var1xx5qr5yz1iccx7jgalf5w0l56q";
   };
 in
 {
