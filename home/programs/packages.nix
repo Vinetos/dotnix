@@ -11,20 +11,20 @@
     # Dev
     git-review
     jdk21
-    jetbrains.idea-ultimate
-    jetbrains.pycharm-professional
+    pkgs.unstable.jetbrains.idea-ultimate
+    pkgs.unstable.jetbrains.pycharm-professional
     maven
     opentofu
     typst
     typst-live
-    onlyoffice-bin_latest
+    onlyoffice-bin
     packer
     poetry
 
     # Productivity
     flameshot
     xfce.thunar
-    (pkgs.discord.override {
+    (pkgs.unstable.discord.override {
       #withOpenASAR = true;
       withVencord = true;
     })

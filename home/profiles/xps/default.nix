@@ -53,23 +53,20 @@
     };
   };
 
+
   home.packages = with pkgs; [
+    pkgs.unstable.kchat
     openssl
     traceroute
     dig
     wget
     remmina
     virt-manager
-    kchat
-    kmeet
-    pdk
-    ruby
-    quasselClient
     android-studio
     solaar
     parsec-bin
-    (element-desktop.override {electron = pkgs.electron_28;})
-    containerlab
+    element-desktop
   ];
+
 
 }

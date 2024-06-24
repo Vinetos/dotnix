@@ -38,7 +38,18 @@
   };
 
   # pickup pkgs from flake export
-  nixpkgs.pkgs = inputs.self.legacyPackages.${config.nixpkgs.system};
+  nixpkgs.pkgs = import inputs.nixpkgs {
+    system = config.nixpkgs.system;
+    config.allowUnfree = true;
+  };
+  nixpkgs.overlays = [
+    (self: prev: {
+      unstable = import inputs.unstable {
+        system = prev.system;
+        config.allowUnfree = true;
+      };
+    })
+  ];
 
   users.users.vinetos = {
     isNormalUser = true;
@@ -47,6 +58,7 @@
       "video"
       "networkmanager"
       "docker"
+      "libvirtd"
     ];
     shell = pkgs.fish;
   };
@@ -75,5 +87,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = lib.mkDefault "23.05"; # Did you read the comment?
+  system.stateVersion = lib.mkDefault "24.05"; # Did you read the comment?
 }
