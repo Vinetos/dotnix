@@ -130,7 +130,7 @@
         "hyprutils": "hyprutils",
         "hyprwayland-scanner": "hyprwayland-scanner",
         "nixpkgs": [
-          "nixpkgs"
+          "unstable"
         ],
         "systems": "systems",
         "xdph": "xdph"
@@ -154,7 +154,7 @@
     "hyprland-contrib": {
       "inputs": {
         "nixpkgs": [
-          "nixpkgs"
+          "unstable"
         ]
       },
       "locked": {
