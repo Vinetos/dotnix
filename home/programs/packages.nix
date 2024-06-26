@@ -20,6 +20,7 @@
     onlyoffice-bin
     packer
     poetry
+    python3
 
     # Productivity
     flameshot
@@ -32,5 +33,6 @@
 
     # Fun
     spotify
+    upscayl
   ];
 }
