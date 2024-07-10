@@ -44,7 +44,13 @@
   };
   nixpkgs.overlays = [
     (self: prev: {
+      # Shortcut to call packages from unstable (pkgs.unstable.hello)
       unstable = import inputs.unstable {
+        system = prev.system;
+        config.allowUnfree = true;
+      };
+      # Shotcut to call packages from dev inputs (pkgs.dev.hello)
+      dev = import inputs.dev {
         system = prev.system;
         config.allowUnfree = true;
       };

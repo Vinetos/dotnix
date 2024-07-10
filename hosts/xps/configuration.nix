@@ -31,7 +31,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
-    firefox
+    librewolf
     kitty # for Hyprland
   ];
 
@@ -51,6 +51,11 @@
   '';
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
+
+  # Ollama service
+  services.ollama = {
+    enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

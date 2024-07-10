@@ -55,6 +55,8 @@
 
 
   home.packages = with pkgs; [
+    pkgs.dev.openstackclient
+
     pkgs.unstable.kchat
     openssl
     traceroute
@@ -66,6 +68,7 @@
     solaar
     parsec-bin
     element-desktop
+    librewolf
   ];
 
 

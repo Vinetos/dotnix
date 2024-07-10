@@ -5,6 +5,7 @@
     {
       nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05"; # Nix Packages
       unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable version
+      dev.url = "github:Vinetos/nixpkgs/octaviaclient"; # My dev version
 
       flake-parts = {
         url = "github:hercules-ci/flake-parts";
