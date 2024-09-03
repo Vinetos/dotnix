@@ -1,0 +1,3 @@
+[submodule "xps"]
+	path = home/profiles/xps
+	url = git@gitlab.infomaniak.ch:valentin.chassignol/dotnix.git
