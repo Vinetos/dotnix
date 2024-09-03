@@ -33,7 +33,6 @@
         url = "github:outfoxxed/hy3?ref=hl0.41.2";
         inputs.hyprland.follows = "hyprland";
       };
-
     };
 
   outputs = inputs@{ self, nixpkgs, ... }:
