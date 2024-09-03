@@ -1,7 +1,4 @@
 [submodule "hosts/wsl/nixos-wsl"]
 	path = hosts/wsl/nixos-wsl
     url = https://github.com/nix-community/NixOS-WSL.git
-[submodule "home/profiles/xps"]
-	path = home/profiles/xps
-	url = git@gitlab.infomaniak.ch:valentin.chassignol/dotnix.git
 
