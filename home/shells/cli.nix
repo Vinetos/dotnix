@@ -22,7 +22,7 @@
 
     # CLI-Tools
     htop
-    neofetch
+    fastfetch
     gnupg
     ansible
     docker-compose

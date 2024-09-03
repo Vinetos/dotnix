@@ -21,8 +21,7 @@
       };
 
       hyprland = {
-        url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-        inputs.nixpkgs.follows = "unstable";
+        url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=v0.41.2";
       };
 
       hyprland-contrib = {
@@ -31,7 +30,7 @@
       };
 
       hy3 = {
-        url = "github:outfoxxed/hy3";
+        url = "github:outfoxxed/hy3?ref=hl0.41.2";
         inputs.hyprland.follows = "hyprland";
       };
 

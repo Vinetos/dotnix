@@ -9,7 +9,7 @@ in
     shellIntegration.enableFishIntegration = true;
     settings = {
       shell = ''
-        ${lib.getExe pkgs.fish} --init-command "echo; ${lib.getExe pkgs.neofetch} --disable packages; echo"
+        ${lib.getExe pkgs.fish} --init-command "echo; ${lib.getExe pkgs.fastfetch}; echo"
       '';
       background_opacity = toString 0.7;
 
