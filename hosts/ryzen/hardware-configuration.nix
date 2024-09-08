@@ -39,10 +39,13 @@
   # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
 
+
+
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   # Docker
   virtualisation.docker.enable = true;

@@ -32,6 +32,12 @@ let
       ++ desktopModules
       ++ [ ./xps ]
       ++ [ ../themes/catpuccin ];
+      
+    "vinetos@ryzen" =
+      sharedModules
+      ++ desktopModules
+      ++ [ ./ryzen ]
+      ++ [ ../themes/catpuccin ];
 
     "vinetos@wsl" =
       sharedModules
@@ -53,6 +59,10 @@ in
       };
       "vinetos@xps" = homeManagerConfiguration {
         modules = homeImports."vinetos@xps" ++ module_args;
+        inherit pkgs;
+      };
+      "vinetos@ryzen" = homeManagerConfiguration {
+        modules = homeImports."vinetos@ryzen" ++ module_args;
         inherit pkgs;
       };
       "vinetos@wsl" = homeManagerConfiguration {

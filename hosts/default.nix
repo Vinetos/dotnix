@@ -27,6 +27,25 @@
         ++ sharedModules
         ++ desktopModules;
     };
+    ryzen = inputs.nixpkgs.lib.nixosSystem {
+      inherit system;
+
+      modules =
+        [
+
+          ./ryzen
+          ../modules/doas.nix
+          ../modules/xserver.nix
+          ../modules/hyprland.nix
+          ../modules/security.nix
+          ../modules/desktop.nix
+          ../modules/tailscale.nix
+
+          { home-manager.users.vinetos.imports = homeImports."vinetos@ryzen"; }
+        ]
+        ++ sharedModules
+        ++ desktopModules;
+    };
     xps = inputs.nixpkgs.lib.nixosSystem {
       inherit system;
 

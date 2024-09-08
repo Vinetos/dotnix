@@ -12,9 +12,10 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   # Setup keyfile
   boot.initrd.secrets = {
@@ -30,120 +31,33 @@
     hostName = "ryzen"; # Define your hostname.
     networkmanager.enable = true;
     nameservers = [ "1.1.1.1" "1.0.0.1" ];
-    extraHosts = ''
-      127.0.0.1 dps.epita.local
-    '';
-    firewall.checkReversePath = false;
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Paris";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.utf8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.utf8";
-    LC_IDENTIFICATION = "fr_FR.utf8";
-    LC_MEASUREMENT = "fr_FR.utf8";
-    LC_MONETARY = "fr_FR.utf8";
-    LC_NAME = "fr_FR.utf8";
-    LC_NUMERIC = "fr_FR.utf8";
-    LC_PAPER = "fr_FR.utf8";
-    LC_TELEPHONE = "fr_FR.utf8";
-    LC_TIME = "fr_FR.utf8";
-  };
 
   # Configure X11
   services.xserver = {
     enable = true;
     xkb.layout = "fr";
     xkb.variant = "azerty";
-
-    # Autologin
-    displayManager = {
-      defaultSession = "none+i3";
-      autoLogin = {
-        enable = true;
-        user = "vinetos";
-      };
-    };
-
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-    };
   };
 
   # Configure console keymap
   console.keyMap = "fr";
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.vinetos = {
-    isNormalUser = true;
-    description = "Vinetos";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
-    packages = with pkgs; [ ];
-  };
-
   # Hardware deamon 
   services.fwupd.enable = true;
-
-  # Disable sound when using PipeWire, it seems to cause conflicts
-  sound.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    firefox
+    kitty
+    librewolf
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.ssh.startAgent = true;
-  programs.git.enable = true;
-  programs.git.lfs.enable = true;
+  # Enable PCSCD for smart card
+  services.pcscd.enable = true;
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  # Configure Nix
-  nix = {
-    package = pkgs.nixUnstable; # Get latest version to enable flakes
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-    # Automatic GC and optimize store
-    settings.auto-optimise-store = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 14d";
-    };
-  };
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 8888 8889 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
