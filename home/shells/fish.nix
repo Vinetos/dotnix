@@ -11,9 +11,8 @@
       # Nix
       ns = "nix shell nixpkgs#";
       nr = "nix run nixpkgs#";
-      nrs = "sudo nixos-rebuild switch --flake /etc/nixos/#(hostname)";
-      nri = "sudo nixos-rebuild switch --flake /etc/nixos/#(hostname) --impure";
-      nrb = "sudo nixos-rebuild boot --flake /etc/nixos/#(hostname)";
+      nrs = "sudo nixos-rebuild switch --flake /etc/nixos/\"?submodules=1#\"(hostname)";
+      nrb = "sudo nixos-rebuild boot --flake /etc/nixos/\"?submodules=1#\"(hostname)";
       nu = "nix flake update";
       ngc = "sudo nix-collect-garbage -d && nix-collect-garbage";
 
