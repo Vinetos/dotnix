@@ -11,4 +11,10 @@
     monitor = "DP-3, 1920x1080,0x0,1";
   };
 
+  home.packages = with pkgs; [
+    auth0-cli
+    dev.zen-browser
+  ];
+
+
 }

@@ -132,29 +132,11 @@ let
         follow_mouse = 1 # Cursor movement will always change focus to the window under the cursor.
       }
 
-      # make Firefox PiP window floating and sticky
-      windowrulev2 = float,title:(Picture-in-Picture)
-      windowrulev2 = pin,title:(Picture-in-Picture)
-      windowrulev2 = size 20% 20%,title:(Picture-in-Picture)
-      windowrulev2 = noborder,title:(Picture-in-Picture)
-
-
       # idle inhibit while watching videos
       windowrulev2 = idleinhibit focus, class:^(mpv|.+exe)$
       windowrulev2 = idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$
       windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
     '';
-  # https://github.com/hyprwm/Hyprland/issues/1947
-  idea-fix = ''
-    windowrulev2=windowdance,class:^(jetbrains-.*)$
-    # search dialog
-    windowrulev2=dimaround,class:^(jetbrains-.*)$,floating:1,title:^(?!win)
-    windowrulev2=center,class:^(jetbrains-.*)$,floating:1,title:^(?!win)
-    # autocomplete & menus
-    windowrulev2=noanim,class:^(jetbrains-.*)$,title:^(win.*)$
-    windowrulev2=noinitialfocus,class:^(jetbrains-.*)$,title:^(win.*)$
-    windowrulev2=rounding 0,class:^(jetbrains-.*)$,title:^(win.*)$
-  '';
 in
 {
   wayland.windowManager.hyprland.extraConfig = ''
@@ -162,7 +144,6 @@ in
     ${compositorControls}
     ${applicationsShortcuts}
     ${general}
-    ${idea-fix}
   '';
 
   wayland.windowManager.hyprland.settings = {

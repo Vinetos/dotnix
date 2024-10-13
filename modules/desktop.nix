@@ -49,9 +49,6 @@
     flatpak.enable = true;
   };
 
-  # Sound has to be disabled with pipewire.
-  sound.enable = false;
-
   services.pipewire.wireplumber.configPackages = [
     (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
       		bluez_monitor.properties = {

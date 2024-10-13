@@ -3,9 +3,8 @@
 
   inputs = # All flake references used to build my NixOS setup. These are dependencies.
     {
-      nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05"; # Nix Packages
-      unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable version
-      dev.url = "github:Vinetos/nixpkgs/octaviaclient"; # My dev version
+      nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages
+      dev.url = "github:matthewpi/nixpkgs/zen-browser"; # My dev version
 
       flake-parts = {
         url = "github:hercules-ci/flake-parts";
@@ -20,17 +19,10 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
-      hyprland = {
-        url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=v0.41.2";
-      };
-
-      hyprland-contrib = {
-        url = "github:hyprwm/contrib";
-        inputs.nixpkgs.follows = "unstable";
-      };
+      hyprland.url = "github:hyprwm/Hyprland?ref=v0.44.0&submodules=1";
 
       hy3 = {
-        url = "github:outfoxxed/hy3?ref=hl0.41.2";
+        url = "github:outfoxxed/hy3?ref=hl0.44.0";
         inputs.hyprland.follows = "hyprland";
       };
     };

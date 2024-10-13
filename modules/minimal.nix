@@ -45,7 +45,7 @@
   nixpkgs.overlays = [
     (self: prev: {
       # Shortcut to call packages from unstable (pkgs.unstable.hello)
-      unstable = import inputs.unstable {
+      unstable = import inputs.nixpkgs { # As I am now full unstable, this is for compat
         system = prev.system;
         config.allowUnfree = true;
       };
