@@ -37,6 +37,7 @@
         ./lib
         ./modules
         { config._module.args._inputs = inputs // { inherit (inputs) self; }; }
+        ./pkgs
       ];
     };
 
