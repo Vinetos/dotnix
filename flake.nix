@@ -1,44 +1,26 @@
 {
-  description = "Vinetos NixOS Flakes configurations";
+  description = "A home-manager template providing useful tools & settings for Nix-based development";
 
-  inputs = # All flake references used to build my NixOS setup. These are dependencies.
-    {
-      nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages
-      dev.url = "github:matthewpi/nixpkgs/zen-browser"; # My dev version
+  inputs = {
+    # Principle inputs (updated by `nix run .#update`)
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    nixos-unified.url = "github:srid/nixos-unified";
 
-      flake-parts = {
-        url = "github:hercules-ci/flake-parts";
-        inputs.nixpkgs-lib.follows = "nixpkgs";
-      };
+    # Software inputs
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.inputs.flake-parts.follows = "flake-parts";
+  };
 
-      nixos-hardware.url = "github:Vinetos/nixos-hardware/master";
-      nixos-wsl.url = "github:nix-community/NixOS-WSL";
-
-      home-manager = {
-        url = "github:nix-community/home-manager";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-
-      hyprland.url = "github:hyprwm/Hyprland?ref=v0.44.0&submodules=1";
-
-      hy3 = {
-        url = "github:outfoxxed/hy3?ref=hl0.44.0";
-        inputs.hyprland.follows = "hyprland";
-      };
-    };
-
-  outputs = inputs@{ self, nixpkgs, ... }:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-
-      imports = [
-        ./home/profiles
-        ./hosts
-        ./lib
-        ./modules
-        { config._module.args._inputs = inputs // { inherit (inputs) self; }; }
-        ./pkgs
-      ];
-    };
-
+  # Wired using https://nixos-unified.org/autowiring.html
+  outputs = inputs:
+    inputs.nixos-unified.lib.mkFlake
+      { inherit inputs; root = ./.; };
 }
