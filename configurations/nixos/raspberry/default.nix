@@ -9,8 +9,9 @@ in
 {
   imports = [
     self.nixosModules.default
-    self.nixosModules.gui
+    #self.nixosModules.gui
     ./configuration.nix
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
   ];
 
   # Enable home-manager for "vinetos" user

@@ -37,7 +37,7 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
+  nixpkgs.hostPlatform = "aarch64-linux";
   
 
   # Configure keymap in X11
@@ -87,6 +87,12 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Raspberrry does not handle suspend, resulting in hard-reboot to access it again
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

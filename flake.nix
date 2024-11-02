@@ -10,6 +10,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-unified.url = "github:srid/nixos-unified";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # Software inputs
     nix-index-database.url = "github:nix-community/nix-index-database";
