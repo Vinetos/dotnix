@@ -12,6 +12,12 @@
     nixos-unified.url = "github:srid/nixos-unified";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.44.0&submodules=1";
+    hy3 = {
+      url = "github:outfoxxed/hy3?ref=hl0.44.0";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     # Software inputs
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";

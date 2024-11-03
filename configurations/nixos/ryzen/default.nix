@@ -8,11 +8,12 @@ let
 in
 {
   imports = [
-    inputs.nixos-hardware.nixosModules.raspberry-pi-4
     self.nixosModules.default
-    #self.nixosModules.gui
+    self.nixosModules.gui
     ./configuration.nix
   ];
+
+  nixpkgs.hostPlatform = "x86_64-linux";
 
   # Enable home-manager for "vinetos" user
   home-manager.users."vinetos" = {
@@ -20,8 +21,8 @@ in
   };
 
   # TODO: Move this to be shared with other config
-    users.users.vinetos = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-      };
+  users.users.vinetos = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    };
 }

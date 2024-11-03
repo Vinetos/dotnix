@@ -9,7 +9,16 @@
     fd
     sd
     tree
-    gnumake
+    zip
+    unzip
+    gnupg
+    tldr # TLDR for man
+
+    # utils
+    file
+    du-dust
+    duf
+    fd
 
     # Nix dev
     cachix
@@ -24,6 +33,18 @@
     # work.
     less
   ];
+
+  # add environment variables
+    home.sessionVariables = {
+      # clean up ~
+      XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
+
+      # enable scrolling in git diff
+      DELTA_PAGER = "less -R";
+
+      EDITOR = "vim";
+      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    };
 
   # Programs natively supported by home-manager.
   # They can be configured in `programs.*` instead of using home.packages.

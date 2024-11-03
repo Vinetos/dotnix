@@ -43,7 +43,7 @@ the module system.
 | `./configurations/{nixos,darwin,home}/foo/`     | `{nixos,darwin,home}Configurations.foo` |
 | `./mdules/{nixos,darwin,home,flake-parts}/foo/` | `{nixos,darwin,home,flake}Modules.foo`  |
 | `./overlays/foo.nix`                            | `overlays.foo`                          |
-| `./packages`                                    | N/A (Nix packages)                      |
+| `./packages/bar`                                | ``                     |
 
 ## How to use
 
