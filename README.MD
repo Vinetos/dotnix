@@ -38,12 +38,12 @@ the module system.
 > This repo use [autowiring](https://nixos-unified.org/autowiring.html) of flake outputs based on this directory
 > structure.
 
-| Path                                            | Corresponding flake output              |
-|-------------------------------------------------|-----------------------------------------|
-| `./configurations/{nixos,darwin,home}/foo/`     | `{nixos,darwin,home}Configurations.foo` |
-| `./mdules/{nixos,darwin,home,flake-parts}/foo/` | `{nixos,darwin,home,flake}Modules.foo`  |
-| `./overlays/foo.nix`                            | `overlays.foo`                          |
-| `./packages/bar`                                | ``                     |
+| Path                                             | Corresponding flake output              |
+|--------------------------------------------------|-----------------------------------------|
+| `./configurations/{nixos,darwin,home}/foo/`      | `{nixos,darwin,home}Configurations.foo` |
+| `./modules/{nixos,darwin,home,flake-parts}/foo/` | `{nixos,darwin,home,flake}Modules.foo`  |
+| `./overlays/foo.nix`                             | `overlays.foo`                          |
+| `./packages/bar`                                 | ``                     |
 
 ## How to use
 

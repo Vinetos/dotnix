@@ -6,8 +6,6 @@
       enable = true;
       initExtra = ''
         # Custom bash profile goes here
-        ${lib.getExe pkgs.any-nix-shell} fish --info-right | source
-        ${pkgs.thefuck}/bin/thefuck --alias fuck | source
       '';
     };
 

@@ -25,6 +25,7 @@ let
   };
   themeSubmodule = lib.types.submodule {
     options = {
+      colors = freeformOption;
       xcolors = freeformOption;
       rgbaColors = freeformOption;
 

@@ -25,4 +25,6 @@ in
       isNormalUser = true;
       extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     };
+
+  nixpkgs.config.allowUnfree = true;
 }

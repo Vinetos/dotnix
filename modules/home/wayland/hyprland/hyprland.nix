@@ -166,6 +166,11 @@ in
         kb_layout = "fr";
         kb_variant = "";
       }
+      {
+              name = "logitech-usb-receiver-keyboard";
+              kb_layout = "fr";
+              kb_variant = "";
+            }
     ];
   };
 }

@@ -32,6 +32,41 @@
     # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
     # work.
     less
+
+    # Tools
+        pavucontrol
+        networkmanagerapplet
+        thunderbird
+        blueberry
+        yubikey-personalization
+        github-copilot-intellij-agent
+
+        # Dev
+        git-review
+        jdk21
+        jetbrains.idea-ultimate
+        jetbrains.pycharm-professional
+        maven
+        opentofu
+        typst
+        typst-live
+        onlyoffice-bin
+        packer
+        poetry
+        python3
+
+        # Productivity
+        flameshot
+        xfce.thunar
+        (discord.override {
+          #withOpenASAR = true;
+          withVencord = true;
+        })
+        termius
+
+        # Fun
+        spotify
+        upscayl
   ];
 
   # add environment variables
