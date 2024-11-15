@@ -1,6 +1,11 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake, pkgs, lib, ... }:
+{
+  flake,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   inherit (flake) inputs;
@@ -8,7 +13,7 @@ let
 in
 {
 
-# Set your time zone.
+  # Set your time zone.
   time.timeZone = lib.mkDefault "Europe/Paris";
 
   # Select internationalisation properties.
@@ -34,7 +39,10 @@ in
   };
 
   # These users can add Nix caches.
-  nix.settings.trusted-users = [ "root" "@wheel" ];
+  nix.settings.trusted-users = [
+    "root"
+    "@wheel"
+  ];
 
   # Enable the OpenSSH service on every NixOS
   services.openssh.enable = true;

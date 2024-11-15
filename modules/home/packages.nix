@@ -34,52 +34,52 @@
     less
 
     # Tools
-        pavucontrol
-        networkmanagerapplet
-        thunderbird
-        blueberry
-        yubikey-personalization
-        github-copilot-intellij-agent
+    pavucontrol
+    networkmanagerapplet
+    thunderbird
+    blueberry
+    yubikey-personalization
+    github-copilot-intellij-agent
 
-        # Dev
-        git-review
-        jdk21
-        jetbrains.idea-ultimate
-        jetbrains.pycharm-professional
-        maven
-        opentofu
-        typst
-        typst-live
-        onlyoffice-bin
-        packer
-        poetry
-        python3
+    # Dev
+    git-review
+    jdk21
+    jetbrains.idea-ultimate
+    jetbrains.pycharm-professional
+    maven
+    opentofu
+    typst
+    typst-live
+    onlyoffice-bin
+    packer
+    poetry
+    python3
 
-        # Productivity
-        flameshot
-        xfce.thunar
-        (discord.override {
-          #withOpenASAR = true;
-          withVencord = true;
-        })
-        termius
+    # Productivity
+    flameshot
+    xfce.thunar
+    (discord.override {
+      #withOpenASAR = true;
+      withVencord = true;
+    })
+    termius
 
-        # Fun
-        spotify
-        upscayl
+    # Fun
+    spotify
+    upscayl
   ];
 
   # add environment variables
-    home.sessionVariables = {
-      # clean up ~
-      XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
+  home.sessionVariables = {
+    # clean up ~
+    XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
 
-      # enable scrolling in git diff
-      DELTA_PAGER = "less -R";
+    # enable scrolling in git diff
+    DELTA_PAGER = "less -R";
 
-      EDITOR = "vim";
-      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-    };
+    EDITOR = "vim";
+    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+  };
 
   # Programs natively supported by home-manager.
   # They can be configured in `programs.*` instead of using home.packages.

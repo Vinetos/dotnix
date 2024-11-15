@@ -8,4 +8,3 @@
     systemd.enable = true;
   };
 }
-

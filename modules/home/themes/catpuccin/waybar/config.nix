@@ -1,8 +1,9 @@
-{ config
-, lib
-, pkgs
-, default
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  default,
+  ...
 }:
 {
 
@@ -128,12 +129,21 @@
       "backlight" = {
         device = "{icon} {percent: >3}%";
         format = "{percent}% {icon}";
-        format-icons = [ "" "" ];
+        format-icons = [
+          ""
+          ""
+        ];
       };
 
       "battery" = {
         format = "{icon} {capacity: >3}%";
-        format-icons = [ "" "" "" "" "" ];
+        format-icons = [
+          ""
+          ""
+          ""
+          ""
+          ""
+        ];
         states = {
           warning = 30;
           critical = 15;
@@ -160,7 +170,10 @@
           phone = "";
           portable = "";
           car = "";
-          default = [ "" "" ];
+          default = [
+            ""
+            ""
+          ];
         };
         on-click = "pavucontrol";
       };

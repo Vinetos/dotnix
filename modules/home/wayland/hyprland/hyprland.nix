@@ -1,15 +1,16 @@
-{ lib
-, config
-, pkgs
-, default
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  default,
+  ...
 }:
 let
   # TODO: Rewrite this file to use nix language now that hyprland HM module update is merged.
   mainMod = "SUPER";
 
   # Packages
-  amixer = "${pkgs.alsa-utils}/bin/amixer"; #alsa-utils expose multiple binaries
+  amixer = "${pkgs.alsa-utils}/bin/amixer"; # alsa-utils expose multiple binaries
   cliphist = "${lib.getExe pkgs.cliphist}";
   grim = "${lib.getExe pkgs.grim}";
   kitty = "${lib.getExe pkgs.kitty}";
@@ -61,18 +62,22 @@ let
   workspaceControl = ''
     # workspaces
     # binds mainMod + [shift +] {1..10} to [move to] ws {1..10}
-    ${builtins.concatStringsSep "\n" (builtins.genList (
-      x: let
-        ws = let
-          c = (x + 1) / 10;
+    ${builtins.concatStringsSep "\n" (
+      builtins.genList (
+        x:
+        let
+          ws =
+            let
+              c = (x + 1) / 10;
+            in
+            builtins.toString (x + 1 - (c * 10));
         in
-          builtins.toString (x + 1 - (c * 10));
-      in ''
-        bind = $mainMod, ${ws}, workspace, ${toString (x + 1)}
-        bind = $mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}
-      ''
-      )
-    10)}
+        ''
+          bind = $mainMod, ${ws}, workspace, ${toString (x + 1)}
+          bind = $mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}
+        ''
+      ) 10
+    )}
 
     bind = $mainMod, mouse_down, workspace, e+1
     bind = $mainMod, mouse_up, workspace, e-1
@@ -121,22 +126,21 @@ let
     submap = reset
   '';
 
-  general =
-    ''
-      monitor=eDP-1, preferred, auto, 1
-      monitor=, preferred, auto, 1
+  general = ''
+    monitor=eDP-1, preferred, auto, 1
+    monitor=, preferred, auto, 1
 
-      input {
-        kb_layout = us
-        kb_variant = intl
-        follow_mouse = 1 # Cursor movement will always change focus to the window under the cursor.
-      }
+    input {
+      kb_layout = us
+      kb_variant = intl
+      follow_mouse = 1 # Cursor movement will always change focus to the window under the cursor.
+    }
 
-      # idle inhibit while watching videos
-      windowrulev2 = idleinhibit focus, class:^(mpv|.+exe)$
-      windowrulev2 = idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$
-      windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
-    '';
+    # idle inhibit while watching videos
+    windowrulev2 = idleinhibit focus, class:^(mpv|.+exe)$
+    windowrulev2 = idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$
+    windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
+  '';
 in
 {
   wayland.windowManager.hyprland.extraConfig = ''
@@ -167,10 +171,10 @@ in
         kb_variant = "";
       }
       {
-              name = "logitech-usb-receiver-keyboard";
-              kb_layout = "fr";
-              kb_variant = "";
-            }
+        name = "logitech-usb-receiver-keyboard";
+        kb_layout = "fr";
+        kb_variant = "";
+      }
     ];
   };
 }

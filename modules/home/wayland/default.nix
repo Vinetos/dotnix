@@ -1,8 +1,9 @@
-{ pkgs
-, lib
-, config
-, default
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  default,
+  ...
 }:
 # Wayland config
 {
@@ -41,7 +42,6 @@
     XDG_SESSION_TYPE = "wayland";
 
   };
-
 
   # fake a tray to let apps start
   # https://github.com/nix-community/home-manager/issues/2064

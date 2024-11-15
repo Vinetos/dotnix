@@ -1,4 +1,9 @@
-{ flake, lib, pkgs, ... }:
+{
+  flake,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (flake.config.theme) xcolors;
 in

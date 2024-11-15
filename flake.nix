@@ -11,6 +11,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-unified.url = "github:srid/nixos-unified";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    zen-browser.url = "github:omarcresp/zen-browser-flake";
 
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.44.0&submodules=1";
     hy3 = {
@@ -27,7 +28,10 @@
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
-  outputs = inputs:
-    inputs.nixos-unified.lib.mkFlake
-      { inherit inputs; root = ./.; };
+  outputs =
+    inputs:
+    inputs.nixos-unified.lib.mkFlake {
+      inherit inputs;
+      root = ./.;
+    };
 }

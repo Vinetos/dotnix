@@ -1,8 +1,9 @@
-{ flake
-, config
-, lib
-, pkgs
-, ...
+{
+  flake,
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   inherit (flake) inputs;
@@ -11,8 +12,12 @@ in
 let
   cursor = "Bibata-Modern-Classic-Hyprcursor";
   cursorPackage = self.packages.${pkgs.hostPlatform.system}.bibata-hyprcursor;
-in {
-  imports = [ ./hyprpaper.nix ./hyprland.nix ];
+in
+{
+  imports = [
+    ./hyprpaper.nix
+    ./hyprland.nix
+  ];
 
   xdg.dataFile."icons/${cursor}".source = "${cursorPackage}/share/icons/${cursor}";
 
@@ -49,9 +54,9 @@ in {
 
   # enable hyprland
   wayland.windowManager.hyprland = {
-   enable = true;
-   package = flake.inputs.hyprland.packages.${pkgs.hostPlatform.system}.hyprland ;
-   systemd.variables = ["--all"];
-   plugins = [ flake.inputs.hy3.packages.${pkgs.hostPlatform.system}.hy3 ];
-   };
+    enable = true;
+    package = flake.inputs.hyprland.packages.${pkgs.hostPlatform.system}.hyprland;
+    systemd.variables = [ "--all" ];
+    plugins = [ flake.inputs.hy3.packages.${pkgs.hostPlatform.system}.hy3 ];
+  };
 }

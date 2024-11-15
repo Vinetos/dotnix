@@ -1,4 +1,9 @@
-{ flake, lib, pkgs, ... }:
+{
+  flake,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (flake.config.theme) xcolors;
 in
@@ -12,7 +17,7 @@ in
 
       selection_foreground = xcolors.selection-foreground;
       selection_background = xcolors.selection-background;
-#      confirm_on_window_close = 0;
+      #      confirm_on_window_close = 0;
 
       url_color = xcolors.cyan;
 

@@ -20,8 +20,8 @@ in
   };
 
   # TODO: Move this to be shared with other config
-    users.users.vinetos = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-      };
+  users.users.vinetos = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  };
 }

@@ -2,13 +2,18 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
   boot.loader.grub.enable = false;
@@ -18,7 +23,7 @@
   networking.hostName = "raspberry"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -29,8 +34,8 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-   console = {
-  #   font = "Lat2-Terminus16";
+  console = {
+    #   font = "Lat2-Terminus16";
     useXkbConfig = true; # use xkb.options in tty.
   };
 
@@ -38,7 +43,6 @@
   # services.xserver.enable = true;
 
   nixpkgs.hostPlatform = "aarch64-linux";
-  
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "fr";
@@ -115,4 +119,3 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
 }
-
