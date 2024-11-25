@@ -3,19 +3,19 @@
 
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/staging-24.11";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-unified.url = "github:srid/nixos-unified";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     zen-browser.url = "github:omarcresp/zen-browser-flake";
 
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.44.0&submodules=1";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.45.0";
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.44.0";
+      url = "github:outfoxxed/hy3?ref=hl0.45.0";
       inputs.hyprland.follows = "hyprland";
     };
 
