@@ -1,0 +1,3 @@
+[submodule "xps"]
+	path = configurations/nixos/xps
+	url = git@gitlab:valentin.chassignol/dotnix.git
