@@ -3,7 +3,7 @@
 
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
-    nixpkgs.url = "github:nixos/nixpkgs/staging-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
@@ -13,7 +13,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     zen-browser.url = "github:omarcresp/zen-browser-flake";
 
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.45.0";
+    hyprland.url = "github:hyprwm/Hyprland?submodules=1&ref=v0.45.0";
     hy3 = {
       url = "github:outfoxxed/hy3?ref=hl0.45.0";
       inputs.hyprland.follows = "hyprland";

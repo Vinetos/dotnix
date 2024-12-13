@@ -39,12 +39,14 @@
       active_opacity = 1.0;
       inactive_opacity = 1.0;
       fullscreen_opacity = 1.0;
-      drop_shadow = true;
-      shadow_range = 10;
-      shadow_render_power = 3;
-      "col.shadow" = "$active_shadow_col";
-      "col.shadow_inactive" = "$inactive_shadow_col";
-      shadow_scale = 1.0;
+      shadow = {
+        enabled = true;
+        range = 10;
+        color = "$active_shadow_col";
+        color_inactive = "$inactive_shadow_col";
+        render_power = 3;
+        scale = 1.0;
+      };
       dim_inactive = false;
       dim_strength = 0.5;
     };

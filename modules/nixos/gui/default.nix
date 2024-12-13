@@ -82,11 +82,10 @@ in
   services.xserver = {
     enable = true;
     exportConfiguration = true;
-
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
+  };
+  services.displayManager = {
+    enable = true;
+    ly.enable = true;
   };
   services.libinput.enable = true;
 

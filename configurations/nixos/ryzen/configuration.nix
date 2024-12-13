@@ -27,8 +27,10 @@
   };
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-4850aef2-6ab8-407b-ad6d-139b3aedac8f".device = "/dev/disk/by-uuid/4850aef2-6ab8-407b-ad6d-139b3aedac8f";
-  boot.initrd.luks.devices."luks-4850aef2-6ab8-407b-ad6d-139b3aedac8f".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-4850aef2-6ab8-407b-ad6d-139b3aedac8f".device =
+    "/dev/disk/by-uuid/4850aef2-6ab8-407b-ad6d-139b3aedac8f";
+  boot.initrd.luks.devices."luks-4850aef2-6ab8-407b-ad6d-139b3aedac8f".keyFile =
+    "/crypto_keyfile.bin";
 
   # Enable networking
   networking = {
@@ -42,7 +44,6 @@
 
   # Configure X11
   services.xserver = {
-    enable = true;
     xkb.layout = "fr";
     xkb.variant = "azerty";
   };
