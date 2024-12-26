@@ -11,7 +11,6 @@
 
   home.packages = with pkgs; [
     # Fonts
-    nerdfonts
     font-awesome
   ];
 }

@@ -71,9 +71,6 @@
 
   # add environment variables
   home.sessionVariables = {
-    # clean up ~
-    XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
-
     # enable scrolling in git diff
     DELTA_PAGER = "less -R";
 

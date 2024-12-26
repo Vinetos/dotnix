@@ -17,10 +17,12 @@ in
   ];
 
   fonts = {
-    packages = with pkgs; [
-      meslo-lgs-nf
-      nerdfonts
-    ];
+    packages =
+      with pkgs;
+      [
+        meslo-lgs-nf
+      ]
+      ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
     fontDir.enable = true;
   };
 
@@ -79,13 +81,12 @@ in
     };
   };
 
-  services.xserver = {
-    enable = true;
-    exportConfiguration = true;
-  };
   services.displayManager = {
     enable = true;
-    ly.enable = true;
+    ly = {
+      enable = true;
+      #wayland.enable = true;
+    };
   };
   services.libinput.enable = true;
 

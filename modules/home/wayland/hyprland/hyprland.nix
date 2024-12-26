@@ -12,6 +12,7 @@ let
   # Packages
   amixer = "${pkgs.alsa-utils}/bin/amixer"; # alsa-utils expose multiple binaries
   cliphist = "${lib.getExe pkgs.cliphist}";
+  hyprshot = "${lib.getExe pkgs.hyprshot}";
   grim = "${lib.getExe pkgs.grim}";
   kitty = "${lib.getExe pkgs.kitty}";
   light = "${lib.getExe pkgs.light}";
@@ -35,7 +36,7 @@ let
       term = "${kitty}";
       dmenu = "${rofi} -modi drun -show drun -show-icons";
       swaylock = "${swaylock-effects} -S";
-      screenshot = "${grim} -g \"$(${slurp})\" - | ${wl-copy}";
+      screenshot = "${hyprshot} -m region --output-folder ~/Pictures/";
       alsa = "${amixer} -q sset Master";
     in
     ''
