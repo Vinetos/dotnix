@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
+let
+  inherit (flake) inputs;
+in
 {
   # Nix packages to install to $HOME
   #
@@ -63,6 +66,7 @@
       withVencord = true;
     })
     termius
+    inputs.zen-browser.packages.${pkgs.hostPlatform.system}.default
 
     # Fun
     spotify

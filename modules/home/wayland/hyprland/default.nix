@@ -56,7 +56,6 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     package = flake.inputs.hyprland.packages.${pkgs.hostPlatform.system}.hyprland;
-    systemd.variables = [ "--all" ];
     plugins = [ flake.inputs.hy3.packages.${pkgs.hostPlatform.system}.hy3 ];
   };
 }

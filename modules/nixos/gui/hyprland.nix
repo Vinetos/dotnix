@@ -20,6 +20,7 @@ in
     package = inputs.hyprland.packages.${pkgs.hostPlatform.system}.hyprland;
     # make sure to also set the portal package, so that they are in sync
     portalPackage = inputs.hyprland.packages.${pkgs.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    xwayland.enable = true;
   };
   # add hyprland to display manager sessions
   services.displayManager.sessionPackages = [
