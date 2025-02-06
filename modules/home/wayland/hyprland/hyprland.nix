@@ -141,6 +141,7 @@ let
     windowrulev2 = idleinhibit focus, class:^(mpv|.+exe)$
     windowrulev2 = idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$
     windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
+    windowrulev2 = noinitialfocus,class:^jetbrains-(?!toolbox),floating:1
   '';
 in
 {
