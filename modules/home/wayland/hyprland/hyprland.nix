@@ -36,7 +36,7 @@ let
       term = "${kitty}";
       dmenu = "${rofi} -modi drun -show drun -show-icons";
       swaylock = "${swaylock-effects} -S";
-      screenshot = "${hyprshot} -m region --output-folder ~/Pictures/";
+      screenshot = "${hyprshot} -m region --freeze --output-folder ~/Pictures/";
       alsa = "${amixer} -q sset Master";
     in
     ''
