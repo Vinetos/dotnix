@@ -58,5 +58,6 @@ in
     package = flake.inputs.hyprland.packages.${pkgs.hostPlatform.system}.hyprland;
     plugins = [ flake.inputs.hy3.packages.${pkgs.hostPlatform.system}.hy3 ];
     systemd.enable = false;
+    xwayland.enable = true;
   };
 }
