@@ -43,6 +43,7 @@ in
     blueberry
     yubikey-personalization
     github-copilot-intellij-agent
+    k9s
 
     # Dev
     git-review
