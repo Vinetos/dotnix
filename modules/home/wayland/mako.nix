@@ -20,7 +20,7 @@ in
     borderSize = 0;
     borderRadius = 12;
     icons = true;
-    defaultTimeout = 30 * 1000; # 30s
+    defaultTimeout = 15 * 1000; # 30s
 
     extraConfig = ''
       text-alignment=center
