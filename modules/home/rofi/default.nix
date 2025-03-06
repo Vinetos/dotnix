@@ -3,6 +3,12 @@ let
   colors = import ./colorschemes.nix; # Custom colorscheme
 in
 {
+
+  xdg.configFile."rofi/themes/clipboard" = {
+    source = ./clipboard;
+    recursive = true;
+  };
+
   programs.rofi = {
     enable = true;
     theme =
