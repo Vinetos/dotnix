@@ -53,15 +53,6 @@
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     SDL_VIDEODRIVER = "wayland";
     XDG_SESSION_TYPE = "wayland";
-
   };
 
-  # fake a tray to let apps start
-  # https://github.com/nix-community/home-manager/issues/2064
-  systemd.user.targets.tray = {
-    Unit = {
-      Description = "Home Manager System Tray";
-      Requires = [ "graphical-session-pre.target" ];
-    };
-  };
 }
