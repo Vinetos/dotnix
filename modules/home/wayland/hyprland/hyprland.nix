@@ -28,7 +28,7 @@ let
   # Shortcuts
   clipboard = {
     paste = "${cliphist} list | ${rofi} -dmenu -theme ~/.config/rofi/themes/clipboard/config.rasi | ${cliphist} decode | ${wl-copy} && ${wtype} -M ctrl v -m ctrl";
-    wipe = "";#"${cliphist} wipe && ${notify-send} \"Cleared clipboard\"";
+    wipe = ""; # "${cliphist} wipe && ${notify-send} \"Cleared clipboard\"";
   };
 
   applicationsShortcuts =

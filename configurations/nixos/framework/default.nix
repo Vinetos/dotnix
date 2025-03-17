@@ -14,22 +14,22 @@ in
   ];
 
   # Enable home-manager for "vinetos" user
-    home-manager.users."vinetos" = {
-      imports = [ (self + /configurations/home/vinetos.nix) ];
-    };
+  home-manager.users."vinetos" = {
+    imports = [ (self + /configurations/home/vinetos.nix) ];
+  };
 
-    # TODO: Move this to be shared with other config
-    users.users.vinetos = {
-      isNormalUser = true;
-      extraGroups = [
-            "wheel"
-            "video"
-            "networkmanager"
-            "docker"
-            "libvirtd"
-          ];
-    };
+  # TODO: Move this to be shared with other config
+  users.users.vinetos = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "video"
+      "networkmanager"
+      "docker"
+      "libvirtd"
+    ];
+  };
 
-    nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
 }
