@@ -13,6 +13,10 @@ let
 in
 {
 
+  imports = [
+    self.nixosModules.shared
+  ];
+
   # Set your time zone.
   time.timeZone = lib.mkDefault "Europe/Paris";
 
