@@ -12,7 +12,10 @@ in
     enable = true;
     shellIntegration.mode = "no-sudo";
     shellIntegration.enableBashIntegration = true;
+    shellIntegration.enableFishIntegration = true;
     settings = {
+
+      shell = "${lib.getExe pkgs.fish}";
       background_opacity = toString 0.7;
 
       selection_foreground = xcolors.selection-foreground;
