@@ -23,6 +23,7 @@ in
       #      confirm_on_window_close = 0;
 
       url_color = xcolors.cyan;
+      scrollback_lines = -1;
 
       inherit (xcolors) foreground background;
     } // lib.filterAttrs (k: v: (builtins.match "color([0-9]|1[0-5])" k) != null) xcolors;
