@@ -12,7 +12,7 @@
     nixos-unified.url = "github:srid/nixos-unified";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.48.0";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.48.1";
     hy3 = {
       url = "github:outfoxxed/hy3?ref=hl0.48.0";
       inputs.hyprland.follows = "hyprland";

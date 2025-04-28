@@ -1,11 +1,18 @@
 {
+  flake,
   config,
   pkgs,
   lib,
   ...
 }:
+let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+in
 {
   environment.systemPackages = [ pkgs.git ];
+
+  nixpkgs.overlays = lib.attrValues self.overlays;
 
   # Configure Nix
   nix = {
