@@ -44,12 +44,14 @@ in
     yubikey-personalization
     github-copilot-intellij-agent
     k9s
+    filezilla
 
     # Dev
     git-review
     jdk21
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional
+    jetbrains.goland
     maven
     opentofu
     typst
