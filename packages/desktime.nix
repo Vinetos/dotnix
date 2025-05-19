@@ -9,10 +9,10 @@ let
   pname = "desktime";
 
   src = fetchurl {
-      url = "https://desktime.com/updates/electron/linux";
-      name = "desktime-${version}.AppImage";
-      hash = "sha256-TZp2Tl+sN1AO4nw1KSNfQkHGrGIPXCZlSg+eOhqBIkY=";
-    };
+    url = "https://desktime.com/updates/electron/linux";
+    name = "desktime-${version}.AppImage";
+    hash = "sha256-TZp2Tl+sN1AO4nw1KSNfQkHGrGIPXCZlSg+eOhqBIkY=";
+  };
 
   contents = appimageTools.extract { inherit pname src version; };
 in
@@ -25,16 +25,16 @@ appimageTools.wrapType2 rec {
   '';
 
   meta = with lib; {
-      description = "Instant messaging service part of Infomaniak KSuite";
-      homepage = "https://www.infomaniak.com/en/apps/download-kchat";
-      license = licenses.unfree;
-      maintainers = [ maintainers.vinetos ];
-      mainProgram = "kchat";
-      platforms = [ "x86_64-linux" ];
-      sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
-      longDescription = ''
-        kChat is an instant messaging service which enables you to discuss, share and coordinate your teams in complete
-        security via your Internet browser, mobile phone, tablet or computer.
-      '';
-    };
+    description = "Instant messaging service part of Infomaniak KSuite";
+    homepage = "https://www.infomaniak.com/en/apps/download-kchat";
+    license = licenses.unfree;
+    maintainers = [ maintainers.vinetos ];
+    mainProgram = "kchat";
+    platforms = [ "x86_64-linux" ];
+    sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
+    longDescription = ''
+      kChat is an instant messaging service which enables you to discuss, share and coordinate your teams in complete
+      security via your Internet browser, mobile phone, tablet or computer.
+    '';
+  };
 }
