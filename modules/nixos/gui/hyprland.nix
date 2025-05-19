@@ -35,6 +35,6 @@ in
 
   # Fix mesa missmatch preventing Hyprland to start
   hardware.graphics.package =
-    inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.hostPlatform.system}.mesa.drivers;
+    inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.hostPlatform.system}.mesa;
 
 }
