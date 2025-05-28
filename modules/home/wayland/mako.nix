@@ -21,15 +21,6 @@ in
     borderRadius = 12;
     icons = true;
     defaultTimeout = 15 * 1000; # 30s
-
-    extraConfig = ''
-      text-alignment=center
-      outer-margin=8
-
-      [urgency=high]
-      text-color=${xcolors.light-red}
-      default-timeout=0
-    '';
   };
   #icon-path=/usr/share/icons/Papirus-Dark
   #font=JetBrainsMono Nerd Font 10

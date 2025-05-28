@@ -60,6 +60,7 @@ in
     packer
     poetry
     python3
+    go
 
     # Productivity
     flameshot

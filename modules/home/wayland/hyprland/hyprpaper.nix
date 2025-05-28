@@ -7,24 +7,10 @@
 }:
 {
 
-  home.packages = with pkgs; [ hyprpaper ];
-
-  # Generate mandatory config file https://github.com/hyprwm/hyprpaper/issues/87
-  home.file.".config/hypr/hyprpaper.conf".text = ''
-    ipc = on
-  '';
-
-  # Start hyprpaper deamon
-  systemd.user.services.hyprpaper = {
-    Unit = {
-      Description = "Wayland wallpaper daemon";
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
+  services.hyprpaper= {
+    enable = true;
+    settings = {
+      ipc = "on";
     };
-    Service = {
-      ExecStart = "${lib.getExe pkgs.hyprpaper}";
-      Restart = "on-failure";
-    };
-    Install.WantedBy = [ "graphical-session.target" ];
   };
 }

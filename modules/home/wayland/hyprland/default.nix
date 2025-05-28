@@ -55,7 +55,11 @@ in
   # enable hyprland
   wayland.windowManager.hyprland = {
     enable = true;
-    package = flake.inputs.hyprland.packages.${pkgs.hostPlatform.system}.hyprland;
+
+    # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+    package = null;
+    portalPackage = null;
+    
     plugins = [ flake.inputs.hy3.packages.${pkgs.hostPlatform.system}.hy3 ];
     systemd.enable = false;
     xwayland.enable = true;

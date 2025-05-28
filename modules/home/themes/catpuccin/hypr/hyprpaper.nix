@@ -6,8 +6,9 @@ let
   };
 in
 {
-  home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload  = ${wallpaper}
-    wallpaper = ,${wallpaper}
-  '';
+  
+  services.hyprpaper.settings = {
+    preload  = wallpaper;
+    wallpaper = ",${wallpaper}";
+  };
 }
