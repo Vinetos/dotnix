@@ -16,8 +16,8 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import                          "shared/colors.rasi"
-@import                          "shared/fonts.rasi"
+@import                          "~/.config/rofi/themes/clipboard/shared/colors.rasi"
+@import                          "~/.config/rofi/themes/clipboard/shared/fonts.rasi"
 
 /*****----- Main Window -----*****/
 window {
