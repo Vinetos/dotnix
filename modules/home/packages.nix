@@ -83,7 +83,7 @@ in
     DELTA_PAGER = "less -R";
 
     EDITOR = "vim";
-    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    MANPAGER = "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'";
   };
 
   # Programs natively supported by home-manager.
