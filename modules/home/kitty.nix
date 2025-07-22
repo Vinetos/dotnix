@@ -26,7 +26,8 @@ in
       scrollback_lines = -1;
 
       inherit (xcolors) foreground background;
-    } // lib.filterAttrs (k: v: (builtins.match "color([0-9]|1[0-5])" k) != null) xcolors;
+    }
+    // lib.filterAttrs (k: v: (builtins.match "color([0-9]|1[0-5])" k) != null) xcolors;
     extraConfig = ''
       copy_on_select yes
 

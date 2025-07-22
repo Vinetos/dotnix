@@ -7,7 +7,7 @@
 }:
 {
 
-  services.hyprpaper= {
+  services.hyprpaper = {
     enable = true;
     settings = {
       ipc = "on";

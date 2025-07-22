@@ -6,9 +6,9 @@ let
   };
 in
 {
-  
+
   services.hyprpaper.settings = {
-    preload  = wallpaper;
+    preload = wallpaper;
     wallpaper = ",${wallpaper}";
   };
 }
