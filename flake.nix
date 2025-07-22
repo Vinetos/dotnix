@@ -12,9 +12,9 @@
     nixos-unified.url = "github:srid/nixos-unified";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.49.0";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.50.0";
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.49.0";
+      url = "github:outfoxxed/hy3?ref=hl0.50.0";
       inputs.hyprland.follows = "hyprland";
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
