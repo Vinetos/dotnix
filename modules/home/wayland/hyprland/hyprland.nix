@@ -10,7 +10,6 @@ let
   mainMod = "SUPER";
 
   # Packages
-  amixer = "${pkgs.alsa-utils}/bin/amixer"; # alsa-utils expose multiple binaries
   cliphist = "${lib.getExe pkgs.cliphist}";
   hyprshot = "${lib.getExe pkgs.hyprshot}";
   grim = "${lib.getExe pkgs.grim}";
@@ -21,6 +20,7 @@ let
   rofi = "${lib.getExe pkgs.rofi-wayland}";
   slurp = "${lib.getExe pkgs.slurp}";
   swaylock-effects = "${lib.getExe pkgs.swaylock-effects}";
+  wpctl = "${pkgs.wireplumber}/bin/wpctl";
   wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy"; # wl-clipboard expose multiple binaries
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
   wtype = "${lib.getExe pkgs.wtype}"; # Allow pasting to gui application by simulating keyboard inputs
@@ -37,7 +37,6 @@ let
       dmenu = "${rofi} -modi drun -show drun -show-icons";
       swaylock = "${swaylock-effects} -S";
       screenshot = "${hyprshot} -m region --freeze --output-folder ~/Pictures/";
-      alsa = "${amixer} -q sset Master";
     in
     ''
       bind = $mainMod, Return, exec, ${term}
@@ -49,9 +48,9 @@ let
       binde = , XF86MonBrightnessDown, exec, ${light} -U 5
       binde = , XF86MonBrightnessUp, exec, ${light} -A 5
 
-      binde = , XF86AudioRaiseVolume, exec, ${alsa} 1%+
-      binde = , XF86AudioLowerVolume, exec, ${alsa} 1%-
-      bindl = , XF86AudioMute, exec, ${alsa} toggle
+      binde = , XF86AudioRaiseVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 1%+
+      binde = , XF86AudioLowerVolume, exec, ${wpctl } set-volume @DEFAULT_AUDIO_SINK@ 1%-
+      bindl = , XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle
 
       bindl = , XF86AudioPlay, exec, ${playerctl} play-pause
       bindl = , XF86AudioPause, exec, ${playerctl} play-pause
