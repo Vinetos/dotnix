@@ -2,8 +2,8 @@
 # Define all the colors used in programs
 rec {
 
-  background = "282a36";
-  foreground = "f8f8f2";
+  background = "070912";
+  foreground = "8ecad4";
   selection-background = "44475a";
   selection-foreground = white;
   comment = "6272a4";
