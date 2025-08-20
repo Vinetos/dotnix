@@ -20,6 +20,7 @@ in
     package = inputs.hyprland.packages.${pkgs.hostPlatform.system}.hyprland;
     # make sure to also set the portal package, so that they are in sync
     portalPackage = inputs.hyprland.packages.${pkgs.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    withUWSM = true;
     xwayland.enable = true;
   };
   # add hyprland to display manager sessions
@@ -37,4 +38,8 @@ in
   hardware.graphics.package =
     inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.hostPlatform.system}.mesa;
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ inputs.hyprland.packages.${pkgs.hostPlatform.system}.xdg-desktop-portal-hyprland ];
+  };
 }
