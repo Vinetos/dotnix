@@ -10,30 +10,34 @@
   programs.waybar.settings = {
     mainBar = {
       layer = "top";
+      mode = "dock";
       position = "top";
-      height = 30;
-      margin-top = 5;
+      height = 25;
+      margin = "4";
+      spacing = 4;
 
       # "fixed-center": false
 
       modules-left = [
-        "custom/launcher"
+        "custom/padd"
         "hyprland/workspaces"
-        "custom/swap"
-        "tray"
         "hyprland/submap"
-        "custom/cava-internal"
+        "custom/separator"
+        "group/right-group"
       ];
       modules-center = [ "clock" ];
       modules-right = [
+        "tray"
+        "privacy"
+        "custom/separator"
+        "custom/separator"
         "backlight"
+        "custom/separator"
         "pulseaudio"
-        "hyprland/language"
-        "temperature"
-        "memory"
         "battery"
+        "custom/separator"
         "network"
-        "custom/power"
+        "custom/padd"
       ];
 
       "hyprland/workspaces" = {
@@ -61,18 +65,18 @@
         };
       };
 
-      "custom/swap" = {
-        on-click = "";
-        tooltip = "Swap between waybar configs";
-        format = "Bg  ";
+      "custom/padd" = {
+        return-type = "text";
+        interval = "once";
+        format = " ";
+        tooltip = false;
       };
 
-      "custom/cava-internal" = {
-        exec = "${lib.getExe pkgs.cava} | ${lib.getExe pkgs.gnused} -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'";
-        format = "{}";
+      "custom/separator" = {
+        return-type = "text";
+        interval = "once";
+        format = "·";
         tooltip = false;
-        on-click = "";
-        output = "all";
       };
 
       "hyprland/submap" = {
@@ -81,7 +85,7 @@
 
       "tray" = {
         icon-size = 14;
-        spacing = 5;
+        spacing = 8;
       };
 
       "clock" = {
@@ -114,11 +118,34 @@
       };
 
       "cpu" = {
-        format = "﬙ {usage: >3}%";
+        "interval" = 5;
+        "format" = "CPU:{usage}%";
+        "format-icons" = {
+          "default" = [ "󰍛" ];
+        };
+      };
+
+      disk = {
+        path = "/";
+        interval = 5;
+        format = "DISK={used}";
+        format-icons = {
+          default = [ "󰋊" ];
+        };
+        tooltip = true;
       };
 
       "memory" = {
-        format = " {: >3}%";
+        "interval" = 5;
+        "format" = "RAM={used}GB";
+        "format-used" = "{used} GB";
+        "format-total" = "{total} GB";
+        "format-icons" = {
+          "default" = [ "󰘚" ];
+        };
+        "tooltip" = true;
+        "tooltip-format" =
+          "Used= {used}GB\nAvailable= {avail}GB\nTotal= {total}GB\nPercentage= {percentage}%";
       };
 
       "temperature" = {
@@ -130,21 +157,33 @@
         device = "{icon} {percent: >3}%";
         format = "{percent}% {icon}";
         format-icons = [
-          ""
-          ""
+          "󰃞"
+          "󰃟"
+          "󰃠"
         ];
       };
 
       "battery" = {
-        format = "{icon} {capacity: >3}%";
+        full-at = 96;
+        format = "{icon} {capacity}%";
+        format-charging = " {capacity}%";
+        format-plugged = " {capacity}%";
+        format-time = "{H}h {M}m";
         format-icons = [
-          ""
-          ""
-          ""
-          ""
-          ""
+          "󰁺"
+          "󰁻"
+          "󰁼"
+          "󰁽"
+          "󰁾"
+          "󰁿"
+          "󰂀"
+          "󰂁"
+          "󰂂"
+          "󰁹"
         ];
         states = {
+          good = 96;
+          ok = 77;
           warning = 30;
           critical = 15;
         };
@@ -153,16 +192,15 @@
       "network" = {
         format = "⚠  Disabled";
         format-wifi = "  {essid}";
-        format-ethernet = " {ifname}: {ipaddr}/{cidr}";
+        format-ethernet = "  {ifname}: {ipaddr}/{cidr}";
         format-disconnected = "⚠  Disconnected";
         max-length = 50;
       };
 
       "pulseaudio" = {
-        scroll-step = 1;
         format = "{icon} {volume: >3}%";
         format-bluetooth = "{icon} {volume: >3}%";
-        format-muted = " muted";
+        format-muted = "";
         format-icons = {
           headphones = "";
           handsfree = "";
@@ -178,20 +216,55 @@
         on-click = "pavucontrol";
       };
 
-      "custom/power" = {
-        format = "⏻";
-        on-click = ""; # TODO: https://github.com/yurihikari/garuda-sway-config/blob/b8200b562c1ce23731261401f1352d912281cf30/hypr/scripts/rofi_powermenu
-        tooltip = false;
+      "privacy" = {
+        "icon-spacing" = 4;
+        "icon-size" = 15;
+        "transition-duration" = 250;
+        "modules" = [
+          {
+            "type" = "screenshare";
+            "tooltip" = false;
+            "tooltip-icon-size" = 15;
+          }
+          {
+            "type" = "audio-out";
+            "tooltip" = false;
+            "tooltip-icon-size" = 15;
+          }
+          {
+            "type" = "audio-in";
+            "tooltip" = false;
+            "tooltip-icon-size" = 15;
+          }
+        ];
       };
 
       "hyprland/language" = {
         format = "  {short}";
       };
 
-      "custom/launcher" = {
-        format = " ";
-        on-click = ""; # TODO: https://github.com/yurihikari/garuda-sway-config/blob/b8200b562c1ce23731261401f1352d912281cf30/hypr/scripts/rofi_launcher
-        tooltip = false;
+      "custom/cogicon" = {
+        format = "󰒔 ";
+      };
+
+      "group/right-group" = {
+        orientation = "inherit";
+        drawer = {
+          "icon-spacing" = 4;
+          "icon-size" = 15;
+          "format" = "󰒻";
+          "click-to-reveal" = true;
+          "transition-duration" = 400;
+          "transition-left-to-right" = true;
+        };
+        "modules" = [
+          "custom/cogicon"
+          "cpu"
+          "memory"
+          "custom/gpu1"
+          "custom/gpu2"
+          "disk"
+        ];
       };
     };
   };
