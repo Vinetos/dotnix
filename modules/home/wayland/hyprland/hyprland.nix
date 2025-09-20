@@ -1,9 +1,8 @@
-{
-  lib,
-  config,
-  pkgs,
-  default,
-  ...
+{ lib
+, config
+, pkgs
+, default
+, ...
 }:
 let
   # TODO: Rewrite this file to use nix language now that hyprland HM module update is merged.
@@ -17,7 +16,7 @@ let
   light = "${lib.getExe pkgs.light}";
   notify-send = "${lib.getExe pkgs.libnotify}";
   playerctl = "${lib.getExe pkgs.playerctl}";
-  rofi = "${lib.getExe pkgs.rofi-wayland}";
+  rofi = "${lib.getExe pkgs.rofi}";
   slurp = "${lib.getExe pkgs.slurp}";
   swaylock-effects = "${lib.getExe pkgs.swaylock-effects}";
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
