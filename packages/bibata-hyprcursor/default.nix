@@ -1,15 +1,15 @@
 # Stolen from https://github.com/diniamo/niqspkgs/blob/1793b26118503da244625353487601cef03994ef/pkgs/bibata-hyprcursor/default.nix
-{
-  stdenvNoCC,
-  fetchFromGitHub,
-  python3,
-  python3Packages,
-  lib,
-  hyprcursor,
-  variant ? "modern",
-  baseColor ? "#000000",
-  outlineColor ? "#FFFFFF",
-  watchBackgroundColor ? "#000000",
+{ stdenvNoCC
+, fetchFromGitHub
+, python3
+, python3Packages
+, lib
+, hyprcursor
+, variant ? "modern"
+, baseColor ? "#000000"
+, outlineColor ? "#FFFFFF"
+, watchBackgroundColor ? "#000000"
+,
 }:
 assert builtins.elem variant [
   "modern"

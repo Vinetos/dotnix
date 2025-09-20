@@ -1,10 +1,9 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{
-  flake,
-  pkgs,
-  lib,
-  ...
+{ flake
+, pkgs
+, lib
+, ...
 }:
 
 let

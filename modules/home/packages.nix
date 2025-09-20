@@ -69,7 +69,6 @@ in
       #withOpenASAR = true;
       withVencord = true;
     })
-    termius
     inputs.zen-browser.packages.${pkgs.hostPlatform.system}.default
 
     # Fun

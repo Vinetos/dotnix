@@ -1,9 +1,8 @@
-{
-  pkgs,
-  lib,
-  config,
-  default,
-  ...
+{ pkgs
+, lib
+, config
+, default
+, ...
 }:
 let
   wallpaper = builtins.fetchurl {
