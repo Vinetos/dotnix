@@ -19,10 +19,20 @@
       '';
     };
 
+    nushell.enable = true;
+
     # Type `z <pat>` to cd to some directory
     zoxide.enable = true;
 
-    # Better shell prmot!
+    # Better completion
+    carapace = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
+    };
+
+    # Better shell prompt!
     starship = {
       enable = true;
       settings = {
