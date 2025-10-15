@@ -28,6 +28,12 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim/nixos-25.05";
+
+    # Special repo for Infomaniak tools
+    infomanixak = {
+          url = "git+ssh://git@gitlab.infomaniak.ch/L3/infoma-nix-ak";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
   };
 
   # Wired using https://nixos-unified.org/autowiring.html

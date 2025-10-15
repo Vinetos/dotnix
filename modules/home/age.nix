@@ -1,4 +1,4 @@
-# Import nix sops
+# Import agenix
 { flake
 , config
 , pkgs
@@ -10,5 +10,5 @@ let
   inherit (inputs) self;
 in
 {
-  imports = [ inputs.sops-nix.nixosModules.sops ];
+  imports = [ inputs.agenix.homeManagerModules.default ];
 }
