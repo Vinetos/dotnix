@@ -1,3 +1,4 @@
+# Hyprland specific cnnfiguration for NixOS based hosts.
 { flake, pkgs, ... }:
 
 let
@@ -6,14 +7,17 @@ let
 in
 {
 
+  # Import the module
   imports = [
     self.inputs.hyprland.nixosModules.default
   ];
 
+  # Install the default shell
   environment.systemPackages = with pkgs; [
     pkgs.kitty
   ];
 
+  # Configure hyprland
   programs.hyprland = {
     enable = true;
     # set the flake package

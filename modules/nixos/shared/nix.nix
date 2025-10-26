@@ -10,16 +10,18 @@ let
   inherit (inputs) self;
 in
 {
+  # We install git for flakes
   environment.systemPackages = [ pkgs.git ];
 
-  nixpkgs.overlays = lib.attrValues self.overlays;
+  # We define this module's overlays as overlays for nixpkgs
+  nixpkgs = {
+    overlays = lib.attrValues self.overlays;
+    config.allowUnfree = true;
+  };
+
 
   # Configure Nix
   nix = {
-    package = pkgs.nixVersions.latest; # Get latest version to enable flakes
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
 
     # auto garbage collect
     gc = {

@@ -1,7 +1,7 @@
 { flake, ... }:
 {
   imports = [
-    flake.inputs.nix-index-database.hmModules.nix-index
+    flake.inputs.nix-index-database.homeModules.nix-index
   ];
 
   # command-not-found handler to suggest nix way of installing stuff.

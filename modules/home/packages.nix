@@ -53,7 +53,7 @@ in
     jetbrains.pycharm-professional
     jetbrains.goland
     jetbrains.datagrip
-    jetbrains-fleet
+    #jetbrains-fleet
     maven
     opentofu
     typst
