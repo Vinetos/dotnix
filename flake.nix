@@ -19,8 +19,12 @@
       url = "github:outfoxxed/hy3?ref=hl0.51.0";
       inputs.hyprland.follows = "hyprland";
     };
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    agenix-rekey = {
+      url = "github:oddlama/agenix-rekey";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
@@ -31,9 +35,10 @@
 
     # Special repo for Infomaniak tools
     infomanixak = {
-          url = "git+ssh://git@gitlab.infomaniak.ch/L3/infoma-nix-ak";
-          inputs.nixpkgs.follows = "nixpkgs";
-        };
+      #url = "git+ssh://git@gitlab.infomaniak.ch/L3/infoma-nix-ak";
+      url = "path:/home/vinetos/Documents/Infomaniak/infoma-nix-ak";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Wired using https://nixos-unified.org/autowiring.html

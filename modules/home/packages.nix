@@ -52,6 +52,8 @@ in
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional
     jetbrains.goland
+    jetbrains.datagrip
+    jetbrains-fleet
     maven
     opentofu
     typst

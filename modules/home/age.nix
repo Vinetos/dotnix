@@ -1,9 +1,10 @@
 # Import agenix
-{ flake
-, config
-, pkgs
-, lib
-, ...
+{
+  flake,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   inherit (flake) inputs;

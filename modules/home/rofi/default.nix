@@ -19,11 +19,11 @@ in
         inherit (config.lib.formats.rasi) mkLiteral;
       in
       # Use `mkLiteral` for string-like values that should show without
-        # quotes, e.g.:
-        # {
-        #   foo = "abc"; => foo: "abc";
-        #   bar = mkLiteral "abc"; => bar: abc;
-        # };
+      # quotes, e.g.:
+      # {
+      #   foo = "abc"; => foo: "abc";
+      #   bar = mkLiteral "abc"; => bar: abc;
+      # };
       {
         "*" = {
           font = "FiraCode Nerd Font Medium 12";

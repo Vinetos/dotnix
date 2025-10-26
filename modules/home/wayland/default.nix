@@ -1,8 +1,9 @@
-{ pkgs
-, lib
-, config
-, default
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  default,
+  ...
 }:
 # Wayland config
 {

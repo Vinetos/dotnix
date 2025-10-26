@@ -1,9 +1,10 @@
 # security tweaks borrowed from @hlissner : https://github.com/hlissner/dotfiles/blob/55194e703d1fe82e7e0ffd06e460f1897b6fc404/modules/security.nix
-{ flake
-, pkgs
-, lib
-, config
-, ...
+{
+  flake,
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 {
 

@@ -10,4 +10,5 @@ self: super: {
   zen-browser = inputs.zen-browser.packages."${self.system}".specific;
   desktime = self.callPackage "${packages}/desktime.nix" { };
   openstack-exporter = self.callPackage "${packages}/openstack-exporter.nix" { };
+  jetbrains-fleet = self.callPackage "${packages}/jetbrains-fleet" { };
 }

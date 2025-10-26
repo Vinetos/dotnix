@@ -1,8 +1,9 @@
-{ lib
-, config
-, pkgs
-, default
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  default,
+  ...
 }:
 let
   # TODO: Rewrite this file to use nix language now that hyprland HM module update is merged.
