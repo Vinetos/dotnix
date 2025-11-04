@@ -9,7 +9,7 @@
 {
   imports = [
     ./hyprland
-    ./mako.nix
+    ./fnott
   ];
 
   home.packages = with pkgs; [
