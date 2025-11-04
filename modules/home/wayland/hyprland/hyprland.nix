@@ -141,6 +141,17 @@ let
     windowrulev2 = idleinhibit focus, class:^(mpv|.+exe)$
     windowrulev2 = idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$
     windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
+
+    # Fixing popup size issue
+    windowrule = size 50% 50%, class:(.*jetbrains.*)$, title:^$,floating:1
+
+    # Fix tooltips (always have a title of `win.<id>`)
+    windowrule = noinitialfocus, class:^(.*jetbrains.*)$, title:^(win.*)$
+    windowrule = nofocus, class:^(.*jetbrains.*)$, title:^(win.*)$
+
+    # Fix tab dragging (always have a single space character as their title)
+    windowrule = noinitialfocus, class:^(.*jetbrains.*)$, title:^\\s$
+    windowrule = nofocus, class:^(.*jetbrains.*)$, title:^\\s$
   '';
 in
 {
