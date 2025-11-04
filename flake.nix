@@ -20,12 +20,12 @@
       url = "github:outfoxxed/hy3?ref=hl0.51.0";
       inputs.hyprland.follows = "hyprland";
     };
-    nix-index-database = { 
+    nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim.url = "github:nix-community/nixvim/nixos-25.05";
-    
+
     # Software inputs
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
