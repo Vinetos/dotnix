@@ -19,7 +19,7 @@ in
 
     # utils
     file
-    du-dust
+    dust
     duf
     fd
 
@@ -42,7 +42,6 @@ in
     #thunderbird
     blueberry
     yubikey-personalization
-    github-copilot-intellij-agent
     k9s
     filezilla
 
@@ -58,7 +57,7 @@ in
     opentofu
     typst
     typst-live
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     packer
     poetry
     python3
@@ -98,4 +97,6 @@ in
     # Install btop https://github.com/aristocratos/btop
     btop.enable = true;
   };
+
+  nixpkgs.config.allowUnfree = true;
 }
