@@ -9,7 +9,6 @@
 {
   imports = [
     ./hyprland
-    ./fnott.nix
   ];
 
   home.packages = with pkgs; [

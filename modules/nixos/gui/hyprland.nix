@@ -47,5 +47,5 @@ in
   };
 
   # Configure pam for hyprlock
-  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock = { };
 }

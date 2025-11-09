@@ -49,7 +49,7 @@
         br = ''!sh -c 'git switch "$1" && git pull && git switch "$2" && git rebase origin/"$1"' -'';
       };
     };
-    
+
     # Extra Config
     settings = {
       core = {

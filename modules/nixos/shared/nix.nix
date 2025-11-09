@@ -19,7 +19,6 @@ in
     config.allowUnfree = true;
   };
 
-
   # Configure Nix
   nix = {
 
