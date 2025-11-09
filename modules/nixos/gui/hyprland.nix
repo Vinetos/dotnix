@@ -31,7 +31,6 @@ in
   services.displayManager.sessionPackages = [
     inputs.hyprland.packages.${pkgs.hostPlatform.system}.default
   ];
-  security.pam.services.swaylock = { };
 
   nix.settings = {
     substituters = [ "https://hyprland.cachix.org" ];
@@ -46,4 +45,7 @@ in
     enable = true;
     extraPortals = [ inputs.hyprland.packages.${pkgs.hostPlatform.system}.xdg-desktop-portal-hyprland ];
   };
+
+  # Configure pam for hyprlock
+  security.pam.services.hyprlock = {};
 }

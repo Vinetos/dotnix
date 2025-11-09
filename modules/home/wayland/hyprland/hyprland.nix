@@ -19,7 +19,7 @@ let
   playerctl = "${lib.getExe pkgs.playerctl}";
   rofi = "${lib.getExe pkgs.rofi}";
   slurp = "${lib.getExe pkgs.slurp}";
-  swaylock-effects = "${lib.getExe pkgs.swaylock-effects}";
+  hyprlock = "${lib.getExe pkgs.hyprlock}";
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
   wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy"; # wl-clipboard expose multiple binaries
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
@@ -35,13 +35,12 @@ let
     let
       term = "${kitty}";
       dmenu = "${rofi} -modi drun -show drun -show-icons";
-      swaylock = "${swaylock-effects} -S";
       screenshot = "${hyprshot} -m region --freeze --output-folder ~/Pictures/";
     in
     ''
       bind = $mainMod, Return, exec, ${term}
       bind = $mainMod, D, exec, ${dmenu}
-      bind = $mainMod, L, exec, ${swaylock}
+      bind = $mainMod, L, exec, ${hyprlock}
       bind = , PRINT, exec, ${screenshot}
       bind = $mainMod SHIFT, S, exec, ${screenshot}
 
