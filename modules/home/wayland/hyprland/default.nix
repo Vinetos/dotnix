@@ -17,6 +17,7 @@ in
   imports = [
     ./hyprpaper.nix
     ./hyprland.nix
+    ./hyprpanel.nix
   ];
 
   xdg.dataFile."icons/${cursor}".source = "${cursorPackage}/share/icons/${cursor}";
