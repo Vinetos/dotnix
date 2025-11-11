@@ -15,9 +15,9 @@
 
     # Custom inputs
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.51.1";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.52.1";
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.51.0";
+      url = "github:outfoxxed/hy3?ref=hl0.52.0";
       inputs.hyprland.follows = "hyprland";
     };
     nix-index-database = {
@@ -28,6 +28,12 @@
 
     # Software inputs
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    # Infomaniak
+    infomanixak = {
+      url = "path:/home/vinetos/Documents/Infomaniak/infoma-nix-ak";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
