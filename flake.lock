@@ -495,8 +495,8 @@
         "tool3box": "tool3box"
       },
       "locked": {
-        "lastModified": 1762785850,
-        "narHash": "sha256-yb59Hi7oobzhDZKZK+4lc1Y5HNLLe4P9C/JH53dkP+c=",
+        "lastModified": 1763477872,
+        "narHash": "sha256-PyFPul2SPY/gZKL3r5clhhzYav7ApBqCUOPhn9UimNA=",
         "path": "/home/vinetos/Documents/Infomaniak/infoma-nix-ak",
         "type": "path"
       },

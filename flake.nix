@@ -15,9 +15,9 @@
 
     # Custom inputs
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.52.1";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.51.1";
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.52.0";
+      url = "github:outfoxxed/hy3?ref=hl0.51.0";
       inputs.hyprland.follows = "hyprland";
     };
     nix-index-database = {
