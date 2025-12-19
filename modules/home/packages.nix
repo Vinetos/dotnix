@@ -43,16 +43,12 @@ in
     blueberry
     yubikey-personalization
     k9s
-    filezilla
 
     # Dev
     git-review
     jdk21
     jetbrains.idea-ultimate
     jetbrains.pycharm-professional
-    jetbrains.goland
-    jetbrains.datagrip
-    #jetbrains-fleet
     maven
     opentofu
     typst
@@ -60,8 +56,10 @@ in
     onlyoffice-desktopeditors
     packer
     poetry
+    uv
     python3
     go
+    #linphone
 
     # Productivity
     flameshot

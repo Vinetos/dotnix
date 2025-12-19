@@ -15,16 +15,16 @@
 
     # Custom inputs
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    hyprland.url = "github:hyprwm/Hyprland?ref=v0.51.1";
+    hyprland.url = "github:hyprwm/Hyprland?ref=v0.52.2";
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.51.0";
+      url = "github:outfoxxed/hy3?ref=hl0.52.0";
       inputs.hyprland.follows = "hyprland";
     };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim.url = "github:nix-community/nixvim/nixos-25.05";
+    nixvim.url = "github:nix-community/nixvim/";
 
     # Software inputs
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
