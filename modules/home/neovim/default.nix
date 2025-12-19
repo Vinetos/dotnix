@@ -5,6 +5,7 @@
   ];
 
   programs.nixvim = import ./nixvim.nix // {
-    enable = true;
+     enable = true;
+     vimAlias = true;
   };
 }
