@@ -7,5 +7,4 @@ let
 in
 self: super: {
   bibata-hyprcursor = self.callPackage "${packages}/bibata-hyprcursor" { };
-  zen-browser = inputs.zen-browser.packages."${self.system}".specific;
 }

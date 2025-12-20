@@ -67,7 +67,6 @@ in
       #withOpenASAR = true;
       withVencord = true;
     })
-    inputs.zen-browser.packages.${pkgs.hostPlatform.system}.default
 
     # Fun
     spotify
