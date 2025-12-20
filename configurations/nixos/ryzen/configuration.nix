@@ -16,9 +16,31 @@
   ];
 
   # Bootloader.
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+
+    plymouth = {
+      enable = true;
+      theme = "deus_ex";
+      themePackages = with pkgs; [
+        # By default we would install all themes
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "deus_ex" ];
+        })
+      ];
+    };
+
+    # Silent boot
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
   };
 
   # Setup keyfile
@@ -42,14 +64,8 @@
     ];
   };
 
-  # Configure X11
-  services.xserver = {
-    xkb.layout = "fr";
-    xkb.variant = "azerty";
-  };
-
   # Configure console keymap
-  console.keyMap = "fr";
+  console.keyMap = "us";
 
   # Hardware deamon
   services.fwupd.enable = true;
@@ -59,7 +75,6 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     kitty
-    librewolf
   ];
 
   # Enable PCSCD for smart card
@@ -76,5 +91,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
-
 }

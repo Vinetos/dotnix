@@ -27,22 +27,12 @@
     # Better shell prompt!
     starship = {
       enable = true;
-      settings = {
-        username = {
-          style_user = "blue bold";
-          style_root = "red bold";
-          format = "[$user]($style) ";
-          disabled = false;
-          show_always = true;
-        };
-        hostname = {
-          ssh_only = false;
-          ssh_symbol = "🌐 ";
-          format = "on [$hostname](bold red) ";
-          trim_at = ".local";
-          disabled = false;
-        };
-      };
+      enableFishIntegration = true;
+      settings = lib.mkMerge [
+        (builtins.fromTOML (
+          builtins.readFile "${pkgs.starship}/share/starship/presets/pastel-powerline.toml"
+        ))
+      ];
     };
   };
 }

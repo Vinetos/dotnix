@@ -46,6 +46,4 @@ in
     extraPortals = [ inputs.hyprland.packages.${pkgs.hostPlatform.system}.xdg-desktop-portal-hyprland ];
   };
 
-  # Configure pam for hyprlock
-  security.pam.services.hyprlock = { };
 }

@@ -39,7 +39,6 @@ in
     # Tools
     pavucontrol
     networkmanagerapplet
-    #thunderbird
     blueberry
     yubikey-personalization
     k9s
@@ -47,8 +46,8 @@ in
     # Dev
     git-review
     jdk21
-    jetbrains.idea-ultimate
-    jetbrains.pycharm-professional
+    jetbrains.idea
+    jetbrains.pycharm
     maven
     opentofu
     typst
@@ -95,6 +94,4 @@ in
     # Install btop https://github.com/aristocratos/btop
     btop.enable = true;
   };
-
-  nixpkgs.config.allowUnfree = true;
 }

@@ -3,7 +3,14 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
+      set fish_greeting
       ${lib.getExe pkgs.any-nix-shell} fish --info-right | source
+      ${lib.getExe pkgs.fastfetch} -c ${
+        builtins.fetchurl {
+          url = "https://raw.githubusercontent.com/harilvfs/fastfetch/refs/heads/main/config.jsonc";
+          sha256 = "0ydzgdgcap6gkjpcih0bjir1qjg6i9yiisd7gx5cj3yvdd1zlhfs";
+        }
+      }
     '';
 
     shellAbbrs = {

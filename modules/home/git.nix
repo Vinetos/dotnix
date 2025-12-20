@@ -28,25 +28,20 @@
 
     # Signing Module
     signing = {
-      key = lib.mkDefault "7F6B8E5090D9C31D";
+      key = lib.mkDefault "3EC1FE8DF090B8CF";
       signByDefault = lib.mkDefault true;
     };
 
     settings = {
-
       # User config
       user.name = lib.mkDefault "Vinetos";
-      user.email = lib.mkDefault ("valentin" + "@" + "vinetos" + "." + "fr");
+      user.email = lib.mkDefault ("contact+git" + "@" + "vinetos" + "." + "fr");
 
       # Alias
-      aliases = {
+      alias = {
         # Better log
         l = "log --graph --pretty='%Cred%h%Creset - %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)' --abbrev-commit --date=relative";
-        # Branch create from $2 and create tracked branch
-        bc = ''!sh -c 'git switch -c "$1" main && git push --set-upstream origin "$1"' -'';
-        bcf = ''!sh -c 'git switch -c "$1" "$2" && git push --set-upstream origin "$1"' -'';
-        bd = ''!sh -c 'git switch main && git push -d origin "$1" && git branch -d "$1"' -'';
-        br = ''!sh -c 'git switch "$1" && git pull && git switch "$2" && git rebase origin/"$1"' -'';
+        adog = "log --all --decorate --oneline --graph";
       };
     };
 
@@ -59,8 +54,6 @@
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       pull.rebase = true;
-
-      safe.directory = [ "/etc/nixos" ]; # Allow to push my config with git
     };
   };
 }

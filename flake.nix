@@ -25,15 +25,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim.url = "github:nix-community/nixvim/";
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Software inputs
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
-    # Infomaniak
-    infomanixak = {
-      url = "path:/home/vinetos/Documents/Infomaniak/infoma-nix-ak";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   # Wired using https://nixos-unified.org/autowiring.html

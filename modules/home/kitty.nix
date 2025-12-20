@@ -4,9 +4,6 @@
   pkgs,
   ...
 }:
-let
-  inherit (flake.config.theme) xcolors;
-in
 {
   programs.kitty = {
     enable = true;
@@ -14,23 +11,16 @@ in
     shellIntegration.enableBashIntegration = true;
     shellIntegration.enableFishIntegration = true;
     settings = {
-
       shell = "${lib.getExe pkgs.fish}";
       background_opacity = toString 0.7;
+      confirm_os_window_close = 0;
 
-      selection_foreground = xcolors.selection-foreground;
-      selection_background = xcolors.selection-background;
-      #      confirm_on_window_close = 0;
+      scrollback_lines = 40000; # 32 MB whit 100 chars per line for 40k lines
+      scrollback_pager_history_size = "1000"; # Max 1 GB of history on disk
 
-      url_color = xcolors.cyan;
-      scrollback_lines = -1;
-
-      inherit (xcolors) foreground background;
-    }
-    // lib.filterAttrs (k: v: (builtins.match "color([0-9]|1[0-5])" k) != null) xcolors;
+      copy_on_select = "no";
+    };
     extraConfig = ''
-      copy_on_select yes
-
       map ctrl+c       copy_and_clear_or_interrupt
       map ctrl+v       paste_from_clipboard
       map shift+insert paste_from_clipboard

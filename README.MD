@@ -16,16 +16,18 @@ I use this repository to manage my personal computers, servers, and workstations
 - Servers with NixOS and Debian + Nix
 - Raspberry Pi with NixOS
 
+![System configuration preview](preview.png)
+
 # What's inside
 
 Some of the noticeable things I use :
 
-- Nix with Flakes built on top of latest stable channel + easy unstable access
+- Nix with Flakes built on top of unstable
 - Nixos-unified (flake-parts module) to provide a consistent interface for all my configurations
 - Home-manager for per-user configuration
-- Wayland (Hyprland, Hyprpaper, ...)
-- DoAs (alternative to sudo)
+- Hyprland with DankLinux / DankMaterialScheme
 - Kitty terminal, Fish as shell
+- Linux-wallpaper engine, Zen browser
 
 ## Architecture
 

@@ -10,53 +10,11 @@ let
   mainMod = "SUPER";
 
   # Packages
-  cliphist = "${lib.getExe pkgs.cliphist}";
-  hyprshot = "${lib.getExe pkgs.hyprshot}";
-  grim = "${lib.getExe pkgs.grim}";
-  kitty = "${lib.getExe pkgs.kitty}";
-  light = "${lib.getExe pkgs.light}";
-  notify-send = "${lib.getExe pkgs.libnotify}";
+  dms-ipc = "dms ipc call";
   playerctl = "${lib.getExe pkgs.playerctl}";
-  rofi = "${lib.getExe pkgs.rofi}";
-  slurp = "${lib.getExe pkgs.slurp}";
-  hyprlock = "${lib.getExe pkgs.hyprlock}";
-  wpctl = "${pkgs.wireplumber}/bin/wpctl";
-  wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy"; # wl-clipboard expose multiple binaries
+  cliphist = "${lib.getExe pkgs.cliphist}";
+  kitty = "${lib.getExe pkgs.kitty}";
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
-  wtype = "${lib.getExe pkgs.wtype}"; # Allow pasting to gui application by simulating keyboard inputs
-
-  # Shortcuts
-  clipboard = {
-    paste = "${cliphist} list | ${rofi} -dmenu -theme ~/.config/rofi/themes/clipboard/config.rasi | ${cliphist} decode | ${wl-copy} && ${wtype} -M ctrl v -m ctrl";
-    wipe = ""; # "${cliphist} wipe && ${notify-send} \"Cleared clipboard\"";
-  };
-
-  applicationsShortcuts =
-    let
-      term = "${kitty}";
-      dmenu = "${rofi} -modi drun -show drun -show-icons";
-      screenshot = "${hyprshot} -m region --freeze --output-folder ~/Pictures/";
-    in
-    ''
-      bind = $mainMod, Return, exec, ${term}
-      bind = $mainMod, D, exec, ${dmenu}
-      bind = $mainMod, L, exec, ${hyprlock}
-      bind = , PRINT, exec, ${screenshot}
-      bind = $mainMod SHIFT, S, exec, ${screenshot}
-
-      binde = , XF86MonBrightnessDown, exec, ${light} -U 5
-      binde = , XF86MonBrightnessUp, exec, ${light} -A 5
-
-      binde = , XF86AudioRaiseVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 1%+
-      binde = , XF86AudioLowerVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 1%-
-      bindl = , XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle
-
-      bindl = , XF86AudioPlay, exec, ${playerctl} play-pause
-      bindl = , XF86AudioPause, exec, ${playerctl} play-pause
-      bindl = , XF86AudioNext, exec, ${playerctl} next
-      bindl = , XF86AudioPrev, exec, ${playerctl} previous
-
-    '';
 
   workspaceControl = ''
     # workspaces
@@ -151,14 +109,37 @@ let
     # Fix tab dragging (always have a single space character as their title)
     windowrule = noinitialfocus, class:^(.*jetbrains.*)$, title:^\\s$
     windowrule = nofocus, class:^(.*jetbrains.*)$, title:^\\s$
+
+    # Danklinux
+    layerrule = noanim, ^(dms)$
+    # Opacity for inactive windows
+    windowrulev2 = opacity 0.95 0.95, floating:0, focus:0
+
+    # GNOME apps
+    windowrulev2 = rounding 12, class:^(org\.gnome\.)
+    windowrulev2 = noborder, class:^(org\.gnome\.)
+
+    # Terminal apps - no borders
+    windowrulev2 = noborder, class:^(org\.wezfurlong\.wezterm)$
+    windowrulev2 = noborder, class:^(Alacritty)$
+    windowrulev2 = noborder, class:^(zen)$
+    windowrulev2 = noborder, class:^(com\.mitchellh\.ghostty)$
+    windowrulev2 = noborder, class:^(kitty)$
+
+    # Floating windows
+    windowrulev2 = float, class:^(gnome-calculator)$
+    windowrulev2 = float, class:^(blueman-manager)$
+    windowrulev2 = float, class:^(org\.gnome\.Nautilus)$
+
+    # Open DMS windows as floating by default
+    windowrulev2 = float, class:^(org.quickshell)$
   '';
 in
 {
   wayland.windowManager.hyprland.extraConfig = ''
+    ${general}
     ${workspaceControl}
     ${compositorControls}
-    ${applicationsShortcuts}
-    ${general}
   '';
 
   wayland.windowManager.hyprland.settings = {
@@ -166,14 +147,112 @@ in
     general = {
       layout = "hy3";
     };
+    misc = {
+      disable_hyprland_logo = true;
+      disable_splash_rendering = true;
+    };
     # Exec configuration
     exec-once = [
-      "${wl-paste} --type text --watch ${cliphist} store" # cliphist retains only text inputs
+      "${wl-paste} --watch ${cliphist} store &"
     ];
     bind = [
+      # Application Launchers
+      "$mainMod, Return, exec, ${kitty}"
+      "$mainMod, D, exec, ${dms-ipc} spotlight toggle"
+      "$mainMod, N, exec, ${dms-ipc} notifications toggle"
+      "$mainMod, TAB, exec, ${dms-ipc} hypr toggleOverview"
+
+      # Security
+      "$mainMod, L, exec, ${dms-ipc} lock lock"
+
       # Clipboard
-      "CTRL SHIFT, V, exec, ${clipboard.paste}"
-      "$mainMod SHIFT, V, exec, ${clipboard.wipe}"
+      "CTRL SHIFT, V, exec, ${dms-ipc} clipboard toggle"
+
+      # Screenshot
+      " , PRINT, exec, dms screenshot"
+      "$mainMod SHIFT, S, exec, dms screenshot"
     ];
+    # l : Will also work when an input inhibitor (e.g. a lockscreen) is active.
+    # e : Will repeat when held.c
+    bindel = [
+      # Audio Controls
+      " , XF86AudioRaiseVolume, exec, ${dms-ipc} audio increment 1"
+      " , XF86AudioLowerVolume, exec,  ${dms-ipc} audio decrement 1"
+
+      # Brightness Controls
+      " , XF86MonBrightnessUp, exec,  ${dms-ipc} brightness increment 5"
+      " , XF86MonBrightnessDown, exec,  ${dms-ipc} brightness decrement 5"
+    ];
+    bindl = [
+      " , XF86AudioMute, exec, ${dms-ipc} audio mute"
+      " , XF86AudioPlay, exec, ${playerctl} play-pause"
+      ", XF86AudioPause, exec, ${playerctl} play-pause"
+      " , XF86AudioNext, exec, ${playerctl} next"
+      " , XF86AudioPrev, exec, ${playerctl} previous"
+    ];
+  };
+
+  wayland.windowManager.hyprland.settings = {
+    # Elements
+    "$hypr_border_size" = "2";
+    "$hypr_gaps_in" = "5";
+    "$hypr_gaps_out" = "10";
+    "$hypr_rounding" = "10";
+
+    # Colors
+    "$gradient_angle" = "45deg";
+    "$active_border_col_1" = "0xFFB4A1DB";
+    "$active_border_col_2" = "0xFFD04E9D";
+    "$inactive_border_col_1" = "rgb(1e2030)";
+    "$inactive_border_col_2" = "rgb(1e2030)";
+    "$active_shadow_col" = "0x66000000";
+    "$inactive_shadow_col" = "0x66000000";
+    "$group_border_col" = "0xFFDB695B";
+    "$group_border_active_col" = "0xFF4BC66D";
+
+    # General
+    general = {
+      border_size = "$hypr_border_size";
+      no_border_on_floating = false;
+      gaps_in = "$hypr_gaps_in";
+      gaps_out = "$hypr_gaps_out";
+      "col.active_border" = "$active_border_col_1 $active_border_col_2 $gradient_angle";
+      "col.inactive_border" = "$inactive_border_col_1 $inactive_border_col_2 $gradient_angle";
+    };
+
+    # Decoration
+    decoration = {
+      rounding = "$hypr_rounding";
+      active_opacity = 1.0;
+      inactive_opacity = 1.0;
+      fullscreen_opacity = 1.0;
+      shadow = {
+        enabled = true;
+        range = 10;
+        color = "$active_shadow_col";
+        color_inactive = "$inactive_shadow_col";
+        render_power = 3;
+        scale = 1.0;
+      };
+      dim_inactive = false;
+      dim_strength = 0.5;
+    };
+
+    # Animation
+    animations = {
+      enabled = true;
+      animation = [
+        "windowsIn, 1, 5, default, popin 0%"
+        "windowsOut, 1, 5, default, popin"
+        "windowsMove, 1, 5, default, slide"
+        "fadeIn, 1, 8, default"
+        "fadeOut, 1, 8, default"
+        "fadeSwitch, 1, 8, default"
+        "fadeShadow, 1, 8, default"
+        "fadeDim, 1, 8, default"
+        "border, 1, 10, default"
+        "workspaces, 1, 5, default, slide"
+      ];
+    };
   };
 }

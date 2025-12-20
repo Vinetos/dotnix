@@ -25,10 +25,6 @@ let
   };
   themeSubmodule = lib.types.submodule {
     options = {
-      colors = freeformOption;
-      xcolors = freeformOption;
-      rgbaColors = freeformOption;
-
       wallpaper = lib.mkOption {
         type = lib.types.submodule {
           options = {
@@ -51,10 +47,6 @@ let
   };
 in
 {
-  imports = [
-    # ../../config.nix
-    ../../lib/theme
-  ];
   options.theme = lib.mkOption {
     type = themeSubmodule;
   };

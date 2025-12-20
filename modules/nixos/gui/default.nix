@@ -14,6 +14,7 @@ in
 
   imports = [
     ./hyprland.nix
+    ./danklinux.nix
   ];
 
   fonts = {
@@ -35,7 +36,6 @@ in
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs = {
-    light.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -78,17 +78,6 @@ in
         "hfp_hf"
         "hfp_ag"
       ];
-    };
-  };
-
-  services.greetd = {
-    enable = true;
-    useTextGreeter = true;
-    settings = {
-      default_session = {
-        user = "greeter";
-        command = "${lib.getExe pkgs.tuigreet} --time --remember";
-      };
     };
   };
 
