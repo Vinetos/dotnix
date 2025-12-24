@@ -48,6 +48,7 @@ in
     jdk21
     jetbrains.idea
     jetbrains.pycharm
+    jetbrains.goland
     maven
     opentofu
     typst
@@ -58,6 +59,7 @@ in
     uv
     python3
     go
+    nodejs
     #linphone
 
     # Productivity
