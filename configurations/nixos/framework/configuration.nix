@@ -72,10 +72,9 @@
   services.fprintd.enable = true;
 
   # Disable Power Button
-  services.logind.extraConfig = ''
-    # don’t shutdown when power button is short-pressed
-    HandlePowerKey=ignore
-  '';
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
