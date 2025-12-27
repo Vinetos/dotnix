@@ -15,12 +15,6 @@
   systemd.user.services."linux-wallpaperengine".Service.ExecStart =
     lib.mkForce "${pkgs.coreutils}/bin/echo disabled";
 
-  # Configure kitty to use dms theme
-  programs.kitty.extraConfig = "
-    include dank-tabs.conf
-    include dank-theme.conf
-  ";
-
   programs.dank-material-shell = {
     enable = true;
 
@@ -47,4 +41,22 @@
       };
     };
   };
+
+  # Configure kitty to use DMS config
+  programs.kitty.extraConfig = "
+      include dank-tabs.conf
+      include dank-theme.conf
+    ";
+
+  # Configure GTK to use DMS themes
+  gtk = {
+    theme = {
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
+    };
+    # Include dank linux configuration
+    gtk3.extraCss = "@import url(\"dank-colors.css\");";
+    gtk4.extraCss = "@import url(\"dank-colors.css\");";
+  };
+
 }
