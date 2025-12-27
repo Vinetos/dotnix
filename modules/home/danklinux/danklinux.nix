@@ -50,10 +50,6 @@
 
   # Configure GTK to use DMS themes
   gtk = {
-    theme = {
-      name = "adw-gtk3";
-      package = pkgs.adw-gtk3;
-    };
     # Include dank linux configuration
     gtk3.extraCss = "@import url(\"dank-colors.css\");";
     gtk4.extraCss = "@import url(\"dank-colors.css\");";

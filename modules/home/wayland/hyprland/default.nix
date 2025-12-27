@@ -32,6 +32,10 @@ in
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
     };
+    theme = {
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
+    };
   };
 
   home.sessionVariables = {
