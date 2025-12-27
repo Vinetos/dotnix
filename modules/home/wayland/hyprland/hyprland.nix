@@ -84,9 +84,6 @@ let
   '';
 
   general = ''
-    monitor=eDP-1, preferred, auto, 1
-    monitor=, preferred, auto, 1
-
     input {
       kb_layout = us
       kb_variant = intl
@@ -254,5 +251,13 @@ in
         "workspaces, 1, 5, default, slide"
       ];
     };
+
+    # Monitors configuration
+    monitors = [
+      ", preferred, auto, 1" # Default rule for all monitors
+      # name, resolution, position, scale
+      "desc:Dell Inc. DELL S2722DGM G98HZ83, 2560x1440@165.08Hz, 0x0, 1"
+      "desc:Dell Inc. DELL S2721HGF 1BFFS83, 1920x1080@144.00Hz, auto-center-left, 1"
+    ];
   };
 }
