@@ -177,8 +177,8 @@
       };
       audioOutputDevicePins = {
       };
-      gtkThemingEnabled = false;
-      qtThemingEnabled = false;
+      gtkThemingEnabled = true;
+      qtThemingEnabled = true;
       syncModeWithPortal = true;
       terminalsAlwaysDark = false;
       showDock = true;
