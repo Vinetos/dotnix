@@ -10,39 +10,27 @@ let
   inherit (inputs) self;
 in
 let
-  cursor = "Bibata-Modern-Classic-Hyprcursor";
-  cursorPackage = self.packages.${pkgs.hostPlatform.system}.bibata-hyprcursor;
+  cursor = "Bibata-Modern-Classic";
+  cursorPackage = pkgs.bibata-cursors;
 in
 {
   imports = [
     ./hyprland.nix
   ];
 
-  xdg.dataFile."icons/${cursor}".source = "${cursorPackage}/share/icons/${cursor}";
-
   home.pointerCursor = {
-    gtk.enable = true;
+    enable = true;
     package = cursorPackage;
     name = cursor;
     size = 16;
+    hyprcursor.enable = true;
+    gtk.enable = true;
   };
 
   gtk = {
-    enable = true;
-
-    theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
-    };
-
     iconTheme = {
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
-    };
-
-    font = {
-      name = "Sans";
-      size = 11;
     };
   };
 
