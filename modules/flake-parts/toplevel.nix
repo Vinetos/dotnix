@@ -10,7 +10,7 @@
     { self', pkgs, ... }:
     {
       # For 'nix fmt'
-      formatter = pkgs.nixfmt-rfc-style;
+      formatter = pkgs.nixfmt-tree;
 
       # Enables 'nix run' to activate.
       packages.default = self'.packages.activate;
