@@ -58,10 +58,6 @@
   networking = {
     hostName = "ryzen"; # Define your hostname.
     networkmanager.enable = true;
-    nameservers = [
-      "1.1.1.1"
-      "1.0.0.1"
-    ];
   };
 
   # Configure console keymap
@@ -79,6 +75,9 @@
 
   # Enable PCSCD for smart card
   services.pcscd.enable = true;
+
+  # Enable netbird
+  services.netbird.enable = true;
 
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
