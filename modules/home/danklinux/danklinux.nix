@@ -35,8 +35,16 @@
         src = pkgs.fetchFromGitHub {
           owner = "sgtaziz";
           repo = "dms-wallpaperengine";
-          rev = "295686215ba65103e20385d3e86801db074dfc01";
-          hash = "sha256-HmqIAXNougNJScAQXS33CRl/+ypR9LNjGFhBOVwu5z0=";
+          rev = "95628dde134ec7ce4e01e58e1bb5f6dfc4c2baac";
+          hash = "sha256-jGLgc+OTSkO1D2RwRXAy75jyWmRREkFa86rMqS2PZfg=";
+        };
+      };
+      HyprlandSubmap = {
+        src = pkgs.fetchFromGitHub {
+          owner = "mesteryui";
+          repo = "DMS_HyprlandSubmap";
+          rev = "faf69c7a17aa0096c59150a5d492b551e4a24de3";
+          hash = "sha256-5srAvsrhBUtzPNf3FTComfm+4alh4B41StHPZryQi2M=";
         };
       };
     };
