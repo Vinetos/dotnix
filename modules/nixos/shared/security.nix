@@ -61,12 +61,6 @@
   };
   boot.kernelModules = [ "tcp_bbr" ];
 
-  # ClamAV is an open source antivirus engine for detecting trojans, viruses, malware & other malicious threats.
-  services.clamav = {
-    updater.enable = true;
-    daemon.enable = true;
-  };
-
   security.sudo = {
     enable = true;
     execWheelOnly = true;
