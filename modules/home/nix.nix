@@ -4,6 +4,4 @@
     automatic = true;
     dates = "weekly";
   };
-
-  nixpkgs.config.allowUnfree = true;
 }
