@@ -260,7 +260,7 @@ in
       "desc:Dell Inc. DELL S2722DGM G98HZ83, 2560x1440@165.08Hz, 0x0, 1"
       "desc:Dell Inc. DELL S2721HGF 1BFFS83, 1920x1080@144.00Hz, auto-center-left, 1"
       # Framework laptop
-      "desc:BOE 0x095F, prefered, auto,  1"
+      "desc:BOE 0x095F, prefered, auto, 1"
     ];
   };
 }

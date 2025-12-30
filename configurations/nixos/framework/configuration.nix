@@ -24,9 +24,6 @@
   networking = {
     hostName = "framework"; # Define your hostname.
     networkmanager.enable = true;
-    extraHosts = ''
-      127.0.0.1 vinetos.local
-    '';
     firewall.checkReversePath = false;
   };
 

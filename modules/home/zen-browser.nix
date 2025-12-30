@@ -18,7 +18,7 @@
             inherit name;
             value =
               let
-                zen-browser = flake.inputs.zen-browser.packages.${pkgs.hostPlatform.system}.default;
+                zen-browser = flake.inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
               in
               zen-browser.meta.desktopFileName;
           })

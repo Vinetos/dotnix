@@ -21,15 +21,15 @@ in
   programs.hyprland = {
     enable = true;
     # set the flake package
-    package = inputs.hyprland.packages.${pkgs.hostPlatform.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     # make sure to also set the portal package, so that they are in sync
-    portalPackage = inputs.hyprland.packages.${pkgs.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     withUWSM = true;
     xwayland.enable = true;
   };
   # add hyprland to display manager sessions
   services.displayManager.sessionPackages = [
-    inputs.hyprland.packages.${pkgs.hostPlatform.system}.default
+    inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   nix.settings = {
@@ -39,11 +39,11 @@ in
 
   # Fix mesa missmatch preventing Hyprland to start
   hardware.graphics.package =
-    inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.hostPlatform.system}.mesa;
+    inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa;
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ inputs.hyprland.packages.${pkgs.hostPlatform.system}.xdg-desktop-portal-hyprland ];
+    extraPortals = [ inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland ];
   };
 
 }
