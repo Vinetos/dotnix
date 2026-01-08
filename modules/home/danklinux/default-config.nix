@@ -1,7 +1,7 @@
 { ... }:
 {
   #
-  programs.dank-material-shell.default = {
+  programs.dank-material-shell = {
     settings = {
       currentThemeName = "dynamic";
       customThemeFile = "";
