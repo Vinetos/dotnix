@@ -26,7 +26,7 @@ in
     portalPackage =
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     withUWSM = true;
-    xwayland.enable = true;
+    #xwayland.enable = true;
   };
   # add hyprland to display manager sessions
   services.displayManager.sessionPackages = [

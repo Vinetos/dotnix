@@ -53,6 +53,5 @@ in
 
     plugins = [ flake.inputs.hy3.packages.${pkgs.stdenv.hostPlatform.system}.hy3 ];
     systemd.enable = false;
-    xwayland.enable = true;
   };
 }
