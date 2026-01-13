@@ -34,7 +34,7 @@
     '';
 
     # Hyprland-specific
-    "uwsm/env-hyprland".text = '''';
+    "uwsm/env-hyprland".text = "";
   };
 
   gtk.enable = true;

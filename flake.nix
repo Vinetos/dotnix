@@ -17,7 +17,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     hyprland.url = "github:hyprwm/Hyprland?ref=v0.53.1";
     hy3 = {
-      url = "github:outfoxxed/hy3";
+      url = "github:outfoxxed/hy3?=ref=hl0.53.0";
       inputs.hyprland.follows = "hyprland";
     };
     nix-index-database = {
@@ -26,7 +26,7 @@
     };
     nixvim.url = "github:nix-community/nixvim/";
     dms = {
-      url = "github:AvengeMedia/DankMaterialShell";
+      url = "github:AvengeMedia/DankMaterialShell?ref=v1.2.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

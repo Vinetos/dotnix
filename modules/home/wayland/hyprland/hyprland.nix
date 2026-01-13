@@ -241,12 +241,13 @@ in
     # Monitors configuration
     # name, resolution, position, scale
     monitors = [
-      ", preferred, auto, 1" # Default rule for all monitors
       # Home's screens
       "desc:Dell Inc. DELL S2722DGM G98HZ83, 2560x1440@165.08Hz, 0x0, 1"
       "desc:Dell Inc. DELL S2721HGF 1BFFS83, 1920x1080@144.00Hz, auto-center-left, 1"
       # Framework laptop
       "desc:BOE 0x095F, prefered, auto, 1"
+      # Default rule for all monitors1
+      ", preferred, auto, 1"
     ];
   };
 }

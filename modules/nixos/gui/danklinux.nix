@@ -12,10 +12,13 @@ in
   ];
   # DMS greeter is based on greetd
   services.greetd.enable = true;
-  services.displayManager.dms-greeter = {
+  programs.dank-material-shell.greeter = {
     enable = true;
     compositor.name = "hyprland";
     configHome = "/home/vinetos";
+    compositor.customConfig = ''
+
+    '';
   };
 
 }
