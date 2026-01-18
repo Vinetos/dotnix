@@ -64,7 +64,7 @@ in
 
     # Productivity
     flameshot
-    xfce.thunar
+    thunar
     (discord.override {
       #withOpenASAR = true;
       withVencord = true;
