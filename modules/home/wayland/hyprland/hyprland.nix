@@ -16,30 +16,6 @@ let
   kitty = "${lib.getExe pkgs.kitty}";
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
 
-  workspaceControl = ''
-    # workspaces
-    # binds mainMod + [shift +] {1..10} to [move to] ws {1..10}
-    ${builtins.concatStringsSep "\n" (
-      builtins.genList (
-        x:
-        let
-          ws =
-            let
-              c = (x + 1) / 10;
-            in
-            builtins.toString (x + 1 - (c * 10));
-        in
-        ''
-          bind = $mainMod, ${ws}, workspace, ${toString (x + 1)}
-          bind = $mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}
-        ''
-      ) 10
-    )}
-
-    bind = $mainMod, mouse_down, workspace, e+1
-    bind = $mainMod, mouse_up, workspace, e-1
-  '';
-
   compositorControls = ''
     bind = $mainMod SHIFT, Q, killactive
     bind = $mainMod SHIFT, E, exec, poweroff
@@ -122,7 +98,6 @@ in
 {
   wayland.windowManager.hyprland.extraConfig = ''
     ${general}
-    ${workspaceControl}
     ${compositorControls}
   '';
 
@@ -155,7 +130,25 @@ in
       # Screenshot
       " , PRINT, exec, dms screenshot"
       "$mainMod SHIFT, S, exec, dms screenshot"
-    ];
+
+      # Workspaces
+      "$mainMod, mouse_down, workspace, e+1"
+      "$mainMod, mouse_up, workspace, e-1"
+    ]
+    # Workspaces (part-2)
+    # binds mainMod + [shift +] {1..9} to [move to] ws {1..9}
+    ++ lib.flatten (
+      map (
+        n:
+        let
+          ws = toString n;
+        in
+        [
+          "$mainMod, ${ws}, workspace, ${ws}"
+          "$mainMod SHIFT, ${ws}, movetoworkspacesilent, ${ws}"
+        ]
+      ) (builtins.genList (x: x + 1) 9)
+    );
     # l : Will also work when an input inhibitor (e.g. a lockscreen) is active.
     # e : Will repeat when held.c
     bindel = [
