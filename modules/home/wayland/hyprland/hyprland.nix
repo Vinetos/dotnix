@@ -15,96 +15,41 @@ let
   cliphist = "${lib.getExe pkgs.cliphist}";
   kitty = "${lib.getExe pkgs.kitty}";
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
-
-  compositorControls = ''
-    bind = $mainMod SHIFT, Q, killactive
-    bind = $mainMod SHIFT, E, exec, poweroff
-
-    bind = $mainMod, F, fullscreen
-    bind = $mainMod, Space, togglefloating
-
-    bindm = $mainMod, mouse:272, hy3:movewindow
-    bindm = $mainMod, mouse:273, resizewindow
-
-    # hy3 groups
-    bind = $mainMod, H, hy3:makegroup, h
-    bind = $mainMod, V, hy3:makegroup, v
-
-    # move focus
-    bind = $mainMod, left, hy3:movefocus, l
-    bind = $mainMod, right, hy3:movefocus, r
-    bind = $mainMod, up, hy3:movefocus, u
-    bind = $mainMod, down, hy3:movefocus, d
-
-    # move window
-    binde = $mainMod SHIFT, left, hy3:movewindow, l
-    binde = $mainMod SHIFT, right, hy3:movewindow, r
-    binde = $mainMod SHIFT, up, hy3:movewindow, u
-    binde = $mainMod SHIFT, down, hy3:movewindow, d
-    # When floating
-    binde = $mainMod SHIFT, left, moveactive, -30 0
-    binde = $mainMod SHIFT, right, moveactive, 30 0
-    binde = $mainMod SHIFT, up, moveactive, 0 -30
-    binde = $mainMod SHIFT, down, moveactive, 0 30
-
-    # window resize
-    bind = $mainMod, R, submap, resize
-
-    submap = resize
-    binde = , right, resizeactive, 10 0
-    binde = , left, resizeactive, -10 0
-    binde = , up, resizeactive, 0 -10
-    binde = , down, resizeactive, 0 10
-    bind = , escape, submap, reset
-    submap = reset
-  '';
-
-  general = ''
-    input {
-      kb_layout = us
-      kb_variant = intl
-      follow_mouse = 1 # Cursor movement will always change focus to the window under the cursor.
-      numlock_by_default = true
-    }
-
-    # idle inhibit while watching videos
-    windowrulev2 = idleinhibit focus, class:^(mpv|.+exe)$
-    windowrulev2 = idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$
-    windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
-
-    # Opacity for inactive windows
-    windowrulev2 = opacity 0.95 0.95, floating:0, focus:0
-
-    # GNOME apps
-    windowrulev2 = rounding 12, class:^(org\.gnome\.)
-    windowrulev2 = noborder, class:^(org\.gnome\.)
-
-    # Terminal apps - no borders
-    windowrulev2 = noborder, class:^(org\.wezfurlong\.wezterm)$
-    windowrulev2 = noborder, class:^(Alacritty)$
-    windowrulev2 = noborder, class:^(zen)$
-    windowrulev2 = noborder, class:^(com\.mitchellh\.ghostty)$
-    windowrulev2 = noborder, class:^(kitty)$
-
-    # Floating windows
-    windowrulev2 = float, class:^(gnome-calculator)$
-    windowrulev2 = float, class:^(blueman-manager)$
-    windowrulev2 = float, class:^(org\.gnome\.Nautilus)$
-
-    # Open DMS windows as floating by default
-    windowrulev2 = float, class:^(org.quickshell)$
-  '';
 in
 {
-  wayland.windowManager.hyprland.extraConfig = ''
-    ${general}
-    ${compositorControls}
-  '';
-
   wayland.windowManager.hyprland.settings = {
+    # Elements
+    "$hypr_border_size" = "2";
+    "$hypr_gaps_in" = "5";
+    "$hypr_gaps_out" = "10";
+    "$hypr_rounding" = "10";
+
+    # Colors
+    "$gradient_angle" = "45deg";
+    "$active_border_col_1" = "0xFFB4A1DB";
+    "$active_border_col_2" = "0xFFD04E9D";
+    "$inactive_border_col_1" = "rgb(1e2030)";
+    "$inactive_border_col_2" = "rgb(1e2030)";
+    "$active_shadow_col" = "0x66000000";
+    "$inactive_shadow_col" = "0x66000000";
+    "$group_border_col" = "0xFFDB695B";
+    "$group_border_active_col" = "0xFF4BC66D";
+
     "$mainMod" = mainMod;
+    input = {
+      kb_layout = "us";
+      kb_variant = "intl";
+      follow_mouse = 1; # Cursor movement will always change focus to the window under the cursor.
+      numlock_by_default = true;
+    };
+    # General
     general = {
       layout = "hy3";
+      border_size = "$hypr_border_size";
+      gaps_in = "$hypr_gaps_in";
+      gaps_out = "$hypr_gaps_out";
+      "col.active_border" = "$active_border_col_1 $active_border_col_2 $gradient_angle";
+      "col.inactive_border" = "$inactive_border_col_1 $inactive_border_col_2 $gradient_angle";
     };
     misc = {
       disable_hyprland_logo = true;
@@ -115,6 +60,24 @@ in
       "${wl-paste} --watch ${cliphist} store &"
     ];
     bind = [
+      # General
+      "$mainMod SHIFT, Q, killactive"
+      "$mainMod SHIFT, E, exec, poweroff"
+      "$mainMod, F, fullscreen"
+      "$mainMod, Space, togglefloating"
+
+      # Hy3
+      "$mainMod, H, hy3:makegroup, h"
+      "$mainMod, V, hy3:makegroup, v"
+
+      "$mainMod, left, hy3:movefocus, l"
+      "$mainMod, right, hy3:movefocus, r"
+      "$mainMod, up, hy3:movefocus, u"
+      "$mainMod, down, hy3:movefocus, d"
+
+      # Resize submap
+      "$mainMod, R, submap, resize"
+
       # Application Launchers
       "$mainMod, Return, exec, ${kitty}"
       "$mainMod, D, exec, ${dms-ipc} spotlight toggle"
@@ -149,16 +112,28 @@ in
         ]
       ) (builtins.genList (x: x + 1) 9)
     );
-    # l : Will also work when an input inhibitor (e.g. a lockscreen) is active.
     # e : Will repeat when held.c
+    binde = [
+      # Move window
+      "$mainMod SHIFT, left, hy3:movewindow, l"
+      "$mainMod SHIFT, right, hy3:movewindow, r"
+      "$mainMod SHIFT, up, hy3:movewindow, u"
+      "$mainMod SHIFT, down, hy3:movewindow, d"
+      # When floating
+      "$mainMod SHIFT, left, moveactive, -30 0"
+      "$mainMod SHIFT, right, moveactive, 30 0"
+      "$mainMod SHIFT, up, moveactive, 0 -30"
+      "$mainMod SHIFT, down, moveactive, 0 30"
+    ];
+    # l : Will also work when an input inhibitor (e.g. a lockscreen) is active.
     bindel = [
       # Audio Controls
       " , XF86AudioRaiseVolume, exec, ${dms-ipc} audio increment 1"
       " , XF86AudioLowerVolume, exec,  ${dms-ipc} audio decrement 1"
 
       # Brightness Controls
-      " , XF86MonBrightnessUp, exec,  ${dms-ipc} brightness increment 5"
-      " , XF86MonBrightnessDown, exec,  ${dms-ipc} brightness decrement 5"
+      " , XF86MonBrightnessUp, exec,  ${dms-ipc} brightness increment 5 \"\""
+      " , XF86MonBrightnessDown, exec,  ${dms-ipc} brightness decrement 5 \"\""
     ];
     bindl = [
       " , XF86AudioMute, exec, ${dms-ipc} audio mute"
@@ -167,34 +142,11 @@ in
       " , XF86AudioNext, exec, ${playerctl} next"
       " , XF86AudioPrev, exec, ${playerctl} previous"
     ];
-  };
-
-  wayland.windowManager.hyprland.settings = {
-    # Elements
-    "$hypr_border_size" = "2";
-    "$hypr_gaps_in" = "5";
-    "$hypr_gaps_out" = "10";
-    "$hypr_rounding" = "10";
-
-    # Colors
-    "$gradient_angle" = "45deg";
-    "$active_border_col_1" = "0xFFB4A1DB";
-    "$active_border_col_2" = "0xFFD04E9D";
-    "$inactive_border_col_1" = "rgb(1e2030)";
-    "$inactive_border_col_2" = "rgb(1e2030)";
-    "$active_shadow_col" = "0x66000000";
-    "$inactive_shadow_col" = "0x66000000";
-    "$group_border_col" = "0xFFDB695B";
-    "$group_border_active_col" = "0xFF4BC66D";
-
-    # General
-    general = {
-      border_size = "$hypr_border_size";
-      gaps_in = "$hypr_gaps_in";
-      gaps_out = "$hypr_gaps_out";
-      "col.active_border" = "$active_border_col_1 $active_border_col_2 $gradient_angle";
-      "col.inactive_border" = "$inactive_border_col_1 $inactive_border_col_2 $gradient_angle";
-    };
+    # m: Mouse bind
+    bindm = [
+      "$mainMod, mouse:272, hy3:movewindow"
+      "$mainMod, mouse:273, resizewindow"
+    ];
 
     # Decoration
     decoration = {
@@ -242,5 +194,47 @@ in
       # Default rule for all monitors1
       ", preferred, auto, 1"
     ];
+
+    windowrule = [
+      # idle inhibit while watching videos
+      "idle_inhibit focus, match:class ^(mpv|.+exe)$"
+      "idle_inhibit focus, match:class ^(firefox)$, match:title ^(.*YouTube.*)$"
+      "idle_inhibit fullscreen, match:class ^(firefox)$"
+
+      # Opacity for inactive windows
+      "opacity 0.95 0.95, match:float 0, match:focus 0"
+
+      # GNOME apps
+      "rounding 12, border_size 0, match:class ^(org\.gnome\.)"
+
+      # Terminal apps - no borders
+      "border_size 0, match:class ^(org\.wezfurlong\.wezterm)$"
+      "border_size 0, match:class ^(Alacritty)$"
+      "border_size 0, match:class ^(zen)$"
+      "border_size 0, match:class ^(com\.mitchellh\.ghostty)$"
+      "border_size 0, match:class ^(kitty)$"
+
+      # Floating windows
+      "float on, match:class ^(gnome-calculator)$"
+      "float on, match:class ^(blueman-manager)$"
+      "float on, match:class ^(org\.gnome\.Nautilus)$"
+
+      # Open DMS windows as floating by default
+      "float on, match:class ^(org.quickshell)$"
+    ];
+  };
+
+  wayland.windowManager.hyprland.submaps.resize.settings = {
+    binde = [
+      ", left, resizeactive, -10 0"
+      ", right, resizeactive, 10 0"
+      ", up, resizeactive, 0 -10"
+      ", down, resizeactive, 0 10"
+    ];
+
+    bind = [
+      ", escape, submap, reset"
+    ];
+
   };
 }
