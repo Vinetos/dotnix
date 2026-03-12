@@ -89,7 +89,7 @@
   # Configure Zen-browser with DMS
   programs.zen-browser.profiles.default.settings."toolkit.legacyUserProfileCustomizations.stylesheets" =
     true;
-  home.file.".zen/default/chrome/userChrome.css".source =
+  home.file."${config.xdg.configHome}/zen/default/chrome/userChrome.css".source =
     config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/DankMaterialShell/zen.css";
 
 }
