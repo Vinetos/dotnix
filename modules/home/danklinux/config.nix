@@ -14,6 +14,8 @@
     dockTransparency = 0;
     widgetBackgroundColor = "sc";
     widgetColorMode = "colorful";
+    controlCenterTileColorMode = "primary";
+    buttonColorMode = "primary";
     cornerRadius = 12;
     niriLayoutGapsOverride = -1;
     niriLayoutRadiusOverride = -1;
@@ -24,12 +26,30 @@
     mangoLayoutGapsOverride = -1;
     mangoLayoutRadiusOverride = -1;
     mangoLayoutBorderSize = -1;
+    firstDayOfWeek = -1;
     use24HourClock = true;
     showSeconds = false;
+    padHours12Hour = false;
     useFahrenheit = false;
+    windSpeedUnit = "kmh";
     nightModeEnabled = false;
     animationSpeed = 2;
     customAnimationDuration = 500;
+    syncComponentAnimationSpeeds = true;
+    popoutAnimationSpeed = 1;
+    popoutCustomAnimationDuration = 150;
+    modalAnimationSpeed = 1;
+    modalCustomAnimationDuration = 150;
+    enableRippleEffects = true;
+    m3ElevationEnabled = true;
+    m3ElevationIntensity = 12;
+    m3ElevationOpacity = 30;
+    m3ElevationColorMode = "default";
+    m3ElevationLightDirection = "top";
+    m3ElevationCustomColor = "#000000";
+    modalElevationEnabled = true;
+    popoutElevationEnabled = true;
+    barElevationEnabled = false;
     wallpaperFillMode = "Fill";
     blurredWallpaperLayer = false;
     blurWallpaperOnOverview = false;
@@ -64,6 +84,7 @@
     controlCenterShowMicPercent = false;
     controlCenterShowBatteryIcon = false;
     controlCenterShowPrinterIcon = false;
+    controlCenterShowScreenSharingIcon = true;
     showPrivacyButton = true;
     privacyShowMicIcon = false;
     privacyShowCameraIcon = false;
@@ -115,13 +136,17 @@
     showWorkspacePadding = false;
     workspaceScrolling = false;
     showWorkspaceApps = true;
+    workspaceDragReorder = true;
     maxWorkspaceIcons = 3;
+    workspaceAppIconSizeOffset = 0;
     groupWorkspaceApps = true;
     workspaceFollowFocus = false;
     showOccupiedWorkspacesOnly = true;
     reverseScrolling = false;
     dwlShowAllTags = false;
+    workspaceActiveAppHighlightEnabled = false;
     workspaceColorMode = "default";
+    workspaceOccupiedColorMode = "none";
     workspaceUnfocusedColorMode = "default";
     workspaceUrgentColorMode = "default";
     workspaceFocusedBorderEnabled = false;
@@ -133,12 +158,23 @@
     scrollTitleEnabled = true;
     audioVisualizerEnabled = true;
     audioScrollMode = "volume";
+    audioWheelScrollAmount = 5;
     clockCompactMode = false;
     focusedWindowCompactMode = false;
     runningAppsCompactMode = true;
+    barMaxVisibleApps = 0;
+    barMaxVisibleRunningApps = 0;
+    barShowOverflowBadge = true;
+    appsDockHideIndicators = false;
+    appsDockColorizeActive = false;
+    appsDockActiveColorMode = "primary";
+    appsDockEnlargeOnHover = false;
+    appsDockEnlargePercentage = 125;
+    appsDockIconSizePercentage = 100;
     keyboardLayoutNameCompactMode = false;
     runningAppsCurrentWorkspace = true;
     runningAppsGroupByApp = false;
+    runningAppsCurrentMonitor = false;
     appIdSubstitutions = [
       {
         pattern = "Spotify";
@@ -169,33 +205,59 @@
     centeringMode = "index";
     clockDateFormat = "dd/MM/yyyy";
     lockDateFormat = "dddd, MMMM d";
+    greeterRememberLastSession = true;
+    greeterRememberLastUser = true;
+    greeterEnableFprint = false;
+    greeterEnableU2f = false;
+    greeterWallpaperPath = "";
+    greeterUse24HourClock = true;
+    greeterShowSeconds = false;
+    greeterPadHours12Hour = false;
+    greeterLockDateFormat = "";
+    greeterFontFamily = "";
+    greeterWallpaperFillMode = "";
     mediaSize = 1;
     appLauncherViewMode = "list";
     spotlightModalViewMode = "list";
+    browserPickerViewMode = "grid";
+    browserUsageHistory = {
+    };
+    appPickerViewMode = "grid";
+    filePickerUsageHistory = {
+    };
     sortAppsAlphabetically = false;
     appLauncherGridColumns = 4;
     spotlightCloseNiriOverview = true;
+    spotlightSectionViewModes = {
+    };
+    appDrawerSectionViewModes = {
+    };
     niriOverviewOverlayEnabled = true;
+    dankLauncherV2Size = "compact";
+    dankLauncherV2BorderEnabled = false;
+    dankLauncherV2BorderThickness = 2;
+    dankLauncherV2BorderColor = "primary";
+    dankLauncherV2ShowFooter = true;
+    dankLauncherV2UnloadOnClose = false;
     useAutoLocation = true;
     weatherEnabled = true;
     networkPreference = "auto";
-    vpnLastConnected = "";
     iconTheme = "System Default";
     cursorSettings = {
-      theme = "System Default";
-      size = 24;
-      niri = {
-        hideWhenTyping = false;
-        hideAfterInactiveMs = 0;
+      dwl = {
+        cursorHideTimeout = 0;
       };
       hyprland = {
         hideOnKeyPress = false;
         hideOnTouch = false;
         inactiveTimeout = 0;
       };
-      dwl = {
-        cursorHideTimeout = 0;
+      niri = {
+        hideAfterInactiveMs = 0;
+        hideWhenTyping = false;
       };
+      size = 24;
+      theme = "System Default";
     };
     launcherLogoMode = "os";
     launcherLogoCustomPath = "";
@@ -272,9 +334,13 @@
     matugenTemplateDgop = true;
     matugenTemplateKcolorscheme = true;
     matugenTemplateVscode = true;
-    showDock = true;
+    matugenTemplateEmacs = true;
+    matugenTemplateZed = true;
+    showDock = false;
     dockAutoHide = true;
+    dockSmartAutoHide = false;
     dockGroupByApp = true;
+    dockRestoreSpecialWorkspaceOnClick = false;
     dockOpenOnOverview = false;
     dockPosition = 1;
     dockSpacing = 4;
@@ -287,7 +353,19 @@
     dockBorderOpacity = 0.2;
     dockBorderThickness = 1;
     dockIsolateDisplays = false;
+    dockLauncherEnabled = false;
+    dockLauncherLogoMode = "apps";
+    dockLauncherLogoCustomPath = "";
+    dockLauncherLogoColorOverride = "";
+    dockLauncherLogoSizeOffset = 0;
+    dockLauncherLogoBrightness = 0.5;
+    dockLauncherLogoContrast = 1;
+    dockMaxVisibleApps = 0;
+    dockMaxVisibleRunningApps = 0;
+    dockShowOverflowBadge = true;
     notificationOverlayEnabled = false;
+    notificationPopupShadowEnabled = true;
+    notificationPopupPrivacyMode = false;
     modalDarkenBackground = true;
     lockScreenShowPowerActions = true;
     lockScreenShowSystemIcons = true;
@@ -295,27 +373,42 @@
     lockScreenShowDate = true;
     lockScreenShowProfileImage = true;
     lockScreenShowPasswordField = true;
+    lockScreenShowMediaPlayer = true;
+    lockScreenPowerOffMonitorsOnLock = false;
+    lockAtStartup = false;
     enableFprint = false;
     maxFprintTries = 15;
+    enableU2f = false;
+    u2fMode = "or";
     lockScreenActiveMonitor = "all";
     lockScreenInactiveColor = "#000000";
     lockScreenNotificationMode = 0;
+    lockScreenVideoEnabled = false;
+    lockScreenVideoPath = "";
+    lockScreenVideoCycling = false;
     hideBrightnessSlider = false;
     notificationTimeoutLow = 5000;
     notificationTimeoutNormal = 5000;
     notificationTimeoutCritical = 0;
     notificationCompactMode = false;
     notificationPopupPosition = 0;
+    notificationAnimationSpeed = 1;
+    notificationCustomAnimationDuration = 400;
     notificationHistoryEnabled = true;
     notificationHistoryMaxCount = 50;
     notificationHistoryMaxAgeDays = 7;
     notificationHistorySaveLow = true;
     notificationHistorySaveNormal = true;
     notificationHistorySaveCritical = true;
+    notificationRules = [
+
+    ];
+    notificationFocusedMonitor = false;
     osdAlwaysShowValue = true;
     osdPosition = 7;
     osdVolumeEnabled = true;
     osdMediaVolumeEnabled = true;
+    osdMediaPlaybackEnabled = false;
     osdBrightnessEnabled = true;
     osdIdleInhibitorEnabled = true;
     osdMicMuteEnabled = true;
@@ -356,6 +449,38 @@
     };
     hyprlandOutputSettings = {
     };
+    displayProfiles = {
+      hyprland = {
+        profile_1773301782332_xaf4cj = {
+          id = "profile_1773301782332_xaf4cj";
+          name = "Home";
+          outputSet = [
+            "DP-1"
+            "DP-3"
+            "eDP-1"
+          ];
+          createdAt = 1773301782332;
+          updatedAt = 1773301782332;
+        };
+        profile_1773301794650_76nj10 = {
+          id = "profile_1773301794650_76nj10";
+          name = "Work";
+          outputSet = [
+            "DP-1"
+            "DP-3"
+            "eDP-1"
+          ];
+          createdAt = 1773301794650;
+          updatedAt = 1773301794650;
+        };
+      };
+    };
+    activeDisplayProfile = {
+      hyprland = "profile_1773301782332_xaf4cj";
+    };
+    displayProfileAutoSelect = false;
+    displayShowDisconnected = false;
+    displaySnapToEdge = true;
     barConfigs = [
       {
         autoHide = false;
@@ -530,6 +655,12 @@
     ];
     builtInPluginSettings = {
     };
-    configVersion = 5;
+    clipboardEnterToPaste = false;
+    launcherPluginVisibility = {
+    };
+    launcherPluginOrder = [
+
+    ];
+    configVersion = 6;
   };
 }
