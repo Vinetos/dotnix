@@ -48,6 +48,12 @@
 
   programs.zen-browser = {
     enable = true;
+    setAsDefaultBrowser = true;
+    languagePacks = [
+      "en-US"
+      "fr-FR"
+    ];
+
     policies =
       let
         mkLockedAttrs = builtins.mapAttrs (
@@ -88,6 +94,11 @@
         OfferToSaveLogins = false;
         Preferences = mkLockedAttrs {
           "browser.aboutConfig.showWarning" = false;
+          "media.videocontrols.picture-in-picture.video-toggle.enabled" = true;
+
+          "gfx.webrender.all" = true;
+          "network.http.http3.enabled" = true;
+          "network.socket.ip_addr_any.disabled" = true; # disallow bind to 0.0.0.0
         };
       };
     profiles.default.settings = {
