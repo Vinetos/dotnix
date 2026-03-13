@@ -1,7 +1,15 @@
 {
-  # Garbage collect the Nix store
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
+  nix = {
+    # auto garbage collect
+    gc = {
+      automatic = true;
+      dates = [ "Mon..Fri *-*-* 12:00:00" ];
+      options = "--delete-older-than 7d";
+    };
+
+    optimise = {
+      automatic = true;
+      dates = [ "Mon..Fri *-*-* 12:00:00" ];
+    };
   };
 }
