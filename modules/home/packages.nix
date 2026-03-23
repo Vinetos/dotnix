@@ -24,20 +24,11 @@ in
     fd
 
     # Nix dev
-    cachix
     nil # Nix language server
     nix-info
     nixpkgs-fmt
 
-    # Dev
-    tmate
-
-    # On ubuntu, we need this less for `man home-configuration.nix`'s pager to
-    # work.
-    less
-
     # Tools
-    pavucontrol
     networkmanagerapplet
     blueberry
     yubikey-personalization
@@ -45,25 +36,15 @@ in
 
     # Dev
     git-review
-    jdk21
-    jetbrains.idea
-    jetbrains.pycharm
-    jetbrains.goland
-    maven
     opentofu
-    typst
-    typst-live
-    onlyoffice-desktopeditors
     packer
     poetry
     uv
     python3
-    go
     nodejs
     #linphone
 
     # Productivity
-    flameshot
     thunar
     (discord.override {
       #withOpenASAR = true;
@@ -72,7 +53,6 @@ in
 
     # Fun
     spotify
-    upscayl
   ];
 
   # add environment variables
