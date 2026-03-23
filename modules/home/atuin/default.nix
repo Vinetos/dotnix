@@ -18,4 +18,9 @@
       style = "auto"; # Atuin will automatically switch to compact mode when the terminal window is too short for full to display properly.
     };
   };
+
+  # Patch for fish to sync auto-completion with Atuin history
+  #programs.fish.package = pkgs.fish.overrideAttrs (oa: {
+  #  patches = [ ./fish.diff ];
+  #});
 }
