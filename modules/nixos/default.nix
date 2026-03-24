@@ -14,7 +14,7 @@ in
 {
 
   imports = [
-    self.nixosModules.shared
+    self.nixosModules.common
   ];
 
   # Set your time zone.

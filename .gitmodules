@@ -1,3 +1,6 @@
 [submodule "xps"]
 	path = configurations/nixos/xps
 	url = git@gitlab.infomaniak.ch:valentin.chassignol/dotnix.git
+[submodule "infomanix"]
+	path = inputs/infomanix
+	url = git@gitlab.infomaniak.ch:L3/infoma-nix-ak.git

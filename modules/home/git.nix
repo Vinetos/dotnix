@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   home.shellAliases = {
     g = "git";
@@ -32,19 +37,6 @@
       signByDefault = lib.mkDefault true;
     };
 
-    settings = {
-      # User config
-      user.name = lib.mkDefault "Vinetos";
-      user.email = lib.mkDefault ("contact+git" + "@" + "vinetos" + "." + "fr");
-
-      # Alias
-      alias = {
-        # Better log
-        l = "log --graph --pretty='%Cred%h%Creset - %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)' --abbrev-commit --date=relative";
-        adog = "log --all --decorate --oneline --graph";
-      };
-    };
-
     # Extra Config
     settings = {
       core = {
@@ -54,6 +46,17 @@
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       pull.rebase = true;
+
+      # User config
+      user.name = lib.mkDefault config.me.fullname;
+      user.email = lib.mkDefault config.me.email;
+
+      # Alias
+      alias = {
+        # Better log
+        l = "log --graph --pretty='%Cred%h%Creset - %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)' --abbrev-commit --date=relative";
+        adog = "log --all --decorate --oneline --graph";
+      };
     };
   };
 }

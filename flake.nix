@@ -1,11 +1,13 @@
 {
-  description = "A home-manager template providing useful tools & settings for Nix-based development";
-
   inputs = {
+    self.submodules = true;
+
     # Principle inputs (updated by `nix run .#update`)
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +35,7 @@
     };
 
     # Software inputs
-    infomanixak.url = "path:///home/vinetos/Documents/Infomaniak/infoma-nix-ak";
+    infomanixak.url = ./inputs/infomanix;
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     # Openstack-nix
     #openstack-nix.url = "path:///home/vinetos/Documents/Perso/openstack-nix";

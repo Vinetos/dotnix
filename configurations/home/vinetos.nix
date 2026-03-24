@@ -1,9 +1,4 @@
-{
-  flake,
-  pkgs,
-  lib,
-  ...
-}:
+{ flake, lib, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -12,7 +7,13 @@ in
   imports = [
     self.homeModules.default
   ];
-  home.username = "vinetos";
-  home.homeDirectory = lib.mkDefault "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/vinetos";
+
+  # Defined by /modules/home/me.nix
+  # And used all around in /modules/home/*
+  me = {
+    username = "vinetos";
+    fullname = "Vinetos";
+    email = "contact+git" + "@" + "vinetos" + "." + "fr";
+  };
   home.stateVersion = lib.mkDefault "24.11";
 }
