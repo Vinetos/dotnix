@@ -30,7 +30,6 @@ in
 
     # Tools
     networkmanagerapplet
-    blueberry
     yubikey-personalization
     k9s
 
