@@ -11,7 +11,7 @@ in
     self.nixosModules.default
     self.nixosModules.gui
     ./configuration.nix
-    inputs.openstack-nix.nixosModules.all-in-one
+    #inputs.openstack-nix.nixosModules.all-in-one
   ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
