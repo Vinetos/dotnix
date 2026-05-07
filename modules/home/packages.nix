@@ -32,6 +32,7 @@ in
     networkmanagerapplet
     yubikey-personalization
     k9s
+    openstackclient-full
 
     # Dev
     git-review

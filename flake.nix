@@ -33,6 +33,10 @@
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Software inputs
     infomanixak.url = ./inputs/infomanix;
