@@ -9,6 +9,7 @@
 {
   imports = [
     ./hyprland
+    ./niri.nix
   ];
 
   home.packages = with pkgs; [
@@ -32,9 +33,6 @@
       export ELM_DISPLAY=wl
       export SDL_VIDEODRIVER=wayland
     '';
-
-    # Hyprland-specific
-    "uwsm/env-hyprland".text = "";
   };
 
   gtk.enable = true;

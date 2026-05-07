@@ -14,11 +14,9 @@ in
   services.greetd.enable = true;
   programs.dank-material-shell.greeter = {
     enable = true;
-    compositor.name = "hyprland";
+    compositor.name = "niri";
     configHome = "/home/vinetos";
-    compositor.customConfig = ''
-
-    '';
+    compositor.customConfig = "";
   };
 
 }

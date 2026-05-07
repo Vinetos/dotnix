@@ -3,11 +3,12 @@
   #
   programs.dank-material-shell.settings = {
     currentThemeName = "dynamic";
-    currentThemeCategory = "generic";
+    currentThemeCategory = "dynamic";
     customThemeFile = "";
     registryThemeVariants = {
     };
     matugenScheme = "scheme-vibrant";
+    matugenContrast = 0;
     runUserMatugenTemplates = true;
     matugenTargetMonitor = "";
     popupTransparency = 1;
@@ -27,6 +28,7 @@
     mangoLayoutRadiusOverride = -1;
     mangoLayoutBorderSize = -1;
     firstDayOfWeek = -1;
+    showWeekNumber = false;
     use24HourClock = true;
     showSeconds = false;
     padHours12Hour = false;
@@ -50,6 +52,10 @@
     modalElevationEnabled = true;
     popoutElevationEnabled = true;
     barElevationEnabled = false;
+    blurEnabled = false;
+    blurBorderColor = "outline";
+    blurBorderCustomColor = "#ffffff";
+    blurBorderOpacity = 1;
     wallpaperFillMode = "Fill";
     blurredWallpaperLayer = false;
     blurWallpaperOnOverview = false;
@@ -156,6 +162,7 @@
     };
     waveProgressEnabled = true;
     scrollTitleEnabled = true;
+    mediaAdaptiveWidthEnabled = true;
     audioVisualizerEnabled = true;
     audioScrollMode = "volume";
     audioWheelScrollAmount = 5;
@@ -228,6 +235,7 @@
     sortAppsAlphabetically = false;
     appLauncherGridColumns = 4;
     spotlightCloseNiriOverview = true;
+    rememberLastQuery = false;
     spotlightSectionViewModes = {
     };
     appDrawerSectionViewModes = {
@@ -239,6 +247,8 @@
     dankLauncherV2BorderColor = "primary";
     dankLauncherV2ShowFooter = true;
     dankLauncherV2UnloadOnClose = false;
+    dankLauncherV2IncludeFilesInAll = false;
+    dankLauncherV2IncludeFoldersInAll = false;
     useAutoLocation = true;
     weatherEnabled = true;
     networkPreference = "auto";
@@ -278,6 +288,7 @@
     notepadLastCustomTransparency = 0.7;
     soundsEnabled = true;
     useSystemSoundTheme = false;
+    soundLogin = false;
     soundNewNotification = true;
     soundVolumeChanged = true;
     soundPluggedIn = true;
@@ -286,11 +297,13 @@
     acSuspendTimeout = 0;
     acSuspendBehavior = 2;
     acProfileName = "";
+    acPostLockMonitorTimeout = 0;
     batteryMonitorTimeout = 0;
     batteryLockTimeout = 0;
     batterySuspendTimeout = 0;
     batterySuspendBehavior = 0;
     batteryProfileName = "";
+    batteryPostLockMonitorTimeout = 0;
     batteryChargeLimit = 100;
     lockBeforeSuspend = true;
     loginctlLockIntegration = true;
@@ -313,6 +326,10 @@
     qtThemingEnabled = true;
     syncModeWithPortal = true;
     terminalsAlwaysDark = false;
+    muxType = "tmux";
+    muxUseCustomCommand = false;
+    muxCustomCommand = "";
+    muxSessionFilter = "";
     runDmsMatugenTemplates = true;
     matugenTemplateGtk = true;
     matugenTemplateNiri = true;
@@ -336,6 +353,17 @@
     matugenTemplateVscode = true;
     matugenTemplateEmacs = true;
     matugenTemplateZed = true;
+    matugenTemplateNeovimSettings = {
+      dark = {
+        baseTheme = "github_dark";
+        harmony = 0.5;
+      };
+      light = {
+        baseTheme = "github_light";
+        harmony = 0.5;
+      };
+    };
+    matugenTemplateNeovimSetBackground = true;
     showDock = false;
     dockAutoHide = true;
     dockSmartAutoHide = false;
@@ -452,6 +480,7 @@
     displayProfiles = {
       hyprland = {
         profile_1773301782332_xaf4cj = {
+          createdAt = 1773301782332;
           id = "profile_1773301782332_xaf4cj";
           name = "Home";
           outputSet = [
@@ -459,10 +488,10 @@
             "DP-3"
             "eDP-1"
           ];
-          createdAt = 1773301782332;
           updatedAt = 1773301782332;
         };
         profile_1773301794650_76nj10 = {
+          createdAt = 1773301794650;
           id = "profile_1773301794650_76nj10";
           name = "Work";
           outputSet = [
@@ -470,7 +499,6 @@
             "DP-3"
             "eDP-1"
           ];
-          createdAt = 1773301794650;
           updatedAt = 1773301794650;
         };
       };
@@ -512,18 +540,21 @@
         id = "default";
         innerPadding = 4;
         leftWidgets = [
-          "launcherButton"
           {
+            id = "launcherButton";
             enabled = true;
+          }
+          {
             id = "workspaceSwitcher";
+            enabled = true;
           }
           {
-            enabled = true;
             id = "focusedWindow";
+            enabled = true;
           }
           {
-            enabled = true;
             id = "hyprlandSubmap";
+            enabled = true;
           }
         ];
         maximizeDetection = true;
