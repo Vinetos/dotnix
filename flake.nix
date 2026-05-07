@@ -18,10 +18,10 @@
     # Custom inputs
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.54.2";
+      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.54.3";
     };
     hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.54.2";
+      url = "github:outfoxxed/hy3";
       inputs.hyprland.follows = "hyprland";
     };
     nix-index-database = {
@@ -40,6 +40,7 @@
 
     # Software inputs
     infomanixak.url = ./inputs/infomanix;
+    orca.url = "github:Vinetos/orca-cli";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     # Openstack-nix
     #openstack-nix.url = "path:///home/vinetos/Documents/Perso/openstack-nix";
