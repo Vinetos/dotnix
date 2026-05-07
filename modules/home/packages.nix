@@ -43,6 +43,11 @@ in
     python3
     nodejs
     #linphone
+    inputs.orca.packages.${pkgs.stdenv.hostPlatform.system}.orca-openstack
+
+    # Kube
+    kubectl
+    fluxcd
 
     # Productivity
     thunar
