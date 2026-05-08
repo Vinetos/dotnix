@@ -26,12 +26,21 @@ in
         numlock = true;
         xkb = {
           layout = "us,ch";
+          variant = "intl,";
         };
       };
     };
+    binds = {
+      "Mod+Return".action.spawn = "${lib.getExe pkgs.kitty}";
+      "Mod+D".action.spawn = lib.splitString " " "dms ipc call spotlight toggle";
+      "Ctrl+Shift+V".action.spawn = lib.splitString " " "dms ipc call clipboard toggle";
+      "Mod+L".action.spawn = lib.splitString " " "dms ipc call lock lock";
+    };
     environment = {
+      XDG_CURRENT_DESKTOP = "niri";
       QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "gtk3";
+      T_QPA_PLATFORMTHEME_QT6 = "gtk3";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
     };
   };
