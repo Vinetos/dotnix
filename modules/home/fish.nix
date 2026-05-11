@@ -17,7 +17,6 @@
       # Nix
       ns = "nix shell nixpkgs#";
       nr = "nix run nixpkgs#";
-      nu = "nix flake update";
       ngc = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
 
       # Other
