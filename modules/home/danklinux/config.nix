@@ -43,6 +43,8 @@
     modalAnimationSpeed = 1;
     modalCustomAnimationDuration = 150;
     enableRippleEffects = true;
+    animationVariant = 0;
+    motionEffect = 0;
     m3ElevationEnabled = true;
     m3ElevationIntensity = 12;
     m3ElevationOpacity = 30;
@@ -53,6 +55,8 @@
     popoutElevationEnabled = true;
     barElevationEnabled = false;
     blurEnabled = false;
+    blurForegroundLayers = true;
+    blurLayerOutlineOpacity = 0.12;
     blurBorderColor = "outline";
     blurBorderCustomColor = "#ffffff";
     blurBorderOpacity = 1;
@@ -74,6 +78,9 @@
 
     ];
     showSystemTray = true;
+    systemTrayIconTintMode = "none";
+    systemTrayIconTintSaturation = 50;
+    systemTrayIconTintStrength = 135;
     showClock = true;
     showNotificationButton = true;
     showBattery = true;
@@ -341,6 +348,7 @@
     matugenTemplatePywalfox = true;
     matugenTemplateZenBrowser = true;
     matugenTemplateVesktop = true;
+    matugenTemplateVencord = true;
     matugenTemplateEquibop = true;
     matugenTemplateGhostty = true;
     matugenTemplateKitty = true;
@@ -367,6 +375,7 @@
     showDock = false;
     dockAutoHide = true;
     dockSmartAutoHide = false;
+    dockHideOnFullscreen = true;
     dockGroupByApp = true;
     dockRestoreSpecialWorkspaceOnClick = false;
     dockOpenOnOverview = false;
@@ -391,6 +400,9 @@
     dockMaxVisibleApps = 0;
     dockMaxVisibleRunningApps = 0;
     dockShowOverflowBadge = true;
+    dockShowTrash = false;
+    dockTrashFileManager = "default";
+    dockTrashCustomCommand = "";
     notificationOverlayEnabled = false;
     notificationPopupShadowEnabled = true;
     notificationPopupPrivacyMode = false;
@@ -465,6 +477,9 @@
     updaterUseCustomCommand = false;
     updaterCustomCommand = "";
     updaterTerminalAdditionalParams = "";
+    updaterIntervalSeconds = 1800;
+    updaterIncludeFlatpak = true;
+    updaterAllowAUR = true;
     displayNameMode = "system";
     screenPreferences = {
       wallpaper = [
@@ -509,6 +524,9 @@
     displayProfileAutoSelect = false;
     displayShowDisconnected = false;
     displaySnapToEdge = true;
+    connectedFrameBarStyleBackups = {
+    };
+    connectedFrameModalDarkenBackup = null;
     barConfigs = [
       {
         autoHide = false;
@@ -541,20 +559,20 @@
         innerPadding = 4;
         leftWidgets = [
           {
+            enabled = true;
             id = "launcherButton";
-            enabled = true;
           }
           {
+            enabled = true;
             id = "workspaceSwitcher";
-            enabled = true;
           }
           {
+            enabled = true;
             id = "focusedWindow";
-            enabled = true;
           }
           {
-            id = "hyprlandSubmap";
             enabled = true;
+            id = "hyprlandSubmap";
           }
         ];
         maximizeDetection = true;
@@ -566,28 +584,33 @@
         position = 0;
         rightWidgets = [
           {
-            enabled = true;
             id = "cpuUsage";
+            enabled = true;
           }
           {
-            enabled = true;
             id = "memUsage";
+            enabled = true;
           }
           {
+            id = "keyboard_layout_name";
             enabled = true;
+            keyboardLayoutNameCompactMode = true;
+          }
+          {
             id = "battery";
+            enabled = true;
           }
           {
-            enabled = true;
             id = "notificationButton";
+            enabled = true;
           }
           {
-            enabled = true;
             id = "controlCenterButton";
+            enabled = true;
           }
           {
-            enabled = true;
             id = "idleInhibitor";
+            enabled = true;
           }
         ];
         screenPreferences = [
@@ -685,6 +708,9 @@
 
     ];
     builtInPluginSettings = {
+      dms_settings_search = {
+        trigger = "?";
+      };
     };
     clipboardEnterToPaste = false;
     launcherPluginVisibility = {
@@ -692,6 +718,21 @@
     launcherPluginOrder = [
 
     ];
-    configVersion = 6;
+    frameEnabled = false;
+    frameThickness = 16;
+    frameRounding = 23;
+    frameColor = "";
+    frameOpacity = 1;
+    frameScreenPreferences = [
+      "all"
+    ];
+    frameBarSize = 40;
+    frameShowOnOverview = false;
+    frameBlurEnabled = true;
+    frameCloseGaps = true;
+    frameLauncherEmergeSide = "bottom";
+    frameLauncherArcExtender = false;
+    frameMode = "separate";
+    configVersion = 11;
   };
 }
