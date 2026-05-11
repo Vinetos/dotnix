@@ -21,7 +21,7 @@
       url = "github:hyprwm/Hyprland?submodules=1&ref=v0.54.3";
     };
     hy3 = {
-      url = "github:outfoxxed/hy3";
+      url = "github:outfoxxed/hy3?ref=hl0.54.2.1";
       inputs.hyprland.follows = "hyprland";
     };
     nix-index-database = {
@@ -31,6 +31,10 @@
     nixvim.url = "github:nix-community/nixvim/";
     dms = {
       url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
