@@ -1,8 +1,7 @@
 { pkgs, lib, ... }:
 {
-  programs.vscode = {
+  programs.vscodium = {
     enable = true;
-    package = pkgs.vscodium;
     profiles.default = {
       userSettings = {
         # General
