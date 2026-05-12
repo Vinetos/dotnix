@@ -71,14 +71,10 @@
     # Include dank linux configuration
     gtk3.extraCss = "@import url(\"dank-colors.css\");";
     gtk4.extraCss = "@import url(\"dank-colors.css\");";
+    gtk4.theme = config.gtk.theme;
   };
 
-  # For Linux WallpaperEngine Plugin
-  services.linux-wallpaperengine.enable = true;
-  # Clear linux-wallpaperengine service as it is managed by DMS
-  systemd.user.services."linux-wallpaperengine".Service.ExecStart =
-    lib.mkForce "${pkgs.coreutils}/bin/echo disabled";
-
+  # NOTE(vinetos): Does not works very well, disabling for now
   # Configure Zen-browser with DMS
   # programs.zen-browser.profiles.default.settings."toolkit.legacyUserProfileCustomizations.stylesheets" =
   #  true;
