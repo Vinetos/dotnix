@@ -48,6 +48,11 @@ in
     # Kube
     kubectl
     fluxcd
+    tilt
+    cilium-cli
+    go
+    gnumake
+    gcc
 
     # Productivity
     thunar
