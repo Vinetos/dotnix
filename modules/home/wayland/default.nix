@@ -8,7 +8,6 @@
 # Wayland config
 {
   imports = [
-    ./hyprland
     ./niri.nix
   ];
 

@@ -4,10 +4,6 @@
 
     # Principle inputs (updated by `nix run .#update`)
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,13 +13,6 @@
 
     # Custom inputs
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1&ref=v0.54.3";
-    };
-    hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.54.2.1";
-      inputs.hyprland.follows = "hyprland";
-    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";

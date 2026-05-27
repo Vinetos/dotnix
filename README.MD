@@ -10,8 +10,7 @@ configuration (e.g. profiles, workspaces, ...).
 
 I use this repository to manage my personal computers, servers, and workstations including :
 
-- Laptops with NixOS and MacOS + Nix-Darwin
-- Desktop with NixOS
+- Laptops + Desktop with NixOS
 - WSL2 with NixOS and Ubuntu
 - Servers with NixOS and Debian + Nix
 - Raspberry Pi with NixOS
@@ -25,7 +24,7 @@ Some of the noticeable things I use :
 - Nix with Flakes built on top of unstable
 - Nixos-unified (flake-parts module) to provide a consistent interface for all my configurations
 - Home-manager for per-user configuration
-- Hyprland with DankLinux / DankMaterialScheme
+- Niri with DankLinux / DankMaterialScheme
 - Kitty terminal, Fish as shell
 - Linux-wallpaper engine, Zen browser
 

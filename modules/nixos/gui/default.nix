@@ -13,7 +13,6 @@ in
 {
 
   imports = [
-    ./hyprland.nix
     ./danklinux.nix
     ./niri.nix
   ];

@@ -54,12 +54,6 @@
   # Avoid conflict with niri-flake
   #systemd.user.services.niri-flake-polkit.enable = false;
 
-  # Configure Hyprland
-  wayland.windowManager.hyprland.settings.source = [
-    "${config.xdg.configHome}/hypr/dms/outputs.conf"
-    "${config.xdg.configHome}/hypr/dms/colors.conf"
-  ];
-
   # Configure kitty to use DMS config
   programs.kitty.extraConfig = "
       include dank-tabs.conf
