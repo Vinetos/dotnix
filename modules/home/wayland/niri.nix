@@ -22,6 +22,10 @@ in
 {
   # Configure niri
   programs.niri.settings = {
+    xwayland-satellite = {
+      enable = true;
+      path = lib.getExe pkgs.xwayland-satellite-unstable;
+    };
     input = {
       # Focus windows and outputs automatically when moving the mouse into them.
       # Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
@@ -69,11 +73,11 @@ in
       # Audio Controls
       "XF86AudioRaiseVolume" = {
         allow-when-locked = true;
-        action.spawn = toNiri "${dms-ipc} call audio increment 1";
+        action.spawn = toNiri "${dms-ipc} audio increment 1";
       };
       "XF86AudioLowerVolume" = {
         allow-when-locked = true;
-        action.spawn = toNiri "${dms-ipc} call audio decrement 1";
+        action.spawn = toNiri "${dms-ipc} audio decrement 1";
       };
       "XF86AudioMute" = {
         allow-when-locked = true;
@@ -99,11 +103,11 @@ in
       # Brightness Controls
       "XF86MonBrightnessUp" = {
         allow-when-locked = true;
-        action.spawn = toNiri "${dms-ipc} brightness increment 5 \"\"";
+        action.spawn = toNiri "${dms-ipc} brightness increment 5 ";
       };
       "XF86MonBrightnessDown" = {
         allow-when-locked = true;
-        action.spawn = toNiri "${dms-ipc} brightness decrement 5 \"\"";
+        action.spawn = toNiri "${dms-ipc} brightness decrement 5 ";
       };
     };
     environment = {
