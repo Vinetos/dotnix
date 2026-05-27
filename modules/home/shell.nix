@@ -28,6 +28,7 @@
     starship = {
       enable = true;
       enableFishIntegration = true;
+      enableNushellIntegration = true;
       enableTransience = true;
       settings = lib.mkMerge [
         (builtins.fromTOML (

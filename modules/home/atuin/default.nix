@@ -11,6 +11,7 @@
     # Replace history shortcuts (ctrl+r) with atuin
     enableFishIntegration = true;
     enableBashIntegration = true;
+    enableNushellIntegration = true;
 
     settings = {
       update_check = false; # Using nix make this setting irrelevant
