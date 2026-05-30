@@ -53,6 +53,7 @@ in
     go
     gnumake
     gcc
+    kubernetes-helm
 
     # Productivity
     thunar
