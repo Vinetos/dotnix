@@ -51,9 +51,12 @@ in
     tilt
     cilium-cli
     go
+    golangci-lint
     gnumake
     gcc
     kubernetes-helm
+    jetbrains.goland
+    kubespy
 
     # Productivity
     thunar
