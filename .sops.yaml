@@ -1,0 +1,11 @@
+# https://github.com/Mic92/sops-nix/issues/377#issuecomment-2926579189
+# https://github.com/str4d/age-plugin-yubikey
+keys:
+  - &key-age-yubi-ik age1yubikey1q02hrl32yn3dww65y9qc89td4ylpa0c8nk6umgjmm29qc4hlwqsguastm5z
+  - &server_xps age1ukrpfcmzj6ru4f92vjvcu7vc50f7k489gflk45c33qw0ygfmlc5q6qm9cm
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *key-age-yubi-ik
+      - *server_xps

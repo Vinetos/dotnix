@@ -10,6 +10,10 @@
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-unified.url = "github:srid/nixos-unified";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Custom inputs
     nixos-hardware.url = "github:NixOS/nixos-hardware";
