@@ -36,7 +36,7 @@ in
         numlock = true;
         xkb = {
           layout = "us,ch";
-          variant = "intl,";
+          variant = "intl,fr";
         };
       };
     };
