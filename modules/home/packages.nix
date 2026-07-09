@@ -43,10 +43,13 @@ in
     python3
     nodejs
     #linphone
-    inputs.orca.packages.${pkgs.stdenv.hostPlatform.system}.orca-openstack
+    #inputs.orca.packages.${pkgs.stdenv.hostPlatform.system}.orca-openstack
+    kchat-desktop
+    zed-editor
 
     # Kube
     kubectl
+    kubectl-node-shell
     fluxcd
     tilt
     cilium-cli
@@ -84,7 +87,7 @@ in
     # Better `cat`
     bat.enable = true;
     # Type `<ctrl> + r` to fuzzy search your shell history
-    fzf.enable = true;
+    fzf.enable = false; # Replaced by atuin
     jq.enable = true;
     # Install btop https://github.com/aristocratos/btop
     btop.enable = true;

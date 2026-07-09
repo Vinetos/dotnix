@@ -9,7 +9,7 @@
   imports = [
     flake.inputs.dms.homeModules.default
     flake.inputs.dms.homeModules.niri
-    flake.inputs.dms-plugin-registry.modules.default
+    flake.inputs.dms-plugin-registry.nixosModules.default
   ];
 
   programs.dank-material-shell = {

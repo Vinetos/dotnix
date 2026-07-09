@@ -22,10 +22,6 @@ in
 {
   # Configure niri
   programs.niri.settings = {
-    xwayland-satellite = {
-      enable = true;
-      path = lib.getExe pkgs.xwayland-satellite-unstable;
-    };
     input = {
       # Focus windows and outputs automatically when moving the mouse into them.
       # Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
@@ -116,6 +112,9 @@ in
       QT_QPA_PLATFORMTHEME = "gtk3";
       T_QPA_PLATFORMTHEME_QT6 = "gtk3";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
+      NIXOS_OZONE_WL="1";
+      ELM_DISPLAY="wl";
+      SDL_VIDEODRIVER="wayland";
     };
     layout = {
       # Selected heights and widhts when cycling
