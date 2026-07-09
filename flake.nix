@@ -37,7 +37,6 @@
 
     # Software inputs
     infomanixak.url = ./inputs/infomanix;
-    orca.url = "github:Vinetos/orca-cli";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     # Openstack-nix
     #openstack-nix.url = "path:///home/vinetos/Documents/Perso/openstack-nix";
