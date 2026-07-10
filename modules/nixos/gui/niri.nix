@@ -14,7 +14,7 @@ in
 
   # Install the default shell
   environment.systemPackages = with pkgs; [
-    pkgs.kitty
+    kitty
   ];
 
   programs.niri.enable = true;
@@ -27,8 +27,8 @@ in
     xdgOpenUsePortal = true;
     config.common.default = "gnome";
     extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-gtk
     ];
   };
 }

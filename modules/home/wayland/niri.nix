@@ -112,9 +112,9 @@ in
       QT_QPA_PLATFORMTHEME = "gtk3";
       T_QPA_PLATFORMTHEME_QT6 = "gtk3";
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
-      NIXOS_OZONE_WL="1";
-      ELM_DISPLAY="wl";
-      SDL_VIDEODRIVER="wayland";
+      NIXOS_OZONE_WL = "1";
+      ELM_DISPLAY = "wl";
+      SDL_VIDEODRIVER = "wayland";
     };
     layout = {
       # Selected heights and widhts when cycling

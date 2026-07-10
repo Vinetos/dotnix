@@ -12,13 +12,15 @@ let
   entries = builtins.readDir packages;
 
   # Convert directory entries to package definitions
-  makePackage = name: type:
+  makePackage =
+    name: type:
     let
       # Remove .nix extension for package name
       pkgName =
-        if type == "regular" && builtins.match ".*\\.nix$" name != null
-        then builtins.replaceStrings [ ".nix" ] [ "" ] name
-        else name;
+        if type == "regular" && builtins.match ".*\\.nix$" name != null then
+          builtins.replaceStrings [ ".nix" ] [ "" ] name
+        else
+          name;
     in
     {
       name = pkgName;
@@ -26,8 +28,9 @@ let
     };
 
   # Import everything in packages directory
-  packageOverlays = builtins.listToAttrs
-    (builtins.attrValues (builtins.mapAttrs makePackage entries));
+  packageOverlays = builtins.listToAttrs (
+    builtins.attrValues (builtins.mapAttrs makePackage entries)
+  );
 
 in
 packageOverlays
