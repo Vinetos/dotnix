@@ -6,14 +6,16 @@
 
 appimageTools.wrapType2 rec {
   pname = "kchat-desktop";
-  version = "3.3.3";
+  #version = "3.3.3";
   #version = "3.5.0-beta.9";
+  version = "3.5.0-beta.12";
 
   src = fetchurl {
     url = "https://download.storage5.infomaniak.com/kchat/${pname}-${version}-linux-x86_64.AppImage";
     name = "kchat-${version}.AppImage";
+    #hash = "sha256-5Nk2IMGk7BDDL7fuoOBO3wEcbtJDDDnQvUiqa8Pt8yU=";
     #hash = "sha256-GJZQCXkLDw90JvpB6WmR9Kg3Xf4WPlH48ME+xw/2v70=";
-    hash = "sha256-5Nk2IMGk7BDDL7fuoOBO3wEcbtJDDDnQvUiqa8Pt8yU=";
+    hash = "sha256-6L66ZEbgIv2Y1mOnACYoNs1lzPB0mOfZeTDEhKAZUF4=";
   };
 
   extraInstallCommands =
@@ -32,7 +34,7 @@ appimageTools.wrapType2 rec {
     homepage = "https://www.infomaniak.com/en/apps/download-kchat";
     license = lib.licenses.asl20;
     maintainers = [ lib.maintainers.vinetos ];
-    mainProgram = "kchat";
+    mainProgram = "kchat-desktop";
     platforms = [ "x86_64-linux" ];
     sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
     longDescription = ''
