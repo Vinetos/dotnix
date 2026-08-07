@@ -4,3 +4,6 @@
 [submodule "infomanix"]
 	path = inputs/infomanix
 	url = git@gitlab.infomaniak.ch:L3/infoma-nix-ak.git
+[submodule "toolbox"]
+	path = inputs/toolbox
+	url = git@gitlab.infomaniak.ch:infomaniak/hosting/cloud-computing/toolbox.git
