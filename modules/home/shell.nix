@@ -34,6 +34,10 @@
         (builtins.fromTOML (
           builtins.readFile "${pkgs.starship}/share/starship/presets/pastel-powerline.toml"
         ))
+        ({
+          kubernetes.disabled = false;
+          openstack.disabled = false;
+        })
       ];
     };
   };

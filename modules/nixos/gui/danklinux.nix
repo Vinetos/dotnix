@@ -8,11 +8,11 @@ in
 {
 
   imports = [
-    inputs.dms.nixosModules.greeter
+    inputs.dms-greeter.nixosModules.default
   ];
   # DMS greeter is based on greetd
   services.greetd.enable = true;
-  programs.dank-material-shell.greeter = {
+  programs.dms-greeter = {
     enable = true;
     compositor.name = "niri";
     configHome = "/home/vinetos";

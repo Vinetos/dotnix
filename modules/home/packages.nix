@@ -9,9 +9,6 @@ in
   home.packages = with pkgs; [
     # Unix tools
     ripgrep # Better `grep`
-    fd
-    sd
-    tree
     zip
     unzip
     gnupg
@@ -19,9 +16,6 @@ in
 
     # utils
     file
-    dust
-    duf
-    fd
 
     # Nix dev
     nil # Nix language server
@@ -38,14 +32,9 @@ in
     git-review
     opentofu
     packer
-    poetry
     uv
     python3
-    nodejs
-    #linphone
-    #inputs.orca.packages.${pkgs.stdenv.hostPlatform.system}.orca-openstack
     kchat-desktop
-    zed-editor
 
     # Kube
     kubectl
@@ -60,9 +49,11 @@ in
     kubernetes-helm
     jetbrains.goland
     kubespy
+    clusterctl
+    kubie
 
     # Productivity
-    thunar
+    nautilus
     (discord.override {
       #withOpenASAR = true;
       withVencord = true;
