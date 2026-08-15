@@ -35,6 +35,7 @@ in
     uv
     python3
     kchat-desktop
+    inputs.opensre.packages.${pkgs.stdenv.hostPlatform.system}.opensre
 
     # Kube
     kubectl

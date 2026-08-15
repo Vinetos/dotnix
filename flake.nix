@@ -51,6 +51,10 @@
       url = ./inputs/toolbox;
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    opensre = {
+      url = "github:Vinetos/opensre-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
