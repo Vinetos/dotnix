@@ -17,10 +17,14 @@ in
     kitty
   ];
 
-  programs.niri.enable = true;
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri-unstable;
+  };
 
-  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-  programs.niri.package = pkgs.niri-unstable;
+  nixpkgs.overlays = [
+    inputs.niri.overlays.niri
+  ];
 
   xdg.portal = {
     enable = true;
