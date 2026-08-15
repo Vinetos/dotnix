@@ -3,7 +3,7 @@
     self.submodules = true;
 
     # Principle inputs (updated by `nix run .#update`)
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,7 +16,10 @@
     };
 
     # Custom inputs
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,13 +38,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
-      url = "github:sodiboo/niri-flake";
+      url = "github:epireyn/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Software inputs
-    infomanixak.url = ./inputs/infomanix;
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    infomanixak = {
+      url = ./inputs/infomanix;
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+    toolbox = {
+      url = ./inputs/toolbox;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Openstack-nix
     #openstack-nix.url = "path:///home/vinetos/Documents/Perso/openstack-nix";
   };
