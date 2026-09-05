@@ -16,6 +16,7 @@ in
 
     # utils
     file
+    hwatch
 
     # Nix dev
     nil # Nix language server
@@ -34,7 +35,6 @@ in
     packer
     uv
     python3
-    kchat-desktop
     inputs.opensre.packages.${pkgs.stdenv.hostPlatform.system}.opensre
 
     # Kube
@@ -51,6 +51,8 @@ in
     jetbrains.goland
     kubespy
     clusterctl
+    hubble
+    etcd
     kubie
 
     # Productivity

@@ -42,7 +42,7 @@ in
 
       "Mod+L".action.spawn = toNiri "${dms-ipc} lock lock";
       "Mod+Shift+Q".action.close-window = { };
-      "Mod+Shift+E".action.quit = { };
+      "Mod+Shift+E".action.spawn = toNiri "${dms-ipc} powermenu toggle";
       "Mod+Shift+P".action.power-off-monitors = { };
 
       "Ctrl+Shift+V".action.spawn = toNiri "${dms-ipc} clipboard toggle";
@@ -54,6 +54,7 @@ in
       "Mod+Down".action.focus-window-down = { };
       "Mod+Left".action.focus-column-left = { };
       "Mod+Right".action.focus-column-right = { };
+      "Mod+space".action.toggle-window-floating = { };
 
       # Move controls
       "Mod+Shift+Down".action.move-window-down = { };
