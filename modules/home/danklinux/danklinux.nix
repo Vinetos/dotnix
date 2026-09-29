@@ -49,7 +49,7 @@
     enableClipboardPaste = true; # Manage clipboard history
 
     plugins = {
-      dankBatteryAlerts.enable = true;
+      #dankBatteryAlerts.enable = true;
     };
   };
 
