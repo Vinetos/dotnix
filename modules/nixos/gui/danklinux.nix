@@ -15,7 +15,7 @@ in
   # Dank Calendar
   programs.dank-calendar = {
     enable = true;
-    systemd.enable =  true;
+    systemd.enable = true;
   };
 
   # DMS greeter is based on greetd

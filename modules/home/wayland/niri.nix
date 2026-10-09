@@ -18,10 +18,43 @@ let
   playerctl = "${lib.getExe pkgs.playerctl}";
 
   toNiri = str: lib.splitString " " str;
+
+  # Hyprland-like numbered workspaces: Mod+{1..9,0} to focus, Mod+Shift+{1..9,0} to move.
+  wsRange = lib.range 1 10;
+  wsKey = n: if n == 10 then "0" else toString n;
+
+  # Keys are zero-padded and reversed: niri inserts each named workspace at
+  # position 0, so declaring 10..1 yields a final layout order of 1..10.
+  # `name` keeps the display name.
+  namedWorkspaces = lib.listToAttrs (
+    map (n: {
+      name = lib.fixedWidthString 2 "0" (toString (11 - n));
+      value.name = toString n;
+    }) wsRange
+  );
+
+  # `focus = false` moves without switching, like Hyprland's movetoworkspacesilent.
+  workspaceBinds = lib.listToAttrs (
+    lib.concatMap (n: [
+      {
+        name = "Mod+${wsKey n}";
+        value.action.focus-workspace = toString n;
+      }
+      {
+        name = "Mod+Shift+${wsKey n}";
+        value.action.move-column-to-workspace = [
+          { focus = false; }
+          (toString n)
+        ];
+      }
+    ]) wsRange
+  );
 in
 {
   # Configure niri
   programs.niri.settings = {
+    workspaces = namedWorkspaces;
+
     input = {
       # Focus windows and outputs automatically when moving the mouse into them.
       # Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
@@ -106,7 +139,8 @@ in
         allow-when-locked = true;
         action.spawn = toNiri "${dms-ipc} brightness decrement 5 ";
       };
-    };
+    }
+    // workspaceBinds;
     environment = {
       QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "gtk3";
