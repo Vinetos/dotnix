@@ -3,9 +3,11 @@
 keys:
   - &key-age-yubi-ik age1yubikey1qddeulwl9jyv8cs7hrjnfr9c3kzhgs37rgzuqe4ckfvuxwpxjknf5w28ysw
   - &server_xps age1ukrpfcmzj6ru4f92vjvcu7vc50f7k489gflk45c33qw0ygfmlc5q6qm9cm
+  - &server_ryzen age1pl3g6ay5e0azqvutwend63axprgkvmfnsm74j2hzzytvn4a2nguse95rl8
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *key-age-yubi-ik
       - *server_xps
+      - *server_ryzen

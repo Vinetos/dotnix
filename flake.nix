@@ -47,14 +47,14 @@
     };
 
     # Software inputs
-    infomanixak = {
-      url = ./inputs/infomanix;
+    #infomanixak = {
+    #  url = ./inputs/infomanix;
       # inputs.nixpkgs.follows = "nixpkgs";
-    };
-    toolbox = {
-      url = ./inputs/toolbox;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #};
+    #toolbox = {
+   #   url = ./inputs/toolbox;
+   #   inputs.nixpkgs.follows = "nixpkgs";
+    #};
     opensre = {
       url = "github:Vinetos/opensre-nix";
       inputs.nixpkgs.follows = "nixpkgs";
