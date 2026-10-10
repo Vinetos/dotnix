@@ -23,12 +23,13 @@ let
   wsRange = lib.range 1 10;
   wsKey = n: if n == 10 then "0" else toString n;
 
-  # Keys are zero-padded and reversed: niri inserts each named workspace at
-  # position 0, so declaring 10..1 yields a final layout order of 1..10.
-  # `name` keeps the display name.
+  # Workspaces are declared 1..10 in the config file. niri prepends each named
+  # workspace (insert at position 0), so the runtime order is the reverse of the
+  # declaration order; binds below therefore target workspaces by positional
+  # index, which is what the bar displays.
   namedWorkspaces = lib.listToAttrs (
     map (n: {
-      name = lib.fixedWidthString 2 "0" (toString (11 - n));
+      name = lib.fixedWidthString 2 "0" (toString n);
       value.name = toString n;
     }) wsRange
   );
@@ -38,13 +39,13 @@ let
     lib.concatMap (n: [
       {
         name = "Mod+${wsKey n}";
-        value.action.focus-workspace = toString n;
+        value.action.focus-workspace = n;
       }
       {
         name = "Mod+Shift+${wsKey n}";
         value.action.move-column-to-workspace = [
           { focus = false; }
-          (toString n)
+          n
         ];
       }
     ]) wsRange
